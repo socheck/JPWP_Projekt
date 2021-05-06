@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'wypozyczalnia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '15212_wypo_db',
+        'USER': '15212_wypo_db',
+        'PASSWORD': 'wypozyczalnia5',
+        'HOST': 'pawsao.atthost24.pl',
+        'PORT': '3306',
     }
 }
 
