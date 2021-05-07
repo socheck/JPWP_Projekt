@@ -11,4 +11,5 @@ urlpatterns = [
     path('logowanie/', views.logowanie, name="logowanie"),
     path('wylogowywanie/', views.wylogowywanie, name="wylogowywanie"),
     path('testujemape/', views.testujemape,),
+    path('dodajmiasto/', views.dodajmiasto),
 ]

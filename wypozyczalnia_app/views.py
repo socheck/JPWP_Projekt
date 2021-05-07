@@ -73,3 +73,6 @@ def wylogowywanie(request):
 
 def testujemape(request):
     return render(request, 'testujemape.html')
+
+def dodajmiasto(request):
+    return render(request, 'dodajmiasto.html')
