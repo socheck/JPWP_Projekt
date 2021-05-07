@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django_json_widget.widgets import JSONEditorWidget
 from .models import Miasto
+from .models import Strefa
 
 
 class CreateUserForm(UserCreationForm):
@@ -16,6 +17,16 @@ class CreateUserForm(UserCreationForm):
 
 class YourForm(forms.ModelForm):
     class Meta:
+        model = Strefa
+
+        fields = ('lista_pozycji',)
+
+        widgets = {
+            'lista_pozycji': JSONEditorWidget
+        }
+
+class YourForm(forms.ModelForm):
+    class Meta:
         model = Miasto
 
         fields = ('pozycja',)
@@ -23,3 +34,4 @@ class YourForm(forms.ModelForm):
         widgets = {
             'pozycja': JSONEditorWidget
         }
+
