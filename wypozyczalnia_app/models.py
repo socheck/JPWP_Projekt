@@ -61,3 +61,15 @@ class Strefa(models.Model):
     class Meta:
         verbose_name_plural = "Strefy"
         verbose_name = "Strefa"
+
+class Oddzial(models.Model):
+    pozycja = models.JSONField(blank = False, null = False)
+    adres = models.CharField(max_length=100, blank = False, null = False)
+    miasto = models.ForeignKey(Miasto, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.adres
+        
+    class Meta:
+        verbose_name_plural = "Oddziały"
+        verbose_name = "Oddział"

@@ -79,3 +79,6 @@ def testujemape(request):
 def dodajmiasto(request):
     miasto = Miasto.objects.all()
     return render(request, 'dodajmiasto.html', {'miasto': miasto})
+
+def dlugoterminowyform(request):
+    return render(request, 'dlugoterminowyform.html')

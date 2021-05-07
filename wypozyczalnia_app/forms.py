@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django_json_widget.widgets import JSONEditorWidget
 from .models import Miasto
 from .models import Strefa
+from django import forms
 
 
 
@@ -35,3 +36,12 @@ class YourForm(forms.ModelForm):
         widgets = {
             'pozycja': JSONEditorWidget
         }
+
+class DateForm(forms.Form):
+    date = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        })
+    )

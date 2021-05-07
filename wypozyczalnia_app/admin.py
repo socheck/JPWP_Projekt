@@ -5,6 +5,7 @@ from django.db import models
 from django_json_widget.widgets import JSONEditorWidget
 from .models import Miasto
 from .models import Strefa
+from .models import Oddzial
 
 
 
@@ -21,3 +22,5 @@ class YourModelAdmin1(admin.ModelAdmin):
         # fields.JSONField: {'widget': JSONEditorWidget}, # if django < 3.1
         models.JSONField: {'widget': JSONEditorWidget},
     }
+
+admin.site.register(Oddzial)

@@ -12,4 +12,5 @@ urlpatterns = [
     path('wylogowywanie/', views.wylogowywanie, name="wylogowywanie"),
     path('testujemape/', views.testujemape,),
     path('dodajmiasto/', views.dodajmiasto),
+    path('dlugoterminowyform/', views.dlugoterminowyform),
 ]
