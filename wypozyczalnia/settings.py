@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wypozyczalnia_app',
+    'django_json_widget',
 ]
 
 MIDDLEWARE = [
