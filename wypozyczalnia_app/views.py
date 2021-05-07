@@ -70,3 +70,6 @@ def logowanie(request):
 def wylogowywanie(request):
     logout(request)
     return redirect('logowanie')
+
+def testujemape(request):
+    return render(request, 'testujemape.html')
