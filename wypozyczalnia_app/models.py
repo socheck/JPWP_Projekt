@@ -41,7 +41,7 @@ def path_hulajnogi_ilustracja(instance, filename):
 
 class Miasto(models.Model):
     nazwa = models.CharField(max_length=50)
-    pozycja = models.JSONField(blank = True, null = True)
+    pozycja = models.JSONField(default = {})
 
     def __str__(self):
         return self.nazwa
@@ -53,11 +53,11 @@ class Miasto(models.Model):
 class Strefa(models.Model):
     rodzaj = models.CharField(max_length=50)
     miasto = models.ForeignKey(Miasto, on_delete=models.CASCADE)
-    lista_pozycji = models.JSONField(blank = True, null = True)
+    lista_pozycji = models.JSONField(default = {})
 
     def __str__(self):
-        return self.miasto
-
+        return self.nazwa
+        
     class Meta:
         verbose_name_plural = "Strefy"
         verbose_name = "Strefa"

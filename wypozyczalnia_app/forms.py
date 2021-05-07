@@ -7,6 +7,7 @@ from .models import Miasto
 from .models import Strefa
 
 
+
 class CreateUserForm(UserCreationForm):
     first_name = forms.CharField(max_length=50) # Required
     last_name = forms.CharField(max_length=50) # Required
@@ -34,4 +35,3 @@ class YourForm(forms.ModelForm):
         widgets = {
             'pozycja': JSONEditorWidget
         }
-
