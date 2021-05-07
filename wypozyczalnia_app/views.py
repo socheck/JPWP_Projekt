@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from .models import *
+
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
@@ -75,4 +77,5 @@ def testujemape(request):
     return render(request, 'testujemape.html')
 
 def dodajmiasto(request):
-    return render(request, 'dodajmiasto.html')
+    miasto = Miasto.objects.all()
+    return render(request, 'dodajmiasto.html', {'miasto': miasto})

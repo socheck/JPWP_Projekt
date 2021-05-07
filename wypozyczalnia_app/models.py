@@ -5,7 +5,7 @@ from uuid import uuid4
 import datetime
 # Create your models here.
 
-# funkcja do podierania obrazku
+# funkcja do pobierania obrazku
 def path_rodzaj_auta_ilustracja(instance, filename):
     upload_to = 'static/images/rodzaj_auta'
     ext = filename.split('.')[-1]
