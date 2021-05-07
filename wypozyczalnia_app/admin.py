@@ -27,9 +27,26 @@ class YourModelAdmin1(admin.ModelAdmin):
         models.JSONField: {'widget': JSONEditorWidget},
     }
 
-admin.site.register(Oddzial)
-admin.site.register(TypAuta)
-admin.site.register(Samochod)
-admin.site.register(Hulajnoga)
+@admin.register(Oddzial)
+class YourModelAdmin1(admin.ModelAdmin):
+    formfield_overrides = {
+        # fields.JSONField: {'widget': JSONEditorWidget}, # if django < 3.1
+        models.JSONField: {'widget': JSONEditorWidget},
+    }
 
+@admin.register(Samochod)
+class YourModelAdmin1(admin.ModelAdmin):
+    formfield_overrides = {
+        # fields.JSONField: {'widget': JSONEditorWidget}, # if django < 3.1
+        models.JSONField: {'widget': JSONEditorWidget},
+    }
+
+@admin.register(Hulajnoga)
+class YourModelAdmin1(admin.ModelAdmin):
+    formfield_overrides = {
+        # fields.JSONField: {'widget': JSONEditorWidget}, # if django < 3.1
+        models.JSONField: {'widget': JSONEditorWidget},
+    }
+
+admin.site.register(TypAuta)
 admin.site.register(Profil)

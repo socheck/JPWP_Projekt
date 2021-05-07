@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django_json_widget.widgets import JSONEditorWidget
 from .models import Miasto
 from .models import Strefa
+from .models import Oddzial
+from .models import Samochod
+from .models import Hulajnoga
 from django import forms
 
 
@@ -36,6 +39,37 @@ class YourForm(forms.ModelForm):
         widgets = {
             'pozycja': JSONEditorWidget
         }
+
+class YourForm(forms.ModelForm):
+    class Meta:
+        model = Oddzial
+
+        fields = ('pozycja',)
+
+        widgets = {
+            'pozycja': JSONEditorWidget
+        }
+
+class YourForm(forms.ModelForm):
+    class Meta:
+        model = Samochod
+
+        fields = ('pozycja',)
+
+        widgets = {
+            'pozycja': JSONEditorWidget
+        }
+
+class YourForm(forms.ModelForm):
+    class Meta:
+        model = Hulajnoga
+
+        fields = ('pozycja',)
+
+        widgets = {
+            'pozycja': JSONEditorWidget
+        }
+
 
 class DateForm(forms.Form):
     date = forms.DateTimeField(
