@@ -83,3 +83,23 @@ def dodajmiasto(request):
 
 def dlugoterminowyform(request):
     return render(request, 'dlugoterminowyform.html')
+
+def pobieranie_samochodow(request):
+    # request should be ajax and method should be GET.
+    if request.is_ajax and request.method == "GET":
+        # get the nick name from the client side.
+        try:
+            zawartosc_unicode = request.body.decode('utf-8')
+            zawartosc = json.loads(zawartosc_unicode)
+        except:
+            pass
+        nazwa_miasta = request.GET.get("nazwa_miasta", None)
+        # check for the nick name in the database.
+        if Samochod.objects.filter(miasto = nazwa_miasta).exists():
+            # if nick_name found return not valid new friend
+            return JsonResponse({"valid":False}, status = 200)
+        else:
+            # if nick_name not found, then user can create a new friend.
+            return JsonResponse({"valid":True}, status = 200)
+
+    return JsonResponse({}, status = 400)
