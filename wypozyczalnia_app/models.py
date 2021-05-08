@@ -85,7 +85,7 @@ class Strefa(models.Model):
     lista_pozycji = models.JSONField(blank = False, null = False, default= {})
 
     def __str__(self):
-        return self.miasto, "strefa: ", self.rodzaj
+        return self.miasto + "strefa: " + self.rodzaj
         
     class Meta:
         verbose_name_plural = "Strefy"
@@ -152,7 +152,7 @@ class Samochod(models.Model):
     kodQR = models.ImageField(upload_to=path_kodQR_auto, max_length=100, null=False, blank=False)
 
     def __str__(self):
-        return self.nr_rejestracyjny, " ", self.marka, " ", self.model
+        return self.nr_rejestracyjny + " " + self.marka + " " + self.model
 
     class Meta:
         verbose_name_plural = "Samochody"
@@ -172,7 +172,7 @@ class Hulajnoga(models.Model):
 
 
     def __str__(self):
-        return  "hulajnogz nr.: ", self.nr_identyfikacyjny
+        return  "hulajnogz nr.: " + self.nr_identyfikacyjny
 
     class Meta:
         verbose_name_plural = "Hulajnogi"
