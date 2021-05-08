@@ -29,7 +29,7 @@
         Wybierz Miasto
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        {% for i in miasto %}
+        {% for i in miasta %}
         <li><a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#">{{i.nazwa}}</a></li>
         
         
@@ -42,9 +42,17 @@
 
         const data_position={
 
-            {% for i in miasto %}
+            {% for i in miasta %}
                 {{i.nazwa}} : { x: {{i.pozycja.x}}, 
                 y: {{i.pozycja.y}}, },
+            {% endfor %}
+        }
+
+        const data_car={
+            
+            {% for samochod in samochody %}
+                {{samochod.marka}} : { x: {{samochod.pozycja.x}}, 
+                y: {{samochod.pozycja.y}}, },
             {% endfor %}
         }
     </script>
