@@ -146,7 +146,7 @@ class Samochod(models.Model):
     image = models.ImageField(upload_to=path_auta_img, max_length=100, null=False, blank=False)
     typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_wynamu, default="d")
     
-    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null= True) #może się wywalić tutaj
+    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null = True, blank = True) #może się wywalić tutaj
     zasieg = models.DecimalField( max_digits=8, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
     service = models.BooleanField(default = False) #zmieniany gdy za mało paliwa[zasięg jest odpowiednio niski] (trzeba to ukryć)
     kodQR = models.ImageField(upload_to=path_kodQR_auto, max_length=100, null=False, blank=False)
