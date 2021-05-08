@@ -144,7 +144,7 @@ class Samochod(models.Model):
     skrzynia_biegow = models.CharField(max_length=30, choices=rodzaj_skrzyni, default="m")
     opis = models.CharField(max_length=500, blank= True, null = True)
     image = models.ImageField(upload_to=path_auta_img, max_length=100, null=False, blank=False)
-    typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_skrzyni, default="d")
+    typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_wynamu, default="d")
     
     czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null= True) #może się wywalić tutaj
     zasieg = models.DecimalField( max_digits=8, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
