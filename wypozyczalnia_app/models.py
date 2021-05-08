@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from uuid import uuid4
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+import os
 import datetime
 # Create your models here.
 
@@ -191,4 +191,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    try:
+        instance.profil.save()
+    except:
+        pass
