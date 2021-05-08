@@ -85,7 +85,7 @@ class Strefa(models.Model):
     lista_pozycji = models.JSONField(blank = False, null = False, default= {})
 
     def __str__(self):
-        return self.miasto, "strefa: ", self.rodzaj
+        return self.miasto + "strefa: " + self.rodzaj
         
     class Meta:
         verbose_name_plural = "Strefy"
@@ -144,15 +144,15 @@ class Samochod(models.Model):
     skrzynia_biegow = models.CharField(max_length=30, choices=rodzaj_skrzyni, default="m")
     opis = models.CharField(max_length=500, blank= True, null = True)
     image = models.ImageField(upload_to=path_auta_img, max_length=100, null=False, blank=False)
-    typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_skrzyni, default="d")
+    typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_wynamu, default="d")
     
-    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null= True) #może się wywalić tutaj
+    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null = True, blank = True) #może się wywalić tutaj
     zasieg = models.DecimalField( max_digits=8, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
     service = models.BooleanField(default = False) #zmieniany gdy za mało paliwa[zasięg jest odpowiednio niski] (trzeba to ukryć)
     kodQR = models.ImageField(upload_to=path_kodQR_auto, max_length=100, null=False, blank=False)
 
     def __str__(self):
-        return self.nr_rejestracyjny, " ", self.marka, " ", self.model
+        return self.nr_rejestracyjny + " " + self.marka + " " + self.model
 
     class Meta:
         verbose_name_plural = "Samochody"
@@ -172,7 +172,7 @@ class Hulajnoga(models.Model):
 
 
     def __str__(self):
-        return  "hulajnogz nr.: ", self.nr_identyfikacyjny
+        return  "hulajnogz nr.: " + self.nr_identyfikacyjny
 
     class Meta:
         verbose_name_plural = "Hulajnogi"
