@@ -10,6 +10,7 @@ from .models import TypAuta
 from .models import Samochod
 from .models import Hulajnoga
 from .models import Profil
+from .models import UserProfile
 
 
 
@@ -50,3 +51,5 @@ class YourModelAdmin1(admin.ModelAdmin):
 
 admin.site.register(TypAuta)
 admin.site.register(Profil)
+
+admin.site.register(UserProfile)

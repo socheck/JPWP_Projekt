@@ -13,4 +13,6 @@ urlpatterns = [
     path('testujemape/', views.testujemape,),
     path('dodajmiasto/', views.dodajmiasto),
     path('dlugoterminowyform/', views.dlugoterminowyform),
+    path('dodajmiasto/ajax/get_samochody', views.pobieranie_samochodow, name = "pobieranie_samochodow"),
+
 ]

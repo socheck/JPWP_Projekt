@@ -195,3 +195,12 @@ def save_user_profile(sender, instance, **kwargs):
         instance.profil.save()
     except:
         pass
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    telefon = models.DecimalField( max_digits=9, decimal_places=0,  null=False, blank=False)
+    karta = models.CharField(max_length=40, blank=False, null = False)
+
+    def __str__(self):
+        return self.user.username

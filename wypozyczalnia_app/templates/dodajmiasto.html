@@ -37,14 +37,37 @@
     </ul>
     </div>
 
+    <table id="tabela_aut" class="table table-striped" style="width: 80%; margin: 1rem auto;">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa samocjodu</th>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+        </tbody>
+    </table>
+
 
     <script>
 
         const data_position={
 
             {% for i in miasta %}
-                {{i.nazwa}} : { x: {{i.pozycja.x}}, 
-                y: {{i.pozycja.y}}, },
+                {{i.nazwa}} : { 
+                    x: {{i.pozycja.x}},
+                    y: {{i.pozycja.y}},
+                    id : {{i.id}}, 
+                },
+                
             {% endfor %}
         }
 

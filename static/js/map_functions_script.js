@@ -8,11 +8,49 @@ $("document").ready(() => {
         const nazwa = $(this).attr("data-nazwa-miasta");
         x = data_position[nazwa]["x"];
         y = data_position[nazwa]["y"];
+        var id_miasta = data_position[nazwa]["id"];
         zoom = 12;
         mymap.setView([x, y], zoom);
-        data_car.forEach(element => {
-            
-        });
+        
+        $.ajax({
+            type: 'GET',
+            url: "/dodajmiasto/ajax/get_samochody",
+            data: {"id_miasta": id_miasta, "nazwa": nazwa},
+            success: function (response) {
+
+                if(!$.isEmptyObject(response)){
+                    // alert("są takie auta");
+                    console.log(response);
+
+                    licznik_id = 0;
+                    for (car in response){
+                        // var w = jQuery('<tr/>', {
+                        //     id: 'some-id',
+                        //     "class": 'some-class',
+                        //     title: 'now this div has a title!'
+                        // }).appendTo('#tabela_aut tbody');
+                        var wiersz = document.createElement("tr");
+                        var car_id = document.createElement("th");
+                        // car_id.attr("scope", "row").text(licznik_id+1);
+                        car_id.text(licznik_id+1);
+                        var car_nazwa = document.createElement("td");
+                        car_nazwa.text(car["nazwa"]);
+                        var car_x = document.createElement("td");
+                        var car_y = document.createElement("td");
+                        car_y.text(car["pozycja"]["y"]);
+                        wiersz.append(car_id, car_nazwa, car_x, car_y);
+                        $("#tabela_aut tbody").append(wiersz);
+                    }
+                    
+
+                }else{
+                    alert("ni ma");
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        })
     });
 
     

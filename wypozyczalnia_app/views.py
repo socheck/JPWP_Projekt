@@ -6,6 +6,7 @@ from .forms import UserProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from .models import *
 
@@ -88,21 +89,22 @@ def dlugoterminowyform(request):
     return render(request, 'dlugoterminowyform.html')
 
 def pobieranie_samochodow(request):
-    # request should be ajax and method should be GET.
+
     if request.is_ajax and request.method == "GET":
-        # get the nick name from the client side.
-        try:
-            zawartosc_unicode = request.body.decode('utf-8')
-            zawartosc = json.loads(zawartosc_unicode)
-        except:
-            pass
-        nazwa_miasta = request.GET.get("nazwa_miasta", None)
-        # check for the nick name in the database.
-        if Samochod.objects.filter(miasto = nazwa_miasta).exists():
-            # if nick_name found return not valid new friend
-            return JsonResponse({"valid":False}, status = 200)
+
+        id_miasta = request.GET.get("id_miasta", None)
+        nazwa_miasta = request.GET.get("nazwa", None)
+        print(id_miasta +" "+ nazwa_miasta)
+
+        if Samochod.objects.filter(miasto_id = id_miasta).exists() and id_miasta is not None:
+            zwracane_samochody = list(Samochod.objects.filter(miasto_id = id_miasta))
+            context = [{
+                "nazwa":car.__str__(),
+                "pozycja": car.pozycja,
+
+            } for car in zwracane_samochody]
+            return JsonResponse(context, safe=False,status = 200)
         else:
-            # if nick_name not found, then user can create a new friend.
-            return JsonResponse({"valid":True}, status = 200)
+            return JsonResponse({}, status = 200)
 
     return JsonResponse({}, status = 400)
