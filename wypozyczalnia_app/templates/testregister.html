@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<form method="POST" action="">
+{% csrf_token %}
+{{form.as_p}}
+
+{{profile_form.as_p}}
+<input type="submit" value="Create New Account">
+
+</form>
+
+
+{% endblock %}
