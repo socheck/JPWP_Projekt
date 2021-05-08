@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
+from .forms import UserProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -23,9 +24,11 @@ def kontakt(request):
 
 def rejestracja(request):
     form = CreateUserForm()
+    profile_form = UserProfileForm()
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')
@@ -33,7 +36,7 @@ def rejestracja(request):
 
             return redirect('logowanie')
 
-    context = {'form':form}
+    context = {'form':form, 'profile_form':profile_form}
 
     return render(request, 'rejestracja.html', context)
 

@@ -8,12 +8,13 @@ from .models import Strefa
 from .models import Oddzial
 from .models import Samochod
 from .models import Hulajnoga
+from .models import Profil
 from django import forms
 
 
 
 class CreateUserForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50) # Required
+    first_name = forms.CharField(max_length=50 ) # Required
     last_name = forms.CharField(max_length=50) # Required
     email = forms.EmailField(max_length=50) # Required
 
@@ -80,3 +81,8 @@ class DateForm(forms.Form):
             'data-target': '#datetimepicker1'
         })
     )
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profil
+        fields = ('telefon', 'karta', 'pj_img')
