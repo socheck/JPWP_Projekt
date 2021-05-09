@@ -10,8 +10,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db import transaction
+from django.views.decorators.csrf import csrf_exempt
+from .models import Strefa
 
 from .models import *
+import json
 
 # Create your views here.
 def home(request):
@@ -154,30 +157,32 @@ def uzupelnijprofil(request):
     }
     return render(request, 'uzupelnijprofil.html', context)
 
+@csrf_exempt
 def dodawanie_strefy_baza(request):
+
+    print(request.POST)
+    print(request.body)
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+    except:
+        return JsonResponse({}, status = 200)
+    print(data["miasto_id"])
+    print(data["rodzaj_strefy"])
+    print(data["punkty"])
+    if Strefa.objects.filter(miasto_id = data["miasto_id"], rodzaj = data["rodzaj_strefy"]).exists():
+        return JsonResponse({"message" : "Taka strefa już istnieje. Przejdź do panelu administratora aby dokonać edycji"}, safe=False, status = 200)
+
+        
+    if request.is_ajax and request.method == "POST":
+        
+        nowa_strefa = Strefa()        
+        nowa_strefa.rodzaj = data["rodzaj_strefy"]
+        nowa_strefa.miasto_id = data["miasto_id"]
+        nowa_strefa.lista_pozycji = data["punkty"]
+        nowa_strefa.save()
+        return JsonResponse({"message" : "Pomyślnie dodano strefę"}, status = 200)
+        
     return JsonResponse({}, status = 200)
-    # print(request);
-    # if Strefa.objects.filter(miasto_id = id_miasta, rodzaj = rodzaj_strefy).exists():
-        # return JsonResponse({}, safe=False, status = 200)
-
-        # request should be ajax and method should be POST.
-    # if request.is_ajax and request.method == "POST":
-        # get the form data
-        # form = FriendForm(request.POST)
-        # # save the data and after fetch the object in instance
-        # if form.is_valid():
-        #     instance = form.save()
-        #     # serialize in new friend object in json
-        #     ser_instance = serializers.serialize('json', [ instance, ])
-        #     # send to client side.
-        #     return JsonResponse({"instance": ser_instance}, status=200)
-        # else:
-        #     # some form errors occured.
-        #     return JsonResponse({"error": form.errors}, status=400)
-
-    # some error occured
-    # return JsonResponse({"error": ""}, safe=False, status=400)
-    # return JsonResponse({}, safe=False, status = 200)
 
 def dodaj_strefe(request):
     miasta = Miasto.objects.all()

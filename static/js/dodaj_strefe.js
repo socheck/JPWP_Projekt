@@ -11,9 +11,11 @@ $("document").ready(() => {
         id_miasta = data_position[nazwa]["id"];
         zoom = 12;
         mymap.setView([x, y], zoom);
+        $("#miasto").parent().children("button").text(nazwa);
     });
     $("#rodzaj li a") .on("click", function() {
         rodzaj = $(this).attr("data-rodzaj");
+        $("#rodzaj").parent().children("button").text(rodzaj);
     });
 
     
@@ -60,16 +62,15 @@ $("document").ready(() => {
     var lista_punktow = {};
 
     for(let i = 0; i<Object.keys(layer["_latlngs"]["0"]).length; i++){
-        console.log(layer["_latlngs"]["0"][i]);
         var pomoc = {};
         pomoc["x"] = layer["_latlngs"]["0"][i]["lat"];
         pomoc["y"] = layer["_latlngs"]["0"][i]["lng"];
         lista_punktow[i] = pomoc;
     }
-    
+    console.log(lista_punktow);
     // wysyłanie do bazy
     if(id_miasta == -1 || rodzaj == ""){
-        alert("miasto oraz rodzaj są wymagane");
+        alert("Wybraanie miasta oraz rodzaju są wymagane.");
     }else{
         mymap.addLayer(layer);
         
@@ -78,26 +79,23 @@ $("document").ready(() => {
         serializedData["rodzaj_strefy"] = rodzaj;
         serializedData["punkty"] = lista_punktow;
 
-        console.log(serializedData);
+        //  serializedData["punkty"] = {"0": {"x": 51.1192133237286, "y": 16.976280212402347}, "1": {"x": 51.11210113128891, "y": 17.027778625488285}, "2": {"x": 51.09550175808282, "y": 16.988639831542972}};
 
         $.ajax({
             type: 'POST',
             url: "/dodaj_strefe/ajax/post_punkty",
-            data: serializedData,
+            data: JSON.stringify(serializedData),
             success: function (response) {
                 if(!$.isEmptyObject(response)){
-                    console.log(response);
-                    alert("pomyślnie dodano strefę.");
+                    // console.log(response);
+                    alert(response["message"]);
                     location.reload();
                     
                 }else{
-                    console.log(response);
+                    // console.log(response);
                     alert("Nie udało się dodać strefy.");
                     location.reload();
                 }
-                console.log(response);
-                alert("pomyślnie dodano strefę.");
-                location.reload();
             },
             error: function (response) {
                 console.log(response);
