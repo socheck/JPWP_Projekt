@@ -152,7 +152,7 @@ def uzupelnijprofil(request):
         'u_form' : u_form,
         'p_form' : p_form
     }
-    return render(request, 'uzupelnijprofil.html', context)    return JsonResponse({}, status = 400)
+    return render(request, 'uzupelnijprofil.html', context)
 
 def dodawanie_strefy_baza(request):
     return JsonResponse({}, status = 200)
