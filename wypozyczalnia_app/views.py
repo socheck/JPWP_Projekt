@@ -111,7 +111,7 @@ def pobieranie_samochodow(request):
 
     return JsonResponse({}, status = 400)
 
- @login_required
+# @login_required
 # def uzupelnijprofil(request):
 #     if request.method == 'POST':
 #         u_form = UserUpdateForm(request.POST, instance=request.user)
