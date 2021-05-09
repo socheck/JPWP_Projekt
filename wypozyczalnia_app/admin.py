@@ -51,5 +51,3 @@ class YourModelAdmin1(admin.ModelAdmin):
 
 admin.site.register(TypAuta)
 admin.site.register(Profil)
-
-admin.site.register(UserProfile)
