@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    {% comment %} <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form %}
+            {{field.label}}
+            {{field}}
+        {% endfor %}
+        <input type="submit" name="Create User">
+    </form> {% endcomment %}
+
+    <div class="container">
+<form method="POST" enctype="multipart/form-data" action="">
+    {% csrf_token %}
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{u_form.email}} </div>
+            <label class="form-label" for="form3Example4">Email</label>
+        </div>
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{p_form.telefon}} </div>
+            <label class="form-label" for="form3Example4">Numer telefonu</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{p_form.karta}} </div>
+            <label class="form-label" for="form3Example4">Numer karty płatniczej</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{p_form.pj_img}} </div>
+            <label class="form-label" for="form3Example4">Zdjęcie prawa jazdy</label>
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary btn-block mb-4">Uzupelnij Profil</button>
+        
+        {{form.errors}}
+    </div>
+{% endblock %}

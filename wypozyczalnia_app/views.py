@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
-from .forms import UserProfileForm
+from .forms import ProfilForm
+from .forms import UserUpdateForm
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 from .models import *
 
@@ -24,11 +27,9 @@ def kontakt(request):
 
 def rejestracja(request):
     form = CreateUserForm()
-    profile_form = UserProfileForm()
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')
@@ -36,9 +37,10 @@ def rejestracja(request):
 
             return redirect('logowanie')
 
-    context = {'form':form, 'profile_form':profile_form}
+    context = {'form':form}
 
     return render(request, 'rejestracja.html', context)
+
 
 def test(request):
     form = CreateUserForm()
@@ -86,3 +88,45 @@ def dodajmiasto(request):
 
 def dlugoterminowyform(request):
     return render(request, 'dlugoterminowyform.html')
+
+# @login_required
+# def uzupelnijprofil(request):
+#     if request.method == 'POST':
+#         u_form = UserUpdateForm(request.POST, instance=request.user)
+#         p_form = ProfilForm(request.POST, request.FILES, instance=request.user.profile)
+
+#         if u_form.is_valid() and p_form.is_valid():
+#             u_form.save()
+#             p_form.save()
+#             messages.success(request, 'Informacje zostały zaaktualizowane')
+#             return redirect('uzupelnijprofil')
+#     else:
+#         u_form = UserUpdateForm(instance=request.user)
+#         p_form = ProfilForm(instance=request.user.profile)
+
+#     context = {
+#         'u_form' : u_form,
+#         'p_form' : p_form
+#     }
+#     return render(request, 'uzupelnijprofil.html', context)
+
+@login_required
+def uzupelnijprofil(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfilForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Informacje zostały zaaktualizowane')
+            return redirect('uzupelnijprofil')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfilForm(instance=request.user.profile)
+
+    context = {
+        'u_form' : u_form,
+        'p_form' : p_form
+    }
+    return render(request, 'uzupelnijprofil.html', context)

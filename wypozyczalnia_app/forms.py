@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 from django_json_widget.widgets import JSONEditorWidget
@@ -18,9 +19,11 @@ class CreateUserForm(UserCreationForm):
     last_name = forms.CharField(max_length=50) # Required
     email = forms.EmailField(max_length=50) # Required
 
+
     class Meta:
         model = User
         fields = ['first_name','last_name', 'username', 'email', 'password1', 'password2']
+
 
 class YourForm(forms.ModelForm):
     class Meta:
@@ -82,7 +85,25 @@ class DateForm(forms.Form):
         })
     )
 
-class UserProfileForm(forms.ModelForm):
+class UserUpdateForm(UserChangeForm):
+    email = forms.EmailField() # Required
+
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+    # def save(self, commit=True):
+    #     user = super(UserUpdateForm, self).save(commit=False)
+    #     password = self.cleaned_data["password"]
+    #     if password:
+    #         user.set_password(password)
+    #     if commit:
+    #         user.save()
+    #     return user
+
+class ProfilForm(forms.ModelForm):
+
     class Meta:
         model = Profil
-        fields = ('telefon', 'karta', 'pj_img')
+        fields = ['telefon', 'karta', 'pj_img']

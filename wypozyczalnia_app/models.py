@@ -179,15 +179,18 @@ class Hulajnoga(models.Model):
         verbose_name = "Hulajnoga"
 
 class Profil(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    telefon = models.DecimalField( max_digits=9, decimal_places=0,  null=False, blank=False)
-    karta = models.CharField(max_length=40, blank=False, null = False)
-    pj_img =  models.ImageField(upload_to=path_prawa_jazdy, max_length=100, null=False, blank=False)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, related_name='profile')
+    telefon = models.CharField(max_length=9, blank=True, null = True)
+    karta = models.CharField(max_length=40, blank=True, null = True)
+    pj_img =  models.ImageField(upload_to=path_prawa_jazdy, max_length=100, null=True, blank=True)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profil.objects.create(user=instance)
+    try:
+        if created:
+            Profil.objects.create(user=instance)
+    except:
+        pass
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
