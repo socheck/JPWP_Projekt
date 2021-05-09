@@ -13,6 +13,8 @@ urlpatterns = [
     path('testujemape/', views.testujemape,),
     path('dodajmiasto/', views.dodajmiasto),
     path('dlugoterminowyform/', views.dlugoterminowyform),
-    path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
- 	path('dodajmiasto/ajax/get_samochody', views.pobieranie_samochodow, name = "pobieranie_samochodow"),
+    path('dodajmiasto/ajax/get_samochody', views.pobieranie_samochodow, name = "pobieranie_samochodow"),
+    path('dodaj_strefe/', views.dodaj_strefe),
+    path('dodaj_strefe/ajax/post_punkty', views.dodawanie_strefy_baza, name = "dodawanie_strefy_baza"),
+
 ]

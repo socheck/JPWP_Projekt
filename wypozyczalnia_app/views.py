@@ -152,4 +152,33 @@ def uzupelnijprofil(request):
         'u_form' : u_form,
         'p_form' : p_form
     }
-    return render(request, 'uzupelnijprofil.html', context)
+    return render(request, 'uzupelnijprofil.html', context)    return JsonResponse({}, status = 400)
+
+def dodawanie_strefy_baza(request):
+    return JsonResponse({}, status = 200)
+    # print(request);
+    # if Strefa.objects.filter(miasto_id = id_miasta, rodzaj = rodzaj_strefy).exists():
+        # return JsonResponse({}, safe=False, status = 200)
+
+        # request should be ajax and method should be POST.
+    # if request.is_ajax and request.method == "POST":
+        # get the form data
+        # form = FriendForm(request.POST)
+        # # save the data and after fetch the object in instance
+        # if form.is_valid():
+        #     instance = form.save()
+        #     # serialize in new friend object in json
+        #     ser_instance = serializers.serialize('json', [ instance, ])
+        #     # send to client side.
+        #     return JsonResponse({"instance": ser_instance}, status=200)
+        # else:
+        #     # some form errors occured.
+        #     return JsonResponse({"error": form.errors}, status=400)
+
+    # some error occured
+    # return JsonResponse({"error": ""}, safe=False, status=400)
+    # return JsonResponse({}, safe=False, status = 200)
+
+def dodaj_strefe(request):
+    miasta = Miasto.objects.all()
+    return render(request, 'dodaj_strefe.html', {'miasta': miasta})

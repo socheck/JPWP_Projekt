@@ -11,6 +11,7 @@ $("document").ready(() => {
         var id_miasta = data_position[nazwa]["id"];
         zoom = 12;
         mymap.setView([x, y], zoom);
+        $("#tabela_aut tbody").empty();
         
         $.ajax({
             type: 'GET',
@@ -23,23 +24,19 @@ $("document").ready(() => {
                     console.log(response);
 
                     licznik_id = 0;
-                    for (car in response){
-                        // var w = jQuery('<tr/>', {
-                        //     id: 'some-id',
-                        //     "class": 'some-class',
-                        //     title: 'now this div has a title!'
-                        // }).appendTo('#tabela_aut tbody');
-                        var wiersz = document.createElement("tr");
-                        var car_id = document.createElement("th");
-                        // car_id.attr("scope", "row").text(licznik_id+1);
-                        car_id.text(licznik_id+1);
-                        var car_nazwa = document.createElement("td");
-                        car_nazwa.text(car["nazwa"]);
-                        var car_x = document.createElement("td");
-                        var car_y = document.createElement("td");
-                        car_y.text(car["pozycja"]["y"]);
-                        wiersz.append(car_id, car_nazwa, car_x, car_y);
-                        $("#tabela_aut tbody").append(wiersz);
+                    var car = response;
+                    for( var i =0; i<Object.keys(car).length; i++ ){
+                    // for (car in response){
+                        console.log(car[i]);
+                        L.marker([car[i]["pozycja"]["x"], car[i]["pozycja"]["y"]]).addTo(mymap);
+                        licznik_id += 1;
+                        $('<tr></tr>').append('<th scope = "row">'+ licznik_id +'</th>' + '<td>'+ car[i]["nazwa"] +'</td>'+ '<td>'+ car[i]["pozycja"]["x"] +'</td>'+ '<td>'+ car[i]["pozycja"]["y"] +'</td>').appendTo("#tabela_aut tbody");
+                        // L.marker([car["pozycja"]["x"], car["pozycja"]["y"]]).addTo(mymap);
+                        // licznik_id += 1;
+                        // $('tr').append('<th scope = "row">'+ licznik_id +'</th>' + '<td>'+ car["nazwa"] +'</td>'+ '<td>'+ car["pozycja"]["x"] +'</td>'+ '<td>'+ car["pozycja"]["y"] +'</td>').appendTo("#tabela_aut tbody");
+
+                        // jebie mnie ta tabela
+
                     }
                     
 
