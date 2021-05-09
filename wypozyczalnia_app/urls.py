@@ -14,4 +14,5 @@ urlpatterns = [
     path('dodajmiasto/', views.dodajmiasto),
     path('dlugoterminowyform/', views.dlugoterminowyform),
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
+ 	path('dodajmiasto/ajax/get_samochody', views.pobieranie_samochodow, name = "pobieranie_samochodow"),
 ]

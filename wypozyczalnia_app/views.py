@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.db import transaction
 
 from .models import *
@@ -89,7 +90,28 @@ def dodajmiasto(request):
 def dlugoterminowyform(request):
     return render(request, 'dlugoterminowyform.html')
 
-# @login_required
+def pobieranie_samochodow(request):
+
+    if request.is_ajax and request.method == "GET":
+
+        id_miasta = request.GET.get("id_miasta", None)
+        nazwa_miasta = request.GET.get("nazwa", None)
+        print(id_miasta +" "+ nazwa_miasta)
+
+        if Samochod.objects.filter(miasto_id = id_miasta).exists() and id_miasta is not None:
+            zwracane_samochody = list(Samochod.objects.filter(miasto_id = id_miasta))
+            context = [{
+                "nazwa":car.__str__(),
+                "pozycja": car.pozycja,
+
+            } for car in zwracane_samochody]
+            return JsonResponse(context, safe=False,status = 200)
+        else:
+            return JsonResponse({}, status = 200)
+
+    return JsonResponse({}, status = 400)
+
+ @login_required
 # def uzupelnijprofil(request):
 #     if request.method == 'POST':
 #         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -109,6 +131,7 @@ def dlugoterminowyform(request):
 #         'p_form' : p_form
 #     }
 #     return render(request, 'uzupelnijprofil.html', context)
+
 
 @login_required
 def uzupelnijprofil(request):

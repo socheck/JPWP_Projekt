@@ -127,7 +127,7 @@ rodzaj_skrzyni = [
     ('m', 'manualna'),
 ]
 rodzaj_wynamu = [
-    ('d', 'tługoterminowy'),
+    ('d', 'długoterminowy'),
     ('k', 'krótkoterminowy'),
 ]
 class Samochod(models.Model):
