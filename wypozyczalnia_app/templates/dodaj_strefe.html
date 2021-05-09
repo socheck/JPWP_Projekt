@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <!-- leaflet draw -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
+
+    
+    <style>#mapid { height: 400px;
+    width: 600px;
+     margin-right: auto;
+     margin-left: auto;
+     margin-top; 50px;
+     margin-bottom: auto; }</style>
+
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>        
+
+
+
+    
+    <h1>Dodawanie strefy</h1>
+    <h3>Wybierz miasto w którym jest strefa: </h3>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Miasta
+        </button>
+        <ul id="miasto" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for i in miasta %}
+            
+            <li><a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#">{{i.nazwa}}</a></li>
+            
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h3>Wybierz rodzaj dodawanej strefy: </h3>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Rodzaje
+        </button>
+        <ul id="rodzaj" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a data-rodzaj="hulajnogowa" class="dropdown-item" href="#">hulajnogowa</a></li>
+            <li><a data-rodzaj="samochodowa" class="dropdown-item" href="#">samochodowa</a></li>
+        </ul>
+    </div>
+
+    <h3>Stwórz obszar strefy: </h3>
+    <div id="mapid"></div>
+
+
+
+
+
+
+    <script>
+
+        const data_position={
+
+            {% for i in miasta %}
+                {{i.nazwa}} : { 
+                    x: {{i.pozycja.x}},
+                    y: {{i.pozycja.y}},
+                    id : {{i.id}}, 
+                },
+                
+            {% endfor %}
+        }
+
+    </script>
+    <script src="{% static '/js/dodaj_strefe.js' %}"></script>
+
+    
+{% endblock %}
