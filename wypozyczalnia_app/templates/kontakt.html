@@ -1,7 +1,77 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
+    <!-- do leafletu -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
 
-    <h1>dfddgdfgdg</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"/>
+    
+    <style>
+        #mapid { 
+            height: 50vh;
+            width: 80vw;
+            margin: 5vh auto;
+        }
+        .test{
+            color: blue;
+        }
+    </style>
+
+    <h1>Kontakt funkcjonalności</h1>
+    <h3>Wybierz miasto w którym jest strefa: </h3>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Miasta
+        </button>
+        <ul id="miasto" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for i in miasta %}
+            
+            <li><a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#">{{i.nazwa}}</a></li>
+            
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="mapid"></div>
+
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>     
+    <script>
+        const data_position={
+
+            {% for i in miasta %}
+                {{i.nazwa}} : { 
+                    x: {{i.pozycja.x}},
+                    y: {{i.pozycja.y}},
+                    id : {{i.id}}, 
+                },
+            {% endfor %}
+        }
+
+        
+
+        const data_oddzialy = { 
+
+            {% for oddzial in oddzialy %}
+                "{{oddzial.id}}": { 
+                    position: {
+                        x: {{oddzial.pozycja.x}},
+                        y: {{oddzial.pozycja.y}},
+                    },
+                    adres: "{{oddzial.adres}}",
+                    nazwa_miasta: "{{oddzial.miasto}}",   
+                    id_miasta: "{{oddzial.miasto_id}}", 
+                },
+            {% endfor %}
+        }
+    </script>
+    <script src="{% static '/js/kontakt.js' %}"></script>
 
 {% endblock %}

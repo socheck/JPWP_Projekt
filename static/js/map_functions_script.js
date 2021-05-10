@@ -2,8 +2,6 @@ $("document").ready(() => {
     var x = 52;
     var y = 19;
     var zoom = 6;
-    console.log(data_position);
-    console.log(data_car);
     $("li a") .on("click", function() {
         const nazwa = $(this).attr("data-nazwa-miasta");
         x = data_position[nazwa]["x"];

@@ -27,7 +27,9 @@ def flota(request):
     return render(request, 'flota.html')
 
 def kontakt(request):
-    return render(request, 'kontakt.html')
+    miasta = Miasto.objects.all()
+    oddzialy = Oddzial.objects.all()
+    return render(request, 'kontakt.html', {'miasta': miasta, 'oddzialy' : oddzialy})
 
 def rejestracja(request):
     form = CreateUserForm()
@@ -114,26 +116,7 @@ def pobieranie_samochodow(request):
 
     return JsonResponse({}, status = 400)
 
-# @login_required
-# def uzupelnijprofil(request):
-#     if request.method == 'POST':
-#         u_form = UserUpdateForm(request.POST, instance=request.user)
-#         p_form = ProfilForm(request.POST, request.FILES, instance=request.user.profile)
 
-#         if u_form.is_valid() and p_form.is_valid():
-#             u_form.save()
-#             p_form.save()
-#             messages.success(request, 'Informacje zostały zaaktualizowane')
-#             return redirect('uzupelnijprofil')
-#     else:
-#         u_form = UserUpdateForm(instance=request.user)
-#         p_form = ProfilForm(instance=request.user.profile)
-
-#     context = {
-#         'u_form' : u_form,
-#         'p_form' : p_form
-#     }
-#     return render(request, 'uzupelnijprofil.html', context)
 
 
 @login_required
