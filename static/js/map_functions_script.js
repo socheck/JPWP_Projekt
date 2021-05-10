@@ -29,12 +29,7 @@ $("document").ready(() => {
                         L.marker([car[i]["pozycja"]["x"], car[i]["pozycja"]["y"]]).addTo(mymap);
                         licznik_id += 1;
                         $('<tr></tr>').append('<th scope = "row">'+ licznik_id +'</th>' + '<td>'+ car[i]["nazwa"] +'</td>'+ '<td>'+ car[i]["pozycja"]["x"] +'</td>'+ '<td>'+ car[i]["pozycja"]["y"] +'</td>').appendTo("#tabela_aut tbody");
-                        // L.marker([car["pozycja"]["x"], car["pozycja"]["y"]]).addTo(mymap);
-                        // licznik_id += 1;
-                        // $('tr').append('<th scope = "row">'+ licznik_id +'</th>' + '<td>'+ car["nazwa"] +'</td>'+ '<td>'+ car["pozycja"]["x"] +'</td>'+ '<td>'+ car["pozycja"]["y"] +'</td>').appendTo("#tabela_aut tbody");
-
-                        // jebie mnie ta tabela
-
+                        
                     }
                     
 

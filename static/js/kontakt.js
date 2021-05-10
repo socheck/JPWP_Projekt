@@ -5,6 +5,9 @@ $("document").ready(() => {
     var id_miasta = -1;
     console.log(data_position);
     console.log(data_oddzialy);
+
+    $("#tabela_oddzialow").hide();
+
     $("#miasto li a") .on("click", function() {
         const nazwa_miasta = $(this).attr("data-nazwa-miasta");
         x = data_position[nazwa_miasta]["x"];
@@ -13,13 +16,17 @@ $("document").ready(() => {
         zoom = 12;
         mymap.setView([x, y], zoom);
         $("#miasto").parent().children("button").text(nazwa_miasta);
-
+        $("#tabela_oddzialow tbody").empty();
+        $("#tabela_oddzialow").hide();
+     
 
         for(var i = 1; i <= Object.keys(data_oddzialy).length; i++){
             if(data_oddzialy[i]["nazwa_miasta"] == nazwa_miasta){
-                console.log(data_oddzialy[i]);
-                console.log(data_oddzialy[i]["position"]["x"] + ' ' + data_oddzialy[i]["position"]["y"]);
                 L.marker([data_oddzialy[i]["position"]["x"], data_oddzialy[i]["position"]["y"]]).addTo(mymap).bindPopup("<b class = 'test'>Adres</b><br>" + data_oddzialy[i]["adres"]);
+
+                $("#tabela_oddzialow").show();
+                $('<tr></tr>').append('<th scope = "row">'+ i +'</th>' + '<td>'+ data_oddzialy[i]["adres"] +'</td>').appendTo("#tabela_oddzialow tbody");
+                
             }
             
         }
