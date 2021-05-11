@@ -16,12 +16,15 @@
             margin: 5vh auto;
         }
         .test{
-            color: blue;
+            color: rgb(228, 190, 23);
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 
-    <h1>Kontakt funkcjonalności</h1>
-    <h3>Wybierz miasto w którym jest strefa: </h3>
+    <h1>Home funkcjonalności</h1>
+    <h3>Zobacz miasta, w których działamy: </h3>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Miasta
@@ -36,6 +39,11 @@
     </div>
 
     <div id="mapid"></div>
+
+
+    <h1>asdsadasd</h1>
+
+    <video src="{% static 'images/uno.mp4' %}" alt="sfd">
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -54,30 +62,11 @@
                 },
             {% endfor %}
         }
-
-        
-
-        const data_oddzialy = { 
-
-            {% for oddzial in oddzialy %}
-                "{{oddzial.id}}": { 
-                    position: {
-                        x: {{oddzial.pozycja.x}},
-                        y: {{oddzial.pozycja.y}},
-                    },
-                    adres: "{{oddzial.adres}}",
-                    nazwa_miasta: "{{oddzial.miasto}}",   
-                    id_miasta: "{{oddzial.miasto_id}}", 
-                },
-            {% endfor %}
-        }
     </script>
-    <script src="{% static '/js/kontakt.js' %}"></script>
+    <script src="{% static '/js/index.js' %}"></script>
 
 
-    <h1>asdsadasd</h1>
 
-    <video src="{% static 'images/uno.mp4' %}" alt="sfd">
     
 
 {% endblock %}

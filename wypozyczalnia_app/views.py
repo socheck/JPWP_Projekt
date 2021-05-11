@@ -12,19 +12,25 @@ from django.http import JsonResponse
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from .models import Strefa
+from .models import TypAuta
+from .models import Miasto
+from .models import Oddzial
+from .models import Samochod
 
-from .models import *
 import json
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    miasta = Miasto.objects.all()
+    return render(request, 'index.html', {'miasta' : miasta})
 
 def cena(request):
-    return render(request, 'cena.html')
+    typy_aut = TypAuta.objects.all()
+    return render(request, 'cena.html', {"typy_aut" : typy_aut})
 
 def flota(request):
-    return render(request, 'flota.html')
+    typy_aut = TypAuta.objects.all()
+    return render(request, 'flota.html', {"typy_aut" : typy_aut})
 
 def kontakt(request):
     miasta = Miasto.objects.all()

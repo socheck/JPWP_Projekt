@@ -1,0 +1,265 @@
+@import "./variables.scss";
+#posts {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 3vh auto;
+  .myBechaviour {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap;
+    .post {
+      width: $postWidth !important;
+      border: 1px solid #e0e0e0;
+      background-color: white;
+      margin: 0px 1rem 3vh 1rem;
+      .postLink {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s ease;
+        overflow: hidden !important;
+        &:hover {
+          img {
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
+        }
+        .postImgContainer {
+          width: 100%;
+          overflow: hidden;
+
+          img {
+            transition: all 0.2s ease;
+            width: 100%;
+            min-height: $postMinHeight;
+            height: $postImgHeight !important;
+            max-height: $postMaxImgHeight;
+            object-fit: cover;
+          }
+        }
+        .postHeader {
+          width: 90%;
+          margin: 1rem auto;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: $czerwien;
+        }
+        .postHeaderHR {
+          width: 80%;
+          margin: 0px auto;
+        }
+        .postText {
+          width: 90%;
+          margin: 1rem auto;
+          font-size: 1.2rem;
+          text-align: justify;
+          color: $fiolet;
+          pre{ 
+            width: 100% !important;
+            height: 100% !important;
+            color: inherit !important;
+            font-size: inherit !important;
+            // display: inline;
+            overflow: visible !important;
+            margin: 0px !important;
+            font-family: $font !important;
+            white-space: normal !important;
+          }
+        }
+        .postFooterHR {
+          margin: auto auto 0px auto;
+          width: 80%;
+          // margin: auto;
+        }
+        .postFooter {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 90%;
+          margin: 1rem auto;
+
+          .date {
+            color: $czerwien;
+
+            font-size: 1.5rem;
+            span {
+              font-size: inherit;
+              font-weight: 700;
+            }
+          }
+          .postSourceIcon {
+            font-size: inherit;
+            font-weight: inherit;
+            width: 3rem;
+            height: 3rem;
+            //   border-radius: 50%;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              color: white;
+              font-size: inherit;
+              font-weight: inherit;
+            }
+          }
+          .facebookPostIcon {
+            background-color: #3b5998 !important;
+          }
+          .twitterPostIcon {
+            background-color: #1da1f2 !important;
+          }
+        }
+      }
+    }
+    // }
+  }
+  //   .post {
+  //     width: $postWidth !important;
+  //     border: 1px solid #e0e0e0;
+  //     background-color: white;
+  //     margin-bottom: 3vh;
+  //     .postLink {
+  //       width: 100%;
+  //       height: 100%;
+  //       .postImgContainer {
+  //         width: 100%;
+  //         // height: $postImgHeight !important;
+  //         // max-height: $postMaxImgHeight;
+  //         img {
+  //           width: 100%;
+  //           //   height: 100%;
+  //           height: $postImgHeight !important;
+  //           max-height: $postMaxImgHeight;
+  //           object-fit: cover;
+  //         }
+  //       }
+  //       .postHeader {
+  //         width: 90%;
+  //         margin: 1rem auto;
+  //         font-size: 1.5rem;
+  //         font-weight: 700;
+  //         color: $czerwien;
+  //       }
+  //       .postHeaderHR {
+  //         width: 80%;
+  //         margin: auto;
+  //       }
+  //       .postText {
+  //         width: 90%;
+  //         margin: 1rem auto;
+  //         font-size: 1.2rem;
+  //         text-align: justify;
+  //         color: $fiolet;
+  //       }
+  //       .postFooterHR {
+  //         width: 80%;
+  //         margin: auto;
+  //       }
+  //       .postFooter {
+  //         display: flex;
+  //         justify-content: space-between;
+  //         align-items: center;
+  //         width: 90%;
+  //         margin: 1rem auto;
+
+  //         .date {
+  //           color: $czerwien;
+
+  //           font-size: 1.5rem;
+  //           span {
+  //             font-size: inherit;
+  //             font-weight: 700;
+  //           }
+  //         }
+  //         .postSourceIcon {
+  //           font-size: inherit;
+  //           font-weight: inherit;
+  //           width: 3rem;
+  //           height: 3rem;
+  //           //   border-radius: 50%;
+  //           font-size: 2rem;
+  //           display: flex;
+  //           justify-content: center;
+  //           align-items: center;
+  //           i {
+  //             color: white;
+  //             font-size: inherit;
+  //             font-weight: inherit;
+  //           }
+  //         }
+  //         .facebookPostIcon {
+  //           background-color: #3b5998 !important;
+  //         }
+  //         .twitterPostIcon {
+  //           background-color: #1da1f2 !important;
+  //         }
+  //       }
+  //     }
+  //   }
+}
+
+@media (max-width: $smallest) {
+  #posts {
+    width: 94%;
+    margin: 1vh auto;
+    .myBechaviour {
+      .post {
+        width: $postWidth !important;
+        border: 1px solid #e0e0e0;
+        background-color: white;
+        margin: 0px 0rem 2vh 0rem;
+        .postLink {
+          &:hover {
+            img {
+            }
+          }
+          .postImgContainer {
+            img {
+            }
+          }
+          .postHeader {
+            width: 90%;
+            margin: 1rem auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+          }
+          .postHeaderHR {
+          }
+          .postText {
+            margin: 1rem auto;
+            font-size: 1.2rem;
+          }
+          .postFooterHR {
+          }
+          .postFooter {
+            .date {
+              color: $czerwien;
+              font-size: 1.2rem;
+              span {
+                font-size: inherit;
+                font-weight: 700;
+              }
+            }
+            .postSourceIcon {
+              i {
+                color: white;
+                font-size: inherit;
+                font-weight: inherit;
+              }
+            }
+            .facebookPostIcon {
+              background-color: #3b5998 !important;
+            }
+            .twitterPostIcon {
+              background-color: #1da1f2 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
