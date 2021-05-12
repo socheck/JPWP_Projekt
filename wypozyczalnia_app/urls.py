@@ -12,9 +12,10 @@ urlpatterns = [
     path('wylogowywanie/', views.wylogowywanie, name="wylogowywanie"),
     path('testujemape/', views.testujemape,),
     path('dodajmiasto/', views.dodajmiasto),
-    path('dlugoterminowyform/', views.dlugoterminowyform),
+    path('dlugoterminowy/', views.dlugoterminowyform),
     path('dodajmiasto/ajax/get_samochody', views.pobieranie_samochodow, name = "pobieranie_samochodow"),
     path('dodaj_strefe/', views.dodaj_strefe),
     path('dodaj_strefe/ajax/post_punkty', views.dodawanie_strefy_baza, name = "dodawanie_strefy_baza"),
-    path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil")
+    path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
+    path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform)
 ]

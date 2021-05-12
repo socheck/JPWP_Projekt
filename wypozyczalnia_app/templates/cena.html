@@ -4,32 +4,30 @@
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/flota.css' %}">
-    <h1>Dałem jak we flocie żeby sprawdzić, że działa wypluwanie</h1>
-        <div id="posts">
+    <h2>Wynajem na minuty</h2>
 
-            <div class="myBechaviour">
-                    {% for typ_auta in typy_aut %}
-                    <div class="post">
-                        <a class="postLink" href="/flota/{{typ_auta.nazwa}}">
-                            <div class="postImgContainer">
-                                <img src="../{{typ_auta.grafika}}"  alt="">
-                            </div>
-                            
-                            <hr class="postHeaderHR">
-                            <div class="postText">
-                                <pre>
-                                    {{typ_auta.nazwa}}
 
-                                </pre> 
-                            </div>
-                            <hr class="postFooterHR">
-                            <div class="postFooter">
-                                <div class="date">Wynajem krótkoterminowy</div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-            </div>
-    </div>
+        <table id="tabela_aut" class="table table-striped" style="width: 80%; margin: 1rem auto 4rem auto;">
+        <thead>
+            <tr>
+            <th scope="col"></th>
+            <th scope="col">Typ auta</th>
+            <th scope="col">Cena</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for typ_auta in typy_aut %}
+                <tr>
+                <!-- <th scope="row">1</th> -->
+                <td><img src="../{{typ_auta.grafika}}"  alt=""></td>
+                <td>{{typ_auta.nazwa}}</td>
+                <td>{{typ_auta.cena}} zł/min</td>
+                <td> <a class="btn btn-primary" href="/flota/krotkoterminowy/{{typ_auta.nazwa|lower}}">Wynajmij</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 {% endblock %}

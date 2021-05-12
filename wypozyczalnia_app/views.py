@@ -98,8 +98,21 @@ def dodajmiasto(request):
     samochody = Samochod.objects.all()
     return render(request, 'dodajmiasto.html', {'miasta': miasta, 'samochody' : samochody})
 
-def dlugoterminowyform(request):
-    return render(request, 'dlugoterminowyform.html')
+@csrf_exempt
+def dlugoterminowyform(request, typ_auta = 'miejski'):
+# nie wiem czy to działa bo w urls są 2 rekordy a jeszcze nie mam jak sprawdzić bo trzeba pewne rzeczy ustalić
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+    except:
+        cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
+        
+    if request.is_ajax and request.method == "POST":
+          
+        cena = data["cena"]
+    else:
+        cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
+
+    return render(request, 'dlugoterminowyform.html', {"cena": zaznaczona_cena, "typ_pojazdu": typ_auta})
 
 def pobieranie_samochodow(request):
 
@@ -149,8 +162,6 @@ def uzupelnijprofil(request):
 @csrf_exempt
 def dodawanie_strefy_baza(request):
 
-    print(request.POST)
-    print(request.body)
     try:
         data = json.loads(request.body.decode('utf-8'))
     except:
