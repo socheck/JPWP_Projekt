@@ -1,10 +1,13 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name="home"),
     path('cena/', views.cena),
-    path('flota/<slug:car_type>/', views.car_type_selection),
+    path('krotkoterminowy/<slug:car_type>/<slug:auto_id>', views.krotkoterminowy_wynajety),
+    path('krotkoterminowy/<slug:car_type>/', views.car_type_selection),
     path('flota/', views.flota),
     path('kontakt/', views.kontakt),
     path('rejestracja/', views.rejestracja, name="rejestracja"),
@@ -20,4 +23,5 @@ urlpatterns = [
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
     path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
     path('wynajemkrotkoterminowy/', views.wynajemkrotkoterminowy, name="wynajemkrotkoterminowy"),
+    
 ]

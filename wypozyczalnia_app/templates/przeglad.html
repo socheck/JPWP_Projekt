@@ -16,12 +16,19 @@
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
     <div id="mapid"></div>
-    <style>#mapid { height: 400px;
-    width: 600px;
-     margin-right: auto;
-     margin-left: auto;
-     margin-top: 50px;
-     margin-bottom: auto; }</style>
+    <style>
+    #mapid { 
+        height: 400px;
+        width: 600px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+        margin-bottom: auto; 
+     }
+     table img{
+         max-width: 150px;
+     }
+     </style>
 
      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>        
 
@@ -34,19 +41,22 @@
         {% for miasto in miasta %}
         <li><a data-nazwa-miasta="{{miasto.nazwa}}" class="dropdown-item" href="#">{{miasto.nazwa}}</a></li>
         
-        
         {% endfor %}
     </ul>
     </div>
 
 
-    <table id="tabela_aut" class="table table-striped" style="width: 80%; margin: 1rem auto 4rem auto;">
+    <table id="tabela_aut" class="table table-striped" style="width: 90%; margin: 1rem auto 4rem auto;">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">Nazwa samochodu</th>
-            <th scope="col">X</th>
-            <th scope="col">Y</th>
+            <th scope="col">Kolor</th>
+            <th scope="col">Numer rejestracyjny</th>
+            <th scope="col">Zasięg</th>
+            <th scope="col">Więcej</th>
+            <th scope="col"></th>
+
             </tr>
         </thead>
         <tbody>
@@ -77,10 +87,35 @@
         const data_car={
             
             {% for samochod in samochody %}
-                {{samochod.marka}} : { x: {{samochod.pozycja.x}}, 
-                y: {{samochod.pozycja.y}}, },
+                {{samochod.miasto}} : {
+                    "{{samochod.id}}": {
+                        "id": "{{samochod.id}}",
+                        "nazwa": "{{samochod}}",
+                        "marka": "{{samochod.marka}}",
+                        "model": "{{samochod.model}}",
+                        "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
+                        "kolor": "{{samochod.kolor}}",
+                        "moc": "{{samochod.moc}}",
+                        "miasto_id": "{{samochod.miasto}}",
+                        "paliwo": "{{samochod.paliwo}}",
+                        "wyposazenie": "{{samochod.wyposazenie}}",
+                        "skrzynia": "{{samochod.skrzynia_biegow}}",
+                        "opis": "{{samochod.opis}}",
+                        "img": "{{samochod.image.url}}",
+                        "zasieg": "{{samochod.zasieg}}", 
+                        "typ_auta": "{{samochod.typ_auta|lower}}",
+                        "pozycja":{
+                            x: {{samochod.pozycja.x}}, 
+                            y: {{samochod.pozycja.y}},
+                        }, 
+                    },
+                    
+                     
+                },
+
             {% endfor %}
         }
+        console.log(data_car);
     </script>
     <script src="{% static '/js/przeglad.js' %}"></script>
 

@@ -208,3 +208,10 @@ def car_type_selection(request, car_type):
     samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
     miasta = Miasto.objects.all()
     return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, })
+
+def krotkoterminowy_wynajety(request, car_type, auto_id):
+    auto = get_object_or_404(Samochod, id=auto_id)
+    
+    miasta = Miasto.objects.all()
+    return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
+
