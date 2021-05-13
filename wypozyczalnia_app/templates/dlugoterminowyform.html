@@ -48,6 +48,20 @@
         format: 'DD/MM/YYYY HH:mm',
         });
     });
+
+    const data_przeslane={
+        "zaznaczona_cena": {{zaznaczona_cena}},
+        "zaznaczony_typ_auta_id": {{zaznaczony_typ_auta_id}},
+        "samochody_zaznaczone_id": {
+            {% for i in samochody_zaznaczone_id %}
+                "{{i.id}}" : "{{i}}",
+            
+            {% endfor %}
+         },
+
+        
+    }
+    console.log(data_przeslane);
     </script>
 
   </body>

@@ -101,18 +101,29 @@ def dodajmiasto(request):
 @csrf_exempt
 def dlugoterminowyform(request, typ_auta = 'miejski'):
 # nie wiem czy to działa bo w urls są 2 rekordy a jeszcze nie mam jak sprawdzić bo trzeba pewne rzeczy ustalić
-    try:
-        data = json.loads(request.body.decode('utf-8'))
-    except:
-        cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
+    # try:
+    #     data = json.loads(request.body.decode('utf-8'))
+    # except:
+    #     cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
         
-    if request.is_ajax and request.method == "POST":
+    # if request.is_ajax and request.method == "POST":
           
-        cena = data["cena"]
-    else:
-        cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
+    #     cena = data["cena"]
+    # else:
+    #     cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
+    # koniec ajaxa
+    if request.method == 'POST':
+        zaznaczona_cena = request.POST["cena"]
+        zaznaczony_typ_auta_id = request.POST["typ_auta_id"]
+        # print(request.POST["typ_auta_id"])
+        
+        samochody_wybrany_typ = Samochod.objects.filter(typ_auta_id = zaznaczony_typ_auta_id)
 
-    return render(request, 'dlugoterminowyform.html', {"cena": zaznaczona_cena, "typ_pojazdu": typ_auta})
+    
+
+    # nie wiem w sumie co zwracać????
+
+    return render(request, 'dlugoterminowyform.html', {"zaznaczona_cena": zaznaczona_cena, "zaznaczony_typ_auta_id": zaznaczony_typ_auta_id, "samochody_zaznaczone_id": samochody_wybrany_typ})
 
 def pobieranie_samochodow(request):
 
@@ -129,6 +140,7 @@ def pobieranie_samochodow(request):
                 "pozycja": car.pozycja,
 
             } for car in zwracane_samochody]
+
             return JsonResponse(context, safe=False,status = 200)
         else:
             return JsonResponse({}, status = 200)

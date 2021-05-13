@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block content %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/flota.css' %}">
+
     <h2>Wynajem na minuty</h2>
 
 
@@ -23,11 +25,52 @@
                 <td><img src="../{{typ_auta.grafika}}"  alt=""></td>
                 <td>{{typ_auta.nazwa}}</td>
                 <td>{{typ_auta.cena}} zł/min</td>
-                <td> <a class="btn btn-primary" href="/flota/krotkoterminowy/{{typ_auta.nazwa|lower}}">Wynajmij</a></td>
+                <td> 
+                    <a class="btn btn-primary" href="/flota/krotkoterminowy/{{typ_auta.nazwa|lower}}">Wynajmij</a>
+                </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
+    <h2>Wynajem długoterminowy</h2>
+
+    <div id="posts">
+        
+            <div class="myBechaviour">
+                    {% for typ_auta in typy_aut %}
+                        
+                        <div class="post">
+                            <a class="postLink">
+                                <div class="postImgContainer">
+                                    <img src="../{{typ_auta.grafika}}"  alt="">
+                                </div>
+                                <div class="postHeader">
+                                    {{typ_auta.nazwa}}
+                                </div>
+                                <hr class="postHeaderHR">
+                                <div class="postText">
+                                    <pre>
+                                        <!-- <div class="btn btn-primary"></div> -->
+                                        suwak <span class="cena">{{typ_auta.cena}}</span> zł
+                                    </pre> 
+                                </div>
+                                <hr class="postFooterHR">
+                                <div class="postFooter">
+                                    <form action="/dlugoterminowy/{{typ_auta.nawza|lower}}" method="post">
+                                        <input hidden id="cena" type="text" name="cena" value={{typ_auta.cena}}>
+                                        <input hidden id="typ_auta" type="text" name="typ_auta_id" value={{typ_auta.id}}>
+                                        <input id= "submit" class="date btn btn-primary" type="submit" value="Wynajmij">
+                                    </form>
+                                </div>
+                            </a>
+                        </div>
+                        
+                    {% endfor %}
+            </div>
+        
+    </div>
+
+    <script src="{% static '/js/cena.js' %}"></script>
 
 {% endblock %}
