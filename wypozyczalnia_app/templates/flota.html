@@ -7,25 +7,26 @@
 
             <div class="myBechaviour">
                     {% for typ_auta in typy_aut %}
-                    <div class="post">
-                        <a class="postLink" href="/flota/{{typ_auta.nazwa}}">
-                            <div class="postImgContainer">
-                                <img src="../{{typ_auta.grafika}}"  alt="">
-                            </div>
-                            
-                            <hr class="postHeaderHR">
-                            <div class="postText">
-                                <pre>
-                                    {{typ_auta.nazwa}}
+                        <div class="post">
+                        
+                            <a  name="rent" href="./{{typ_auta.slug}}/" class="postLink" >
+                                <div class="postImgContainer">
+                                    <img src="../{{typ_auta.grafika}}"  alt="">
+                                </div>
+                                
+                                <hr class="postHeaderHR">
+                                <div class="postText">
+                                    <pre>
+                                        {{typ_auta.nazwa}}
 
-                                </pre> 
-                            </div>
-                            <hr class="postFooterHR">
-                            <div class="postFooter">
-                                <div class="date">Wynajem krótkoterminowy</div>
-                            </div>
-                        </a>
-                    </div>
+                                    </pre> 
+                                </div>
+                                <hr class="postFooterHR">
+                                <div class="postFooter">
+                                    <div class="date">Wynajem krótkoterminowy</div>
+                                </div>
+                            </a>
+                        </div>
                     {% endfor %}
 
             </div>

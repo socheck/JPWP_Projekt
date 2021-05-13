@@ -11,11 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
-from .models import Strefa
-from .models import TypAuta
-from .models import Miasto
-from .models import Oddzial
-from .models import Samochod
+from django.shortcuts import get_object_or_404
+from .models import *
 
 import json
 
@@ -199,3 +196,14 @@ def dodawanie_strefy_baza(request):
 def dodaj_strefe(request):
     miasta = Miasto.objects.all()
     return render(request, 'dodaj_strefe.html', {'miasta': miasta})
+
+def wynajemkrotkoterminowy(request):
+    context = {}
+    rent_content = request.POST.get('rent', None)
+    context['rent_context'] = rent_context
+    return(request, 'wynajemkrotkoterminowy.html', context)
+
+def car_type_selection(request, car_type):
+    typ = get_object_or_404(TypAuta, slug=car_type)
+    samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
+    return render(request, 'przeglad.html', {"samochody" : list(samochody)})

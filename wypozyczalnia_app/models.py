@@ -107,6 +107,7 @@ class TypAuta(models.Model):
     nazwa = models.CharField(max_length=100, blank = False, null = False)
     grafika = models.ImageField(upload_to=path_typ_auta_ilustracja, max_length=100, null=False, blank=False)
     cena = models.DecimalField( max_digits=8, decimal_places=2,  null=False, blank=False)
+    slug = models.SlugField(unique=True, max_length=100, null = True)
 
     def __str__(self):
         return self.nazwa

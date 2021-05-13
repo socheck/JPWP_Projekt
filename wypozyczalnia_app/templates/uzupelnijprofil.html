@@ -1,15 +1,11 @@
 {% extends 'main.html' %}
 
+
 {% block content %}
 
-    {% comment %} <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in form %}
-            {{field.label}}
-            {{field}}
-        {% endfor %}
-        <input type="submit" name="Create User">
-    </form> {% endcomment %}
+    {% for message in messages %}
+        <p id="messages">{{message}}</p>
+    {% endfor %}
 
     <div class="container">
 <form method="POST" enctype="multipart/form-data" action="">

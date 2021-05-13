@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name="home"),
     path('cena/', views.cena),
+    path('flota/<slug:car_type>/', views.car_type_selection),
     path('flota/', views.flota),
     path('kontakt/', views.kontakt),
     path('rejestracja/', views.rejestracja, name="rejestracja"),
@@ -17,5 +18,6 @@ urlpatterns = [
     path('dodaj_strefe/', views.dodaj_strefe),
     path('dodaj_strefe/ajax/post_punkty', views.dodawanie_strefy_baza, name = "dodawanie_strefy_baza"),
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
-    path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform)
+    path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
+    path('wynajemkrotkoterminowy/', views.wynajemkrotkoterminowy, name="wynajemkrotkoterminowy"),
 ]
