@@ -206,4 +206,5 @@ def wynajemkrotkoterminowy(request):
 def car_type_selection(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)
     samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
-    return render(request, 'przeglad.html', {"samochody" : list(samochody)})
+    miasta = Miasto.objects.all()
+    return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, })
