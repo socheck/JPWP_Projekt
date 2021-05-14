@@ -4,9 +4,7 @@
 
 {% block content %}
 
-    {% for samochod in samochody %}
-        <h2>{{samochod.model}}<h2>
-    {% endfor %}
+    
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -15,22 +13,14 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
-    <div id="mapid"></div>
-    <style>
-    #mapid { 
-        height: 400px;
-        width: 600px;
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 50px;
-        margin-bottom: auto; 
-     }
-     table img{
-         max-width: 150px;
-     }
-     </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/przeglad.css' %}">
 
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+    
+    <div id="mapid"></div>
+
+
 
 
         <div class="dropdown">
@@ -70,6 +60,27 @@
     </table>
 
 
+    <div class="okno" id="okno">
+        <div class="okno_header">
+            <div class="okno_title">nazwa wybranego auta</div>
+            <button class="okno_close_button">&times;</button>
+        </div>
+        <hr>
+        <div class="okno_body">
+            <div><img src="" alt=""></div>
+            <table id="tabela_aut" class="table table-striped" style="width: 100%; margin: 1rem auto 1rem auto;">
+                <tbody>
+                    <!-- <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
     <script>
 
         const data_position={
@@ -83,41 +94,73 @@
                 
             {% endfor %}
         }
-
-        const data_car={
+        
+        // const data_car={
             
-            {% for samochod in samochody %}
-                {{samochod.miasto}} : {
-                    "{{samochod.id}}": {
-                        "id": "{{samochod.id}}",
-                        "nazwa": "{{samochod}}",
-                        "marka": "{{samochod.marka}}",
-                        "model": "{{samochod.model}}",
-                        "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
-                        "kolor": "{{samochod.kolor}}",
-                        "moc": "{{samochod.moc}}",
-                        "miasto_id": "{{samochod.miasto}}",
-                        "paliwo": "{{samochod.paliwo}}",
-                        "wyposazenie": "{{samochod.wyposazenie}}",
-                        "skrzynia": "{{samochod.skrzynia_biegow}}",
-                        "opis": "{{samochod.opis}}",
-                        "img": "{{samochod.image.url}}",
-                        "zasieg": "{{samochod.zasieg}}", 
-                        "typ_auta": "{{samochod.typ_auta|lower}}",
-                        "pozycja":{
-                            x: {{samochod.pozycja.x}}, 
-                            y: {{samochod.pozycja.y}},
-                        }, 
-                    },
+        //     {% for samochod in samochody %}
+        //         {{samochod.miasto}} : {
+        //             "{{samochod.id}}": {
+        //                 "id": "{{samochod.id}}",
+        //                 "nazwa": "{{samochod}}",
+        //                 "marka": "{{samochod.marka}}",
+        //                 "model": "{{samochod.model}}",
+        //                 "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
+        //                 "kolor": "{{samochod.kolor}}",
+        //                 "moc": "{{samochod.moc}}",
+        //                 "miasto_id": "{{samochod.miasto}}",
+        //                 "paliwo": "{{samochod.paliwo}}",
+        //                 "wyposazenie": "{{samochod.wyposazenie}}",
+        //                 "skrzynia": "{{samochod.skrzynia_biegow}}",
+        //                 "opis": "{{samochod.opis}}",
+        //                 "img": "{{samochod.image.url}}",
+        //                 "zasieg": "{{samochod.zasieg}}", 
+        //                 "typ_auta": "{{samochod.typ_auta|lower}}",
+        //                 "pozycja":{
+        //                     x: {{samochod.pozycja.x}}, 
+        //                     y: {{samochod.pozycja.y}},
+        //                 }, 
+        //             },
                     
                      
-                },
+        //         },
 
+        //     {% endfor %}
+        // }
+        const data_car={
+            {% for miasto in miasta %}
+                "{{miasto}}": {
+                    {% for samochod in samochody %}
+                        {% if miasto.id == samochod.miasto_id  %}
+                            "{{samochod.id}}": {
+                                "id": "{{samochod.id}}",
+                                "nazwa": "{{samochod}}",
+                                "marka": "{{samochod.marka}}",
+                                "model": "{{samochod.model}}",
+                                "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
+                                "kolor": "{{samochod.kolor}}",
+                                "moc": "{{samochod.moc}}",
+                                "miasto_id": "{{samochod.miasto}}",
+                                "paliwo": "{{samochod.paliwo}}",
+                                "wyposazenie": "{{samochod.wyposazenie}}",
+                                "skrzynia": "{{samochod.skrzynia_biegow}}",
+                                "opis": "{{samochod.opis}}",
+                                "img": "{{samochod.image.url}}",
+                                "zasieg": "{{samochod.zasieg}}", 
+                                "typ_auta": "{{samochod.typ_auta|lower}}",
+                                "pozycja":{
+                                    x: {{samochod.pozycja.x}}, 
+                                    y: {{samochod.pozycja.y}},
+                                }, 
+                            },
+                        {% endif %}
+                    {% endfor %}
+                },
             {% endfor %}
         }
         console.log(data_car);
     </script>
     <script src="{% static '/js/przeglad.js' %}"></script>
+    <script src="{% static '/js/wiecej.js' %}"></script>
 
 
 {% endblock %}

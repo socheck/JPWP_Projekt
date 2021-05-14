@@ -1,0 +1,73 @@
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.okno {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 1501;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+  padding: 2rem;
+}
+
+.okno .okno_header {
+  padding: 10px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.okno .okno_header .okno_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.okno .okno_header .okno_close_button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.okno.active {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#overlay.active {
+  opacity: 0.5;
+  pointer-events: all;
+  z-index: 1500;
+}
+/*# sourceMappingURL=wiecej.css.map */
