@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<link rel="stylesheet" href="/static/images/css/dlugoterminowy_przeglad.css"/>
+
+{% for samochod in samochody %}
+    <div class="carousel-item active">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                <img
+                    src="/{{samochod.image}}"
+                    class="card-img-top"
+                    alt="..."
+                />
+                <div class="card-body">
+                    <h5 class="card-title">{{samochod.marka}} {{samochod.model}}</h5>
+                    <p class="card-text">
+                    <img class="ikonki-opis" src="/static/images/ikonki/car.png" >
+                    {{samochod.moc}}km
+                    <img class="ikonki-opis" src="/static/images/ikonki/gasoline-pump.png" >
+                    {{samochod.paliwo}}
+                    <img class="ikonki-opis" src="/static/images/ikonki/gears.png" >
+                    {{samochod.skrzynia_biegow}}
+                    <img class="ikonki-opis" src="/static/images/ikonki/buildings.png" >
+                    {{samochod.miasto}}
+                    </p>
+                    <a href="#!" class="btn btn-primary">Więcej informacji</a>
+                    <a href="/dlugoterminowy/wynajmij/{{samochod.typ_auta|lower}}/{{samochod.id}}/" class="btn btn-primary">Wypełnij Formularz</a>
+                </div>
+                </div>
+            </div>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

@@ -23,7 +23,10 @@
                                 </div>
                                 <hr class="postFooterHR">
                                 <div class="postFooter">
-                                    <div class="date">Wynajem krótkoterminowy</div>
+                                    <div class="date">
+                                        <a name="rent" class="btn btn-primary" href="/krotkoterminowy/{{typ_auta.nazwa|lower}}/" role="button">Wynajem krótkoterminowy</a>
+                                        <a class="btn btn-primary" href="/dlugoterminowy/przeglad/{{typ_auta.nazwa|lower}}/" role="button">Wynajem długoterminowy</a>
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -31,7 +34,5 @@
 
             </div>
     </div>
-
-    <a class="btn btn-primary" href="/dlugoterminowyform" role="button">Wynajem długoterminowy</a>
 
 {% endblock %}
