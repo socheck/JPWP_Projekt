@@ -32,7 +32,7 @@
                 <td>{{typ_auta.nazwa}}</td>
                 <td>{{typ_auta.cena}} zł/min</td>
                 <td> 
-                    <a class="btn btn-primary" href="/flota/krotkoterminowy/{{typ_auta.nazwa|lower}}">Wynajmij</a>
+                    <a class="btn btn-primary" href="/krotkoterminowy/{{typ_auta.nazwa|lower}}">Wynajmij</a>
                 </td>
                 </tr>
             {% endfor %}
@@ -47,7 +47,7 @@
                     {% for typ_auta in typy_aut %}
                         
                         <div class="post">
-                            <a class="postLink">
+                            <div class="postLink">
                                 <div class="postImgContainer">
                                     <img src="../{{typ_auta.grafika}}"  alt="">
                                 </div>
@@ -58,18 +58,23 @@
                                 <div class="postText">
                                     <pre>
                                         <!-- <div class="btn btn-primary"></div> -->
-                                        suwak <span class="cena">{{typ_auta.cena}}</span> zł
+                                        cena za dzień <span class="cena">{{typ_auta.cena}}</span> zł
                                     </pre> 
                                 </div>
                                 <hr class="postFooterHR">
                                 <div class="postFooter">
-                                    <form action="/dlugoterminowy/{{typ_auta.nawza|lower}}" method="post">
+                                    <!-- <form action="/dlugoterminowy/{{typ_auta.nawza|lower}}" method="post">
                                         <input hidden id="cena" type="text" name="cena" value={{typ_auta.cena}}>
                                         <input hidden id="typ_auta" type="text" name="typ_auta_id" value={{typ_auta.id}}>
                                         <input id= "submit" class="date btn btn-primary" type="submit" value="Wynajmij">
-                                    </form>
+                                    </form> -->
+                                    <a href="/dlugoterminowy/przeglad/{{typ_auta.nazwa|lower}}/">
+                                        <div class="btn btn-primary">
+                                            Wynajmij
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         
                     {% endfor %}
