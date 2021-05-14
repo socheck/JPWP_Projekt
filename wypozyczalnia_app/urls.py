@@ -9,7 +9,7 @@ urlpatterns = [
     path('krotkoterminowy/<slug:car_type>/<slug:auto_id>', views.krotkoterminowy_wynajety),
     path('krotkoterminowy/<slug:car_type>/', views.car_type_selection),
     path('dlugoterminowy/przeglad/<slug:car_type>/', views.dlugoterminowy_przeglad),
-    path('dlugoterminowy/wynajmij/<slug:car_type>/<slug:auto_id>/', views.dlugoterminowy_wynajmij),
+    path('dlugoterminowy/wynajmij/<slug:car_type>/<slug:auto_id>/', views.dlugoterminowy_wynajmij, name="dlugoterminowy_wynajmij"),
     path('flota/', views.flota),
     path('kontakt/', views.kontakt),
     path('rejestracja/', views.rejestracja, name="rejestracja"),

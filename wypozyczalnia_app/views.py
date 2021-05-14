@@ -12,6 +12,8 @@ from django.http import JsonResponse
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import *
 
 import json
@@ -224,6 +226,18 @@ def dlugoterminowy_przeglad(request, car_type):
 def dlugoterminowy_wynajmij(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     typ = get_object_or_404(TypAuta, slug=car_type)
+    print(request.POST)
+ 
+    if request.method == 'POST':
+        message = request.POST['message']
+        send_mail(
+        'Wynajem długoterminowy id= ' + auto_id + ' ' + auto.__str__(),
+         message, 
+         settings.EMAIL_HOST_USER,
+         ['wypozyczalniajpwp@gmail.com'],
+         fail_silently=False,
+         )
+        return render(request, 'dlugoterminowy_formularz.html')
 
-    return render(request, 'dlugoterminowy_formularz.html')
+    return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto})
 
