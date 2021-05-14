@@ -8,6 +8,8 @@ urlpatterns = [
     path('cena/', views.cena),
     path('krotkoterminowy/<slug:car_type>/<slug:auto_id>', views.krotkoterminowy_wynajety),
     path('krotkoterminowy/<slug:car_type>/', views.car_type_selection),
+    path('dlugoterminowy/przeglad/<slug:car_type>/', views.dlugoterminowy_przeglad),
+    path('dlugoterminowy/wynajmij/<slug:car_type>/<slug:auto_id>/', views.dlugoterminowy_wynajmij),
     path('flota/', views.flota),
     path('kontakt/', views.kontakt),
     path('rejestracja/', views.rejestracja, name="rejestracja"),
@@ -21,7 +23,7 @@ urlpatterns = [
     path('dodaj_strefe/', views.dodaj_strefe),
     path('dodaj_strefe/ajax/post_punkty', views.dodawanie_strefy_baza, name = "dodawanie_strefy_baza"),
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
-    path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
+    #path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
     path('wynajemkrotkoterminowy/', views.wynajemkrotkoterminowy, name="wynajemkrotkoterminowy"),
     
 ]

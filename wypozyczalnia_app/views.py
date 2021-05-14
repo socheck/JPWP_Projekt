@@ -215,3 +215,15 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
+def dlugoterminowy_przeglad(request, car_type):
+    typ = get_object_or_404(TypAuta, slug=car_type)
+    samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "d", service=False,)
+    miasta = Miasto.objects.all()
+    return render(request, 'dlugoterminowy_przeglad.html', {'miasta': miasta,"samochody" : samochody, })
+
+def dlugoterminowy_wynajmij(request, car_type, auto_id):
+    auto = get_object_or_404(Samochod, id=auto_id)
+    typ = get_object_or_404(TypAuta, slug=car_type)
+
+    return render(request, 'dlugoterminowy_formularz.html')
+
