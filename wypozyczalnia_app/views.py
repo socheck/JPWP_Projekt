@@ -12,6 +12,8 @@ from django.http import JsonResponse
 from django.db import transaction
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import *
 
 import json
@@ -211,6 +213,11 @@ def car_type_selection(request, car_type):
 
 def krotkoterminowy_wynajety(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
+    if request.method == 'POST':
+        if(request.POST['kod_samochod'] == 1 ): # tutaj dodać pole kod
+            return render(request, 'koszt.html')
+        else:
+            messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
@@ -224,6 +231,20 @@ def dlugoterminowy_przeglad(request, car_type):
 def dlugoterminowy_wynajmij(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     typ = get_object_or_404(TypAuta, slug=car_type)
+    user_m = User.objects.get(id= request.user.id)
+    user_email_ = user_m.email
+ 
+    if request.method == 'POST':
+        message = "Imię i Nazwisko: " + request.POST['imie_nazwisko'] + " email: " + request.POST['email'] + " usernaname: " + request.POST['username'] + " Samochód: " + request.POST['samochod']
+        print(message)
+        send_mail(
+        'Wynajem długoterminowy id= ' + auto_id + ' ' + auto.__str__(),
+         message, 
+         settings.EMAIL_HOST_USER,
+         ['wypozyczalniajpwp@gmail.com'],
+         fail_silently=False,
+         )
+        return render(request, 'dlugoterminowy_formularz.html', {'message_name' : message})
 
-    return render(request, 'dlugoterminowy_formularz.html')
+    return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto, 'user_mail' : user_email_})
 
