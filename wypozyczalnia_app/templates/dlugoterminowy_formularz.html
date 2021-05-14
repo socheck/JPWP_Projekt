@@ -8,58 +8,58 @@
 {% if message_name %}
 <h1>Dzięki {{ user.get_username }} za wiadomość </h1>
 {% endif %}
-<div class="container">
-    <form>
+<div class="container" id="formularz_dlugi">
+    
+    <form method="POST" action="/dlugoterminowy/wynajmij/{{samochod.typ_auta.slug}}/{{samochod.id}}/">
+    {% csrf_token %}
     <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-        <div class="col">
-        <div class="form-outline">
-            <input type="text" id="form6Example1" class="form-control" />
-            <label class="form-label" for="form6Example1">Imię</label>
-        </div>
-        </div>
-        <div class="col">
-        <div class="form-outline">
-            <input type="text" id="form6Example2" class="form-control" />
-            <label class="form-label" for="form6Example2">Nazwisko</label>
-        </div>
-        </div>
+
+
+    <div class="form-outline mb-4">
+        <input name="imie_nazwisko" type="text" id="form6Example1" value="{{ user.get_full_name }}" class="form-control"  readonly/>
+        <label class="form-label" for="form6Example1">Imię i Nazwisko</label>
     </div>
 
        <!-- Email input -->
     <div class="form-outline mb-4">
-        <input type="email" id="form6Example5" class="form-control" />
+        <input name="email" type="email" id="form6Example5" class="form-control" value="{{ user_mail }}" readonly/>
         <label class="form-label" for="form6Example5">Email</label>
     </div>
 
     <!-- Text input -->
     <div class="form-outline mb-4">
-        <input type="text" id="form6Example3" class="form-control" />
-        <label class="form-label" for="form6Example3">Company name</label>
+        <input name="username" type="text" id="form6Example3" value={{ user.get_username }} class="form-control" readonly />
     </div>
 
-    <!-- Text input -->
+     <!-- Text input -->
     <div class="form-outline mb-4">
-        <input type="text" id="form6Example4" class="form-control" />
-        <label class="form-label" for="form6Example4">Address</label>
+        <input name="od" type="datetime-local" id="form6Example6" class="form-control" />
+        <label class="form-label" for="form6Example6">Od</label>
     </div>
 
     <!-- Number input -->
     <div class="form-outline mb-4">
-        <input type="number" id="form6Example6" class="form-control" />
-        <label class="form-label" for="form6Example6">Phone</label>
+        <input name="do" type="datetime-local" id="form6Example6" class="form-control" />
+        <label class="form-label" for="form6Example6">Do</label>
     </div>
 
     <!-- Message input -->
     <div class="form-outline mb-4">
-        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-        <label class="form-label" for="form6Example7">Additional information</label>
+        <input name="samochod" type="text" id="form6Example6" class="form-control" value="{{ samochod }}" readonly />
+        <label class="form-label" for="form6Example7">Samochód</label>
     </div>
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-    </form>
-</div>
 
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Wyślij formularz, a my się z Tobą skontaktujemy</button>
+    </form>
+</div> 
+
+<script>
+    // Data Picker Initialization
+    $('.datepicker').datepicker({
+    inline: true
+    });
+</script>
 
 
 {% endblock %}

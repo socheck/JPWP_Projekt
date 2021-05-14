@@ -226,10 +226,12 @@ def dlugoterminowy_przeglad(request, car_type):
 def dlugoterminowy_wynajmij(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     typ = get_object_or_404(TypAuta, slug=car_type)
-    print(request.POST)
+    user_m = User.objects.get(id= request.user.id)
+    user_email_ = user_m.email
  
     if request.method == 'POST':
-        message = request.POST['message']
+        message = "Imię i Nazwisko: " + request.POST['imie_nazwisko'] + " email: " + request.POST['email'] + " usernaname: " + request.POST['username'] + " Samochód: " + request.POST['samochod']
+        print(message)
         send_mail(
         'Wynajem długoterminowy id= ' + auto_id + ' ' + auto.__str__(),
          message, 
@@ -237,7 +239,7 @@ def dlugoterminowy_wynajmij(request, car_type, auto_id):
          ['wypozyczalniajpwp@gmail.com'],
          fail_silently=False,
          )
-        return render(request, 'dlugoterminowy_formularz.html')
+        return render(request, 'dlugoterminowy_formularz.html', {'message_name' : message})
 
-    return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto})
+    return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto, 'user_mail' : user_email_})
 
