@@ -151,6 +151,7 @@ class Samochod(models.Model):
     zasieg = models.DecimalField( max_digits=8, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
     service = models.BooleanField(default = False) #zmieniany gdy za mało paliwa[zasięg jest odpowiednio niski] (trzeba to ukryć)
     kodQR = models.ImageField(upload_to=path_kodQR_auto, max_length=100, null=False, blank=False)
+    kod = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return self.nr_rejestracyjny + " " + self.marka + " " + self.model

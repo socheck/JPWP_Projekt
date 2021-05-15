@@ -25,7 +25,7 @@
             <label for="exampleInputEmail1">Wprowadź kod</label>
             <input name="kod_samochod" type="text" class="form-control" id="kod_samochod" placeholder="Wprowadź kod">
             </div>
-            <button type="submit" class="btn btn-primary">Zatwierdź</button>
+            <button id="zatwierdz" type="submit" class="btn btn-primary">Zatwierdź</button>
 
         </form>
     </div>
@@ -37,7 +37,12 @@
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
-        alert(content);
+        //alert(content);
+        alert("Poprawnie zczytano kod, zatwierdź i przejdź dalej")
+        document.getElementById('kod_samochod').value = content;
+        var button = document.getElementById('zatwierdz');
+        button.form.submit();
+
       });
       Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
