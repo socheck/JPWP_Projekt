@@ -16,6 +16,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import *
 
+from datetime import datetime
+
 import json
 
 # Create your views here.
@@ -215,7 +217,7 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     if request.method == 'POST':
         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
-            return render(request, 'koszt.html')
+            return render(request, 'koszt.html', {})
         else:
             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
     

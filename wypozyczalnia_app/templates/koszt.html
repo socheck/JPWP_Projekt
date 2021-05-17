@@ -1,7 +1,70 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
-<h3>koszt</h3>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/wynajety.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+    <div class="container">
+        <div class="timerDisplay">
+            00 : 00 : 00 
+        </div>
+        <div class="buttons">
+            
+            <button id="pauseTimer">Zwróć</button>
+            
+        </div>
+    </div>
+    <div id="data_rozpoczecia">
+        Data rozpoczecia
+    </div>
+    <div id="nazwa_pojazdu">
+        Nazwa pojazdu
+    </div>
+    
+    <div id="cena">
+        Cena: 0 zł
+    </div>
+    <div id="nr_karty">
+        Numer karty
+    </div>
+    
+
+    <script>
+       
+        // const data_wynajem = {
+        //     cena_wartosc: {{cena}},
+        //     nazwa_pojazdu:  "{{nazwa_pojazdu}}"",
+        //     id_pojazdu: {{id_pojazdu}},
+        //     data_start: "{{data_start}}",
+                // user_id: 1,
+                // nr_karty: "{{nr_karty}}",
+                // startowy_czas: {
+                //     s: {{startowy_czas.s}},
+                //     m: {{startowy_czas.m}},
+                //     h: {{startowy_czas.h}},
+                // },
+        // }
+
+        const data_wynajem = {
+            cena_wartosc: 0.8,
+            nazwa_pojazdu:  "Opel Corsa II",
+            id_pojazdu: 5,
+            user_id: 1,
+            data_start: "01.01.2000 23:59",
+            nr_karty: "1234567890098765",
+            startowy_czas: {
+                s: 50,
+                m: 0,
+                h: 1,
+            },
+            
+        }
+
+    </script>
+    <script src="{% static 'js/ekran_wynajety.js' %}"></script>
 
 
 {% endblock %}
