@@ -215,7 +215,16 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     if request.method == 'POST':
         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
-            return render(request, 'koszt.html')
+            user_m = User.objects.get(id= request.user.id)
+            user_karta_ = user_m.karta
+
+            content = {
+                'user' : user_m,
+                'user_karta' : user_karta_,
+                'samochod' : auto,
+            } 
+
+            return render(request, 'koszt.html', content)
         else:
             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
     
