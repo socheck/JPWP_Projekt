@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -211,7 +212,20 @@ def car_type_selection(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)
     samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
     miasta = Miasto.objects.all()
-    return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, })
+    strefy = Strefa.objects.filter(rodzaj = "s")
+    print("strefy, " + str(strefy))
+    return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, 'strefy': strefy})
+
+# def krotkoterminowy_wynajety(request, car_type, auto_id):
+#     auto = get_object_or_404(Samochod, id=auto_id)
+#     if request.method == 'POST':
+#         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
+#             return render(request, 'koszt.html', {})
+#         else:
+#             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
+    
+#     miasta = Miasto.objects.all()
+#     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
 def krotkoterminowy_wynajety(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
@@ -223,6 +237,9 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
+
+# def krotkoterminowy_wynajety(request, car_type, auto_id):
+#     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
 def dlugoterminowy_przeglad(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)

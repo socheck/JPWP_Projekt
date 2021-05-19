@@ -85,7 +85,7 @@ class Strefa(models.Model):
     lista_pozycji = models.JSONField(blank = False, null = False, default= {})
 
     def __str__(self):
-        return self.miasto + "strefa: " + self.rodzaj
+        return str(self.miasto) + " strefa: " + self.rodzaj
         
     class Meta:
         verbose_name_plural = "Strefy"
@@ -170,7 +170,7 @@ class Hulajnoga(models.Model):
     zasieg = models.DecimalField( max_digits=6, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
     service = models.BooleanField(default = False) #zmieniany gdy za mało paliwa[zasięg jest odpowiednio niski] (trzeba to ukryć)
     kodQR = models.ImageField(upload_to=path_kodQR_hulajnogi, max_length=100, null=False, blank=False)
-
+    kod = models.CharField(max_length=20, blank=True, null=True)
 
 
     def __str__(self):

@@ -123,6 +123,7 @@
 
         //     {% endfor %}
         // }
+
         const data_car={
             {% for miasto in miasta %}
                 "{{miasto}}": {
@@ -154,7 +155,14 @@
                 },
             {% endfor %}
         }
-        console.log(data_car);
+        
+        var data_strefy={
+            
+            {% for strefa in strefy %}
+                "{{strefa.miasto_id}}": {{strefa.lista_pozycji | safe}},
+            {% endfor %}
+        }
+        console.log(data_strefy);
     </script>
     <script src="{% static '/js/przeglad.js' %}"></script>
     <script src="{% static '/js/wiecej.js' %}"></script>
