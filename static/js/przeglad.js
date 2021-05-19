@@ -93,6 +93,17 @@ $("document").ready(() => {
     // $("#tabela_aut tbody").remove();
     $("#tabela_aut thead").hide();
 
+    var list_punktow = [];
+
+    for (let punkt in data_strefy[id_miasta]) {
+      list_punktow.push([
+        data_strefy[id_miasta][punkt].x,
+        data_strefy[id_miasta][punkt].y,
+      ]);
+    }
+
+    L.polygon(list_punktow).addTo(mymap);
+
     // $.ajax({
     //     type: 'GET',
     //     url: "/car_type_selection/ajax/get_samochody",
@@ -168,7 +179,9 @@ $("document").ready(() => {
         inner.appendChild(inner_buttons);
 
         $("#tabela_aut thead").show();
-        L.marker([item["pozycja"]["x"], item["pozycja"]["y"]])
+        L.marker([item["pozycja"]["x"], item["pozycja"]["y"]], {
+          icon: carIcon,
+        })
           .addTo(mymap)
           .bindPopup(inner);
         // '<div id="' +
@@ -321,4 +334,15 @@ $("document").ready(() => {
         "pk.eyJ1IjoiYWRhbTIwMTAiLCJhIjoiY2tvZGs5M2FnMDM1NjJ3cWduYWhndWc3ZCJ9.MPKzCTkQLdAuAK46hWE-Xg",
     }
   ).addTo(mymap);
+
+  var carIcon = L.icon({
+    iconUrl: "/static/images/autko_marker.png",
+    // shadowUrl: "leaf-shadow.png",
+
+    iconSize: [38, 38], // size of the icon
+    // shadowSize: [50, 64], // size of the shadow
+    // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62], // the same for the shadow
+    popupAnchor: [0, -10], // point from which the popup should open relative to the iconAnchor
+  });
 });
