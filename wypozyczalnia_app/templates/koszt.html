@@ -30,6 +30,10 @@
     <div id="nr_karty">
         Numer karty
     </div>
+
+    <h1>{{user}}<h1>
+    <h2> {{user_karta.karta}}<h2>
+    <h1>{{date_now}}</h1>
     
 
     <script>
@@ -49,16 +53,16 @@
         // }
 
         const data_wynajem = {
-            cena_wartosc: 0.8,
-            nazwa_pojazdu:  "Opel Corsa II",
-            id_pojazdu: 5,
-            user_id: 1,
-            data_start: "01.01.2000 23:59",
-            nr_karty: "1234567890098765",
+            cena_wartosc: {{samochod.typ_auta.cena}},
+            nazwa_pojazdu:  "{{samochod}}",
+            id_pojazdu: {{samochod.id}},
+            user_id: {{user.id}},
+            data_start: "{{samochod.czy_wynajety}}",
+            nr_karty: "{{user_profile.karta}}",
             startowy_czas: {
-                s: 50,
-                m: 0,
-                h: 1,
+                "s": {{s}},
+                "m": {{m}},
+                "h": {{h}},
             },
             
         }

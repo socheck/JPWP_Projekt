@@ -17,7 +17,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import *
 
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils.timezone import make_aware
+from django.utils import timezone
+import pytz
 
 import json
 
@@ -231,15 +234,45 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     if request.method == 'POST':
         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
-            return render(request, 'koszt.html', {})
+            user_m = User.objects.get(id= request.user.id)
+            user_profile = user_m.profile
+            if(auto.czy_wynajety == None):
+                now = datetime.now()
+                now = make_aware(now, timezone.utc)
+                auto.czy_wynajety = now
+                auto.save()
+            
+            now_dynamic = datetime.now()
+            now_dynamic = make_aware(now_dynamic, timezone.utc)
+            duration = (now_dynamic - auto.czy_wynajety)
+            duration_in_s = int(duration.total_seconds())
+            print('Z bazy: ')
+            print(auto.czy_wynajety)
+            print('Dynamiczny: ')
+            print(now_dynamic)
+            print(duration_in_s)
+            hours = int(duration_in_s/3600)
+            minutes = int((duration_in_s - 3600*hours)/60)
+            seconds = int(duration_in_s - int(60*minutes) - int(3600*hours))
+
+            content = {
+                'user' : user_m,
+                'user_profile' : user_profile,
+                'samochod' : auto,
+                'date_now' : auto.czy_wynajety,
+                'h' : hours,
+                'm' : minutes,
+                's' : seconds,
+            } 
+
+            return render(request, 'koszt.html', content)
         else:
             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
-# def krotkoterminowy_wynajety(request, car_type, auto_id):
-#     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
+# def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
 
 def dlugoterminowy_przeglad(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)
