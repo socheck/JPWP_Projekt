@@ -180,6 +180,34 @@ class Hulajnoga(models.Model):
         verbose_name_plural = "Hulajnogi"
         verbose_name = "Hulajnoga"
 
+rodzaj_pojazdu = [
+    ('h', 'hulajnoga'),
+    ('s', 'samochód'),
+]
+class Zamowienia(models.Model):
+
+    id_usera = models.IntegerField(null = False, blank = False)
+    kwota = models.DecimalField( max_digits=8, decimal_places=2,  null=True, blank=True)
+    nr_karty = models.CharField(max_length=16, blank=True, null = True)
+    rodzaj_pojazdu = models.CharField(max_length=30, choices=rodzaj_pojazdu, default="s")
+    # robimy tylko krótkoterminowy więc chyba nie trzeba dodatkowego pola
+    typ_wynajmu = models.CharField(max_length=30, choices=rodzaj_wynamu, default="k")
+    id_pojazdu = models.IntegerField(null = False, blank = False)
+    czas_startu = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null = False, blank = False)
+    czas_koniec = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null = True, blank = True)
+    czy_obecnie_wynajety =  models.BooleanField(default = True)
+
+
+    def __str__(self):
+        return  "Hulajnoga TX300 " + str(self.nr_identyfikacyjny)
+
+    class Meta:
+        verbose_name_plural = "Zamówienia"
+        verbose_name = "Zamówienie"
+
+
+
+
 class Profil(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, related_name='profile')
     telefon = models.CharField(max_length=9, blank=True, null = True)
