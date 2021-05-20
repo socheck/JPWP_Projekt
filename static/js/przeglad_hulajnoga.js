@@ -97,8 +97,6 @@ $("document").ready(() => {
 
     L.polygon(list_punktow).addTo(mymap);
 
-    licznik_id = 0;
-
     try {
       Object.values(data_car[nazwa_miasta]).forEach((item) => {
         // console.log(item);
@@ -132,7 +130,6 @@ $("document").ready(() => {
           .addTo(mymap)
           .bindPopup(inner);
 
-        licznik_id += 1;
         $("<tr></tr>")
           .append(
             '<th scope = "row">' +
@@ -146,7 +143,7 @@ $("document").ready(() => {
               "<td>" +
               item["zasieg"] +
               "</td>" +
-              '<a class="btn btn-primary" href="/krotkoterminowy/hulajnoga' +
+              '<td><a class="btn btn-primary" href="/krotkoterminowy/hulajnoga' +
               "/" +
               item["id"] +
               '">Wynajmij</a></td>'
