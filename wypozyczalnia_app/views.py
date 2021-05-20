@@ -412,7 +412,7 @@ def krotkoterminowy_wynajety_zwrot(request,  car_type, auto_id):
 
 def dlugoterminowy_przeglad(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)
-    samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "d", service=False,)
+    samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "d", service=False, czy_wynajety = None)
     miasta = Miasto.objects.all()
     return render(request, 'dlugoterminowy_przeglad.html', {'miasta': miasta,"samochody" : samochody, })
 

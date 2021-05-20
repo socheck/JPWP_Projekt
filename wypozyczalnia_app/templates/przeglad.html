@@ -102,9 +102,9 @@
                                 "kolor": "{{samochod.kolor}}",
                                 "moc": "{{samochod.moc}}",
                                 "miasto_id": "{{samochod.miasto}}",
-                                "paliwo": "{{samochod.paliwo}}",
+                                "paliwo": "{{samochod.get_paliwo_display}}",
                                 "wyposazenie": "{{samochod.wyposazenie}}",
-                                "skrzynia": "{{samochod.skrzynia_biegow}}",
+                                "skrzynia": "{{samochod.get_skrzynia_biegow_display}}",
                                 "opis": "{{samochod.opis}}",
                                 "img": "{{samochod.image.url}}",
                                 "zasieg": "{{samochod.zasieg}}", 
@@ -126,7 +126,12 @@
                 "{{strefa.miasto_id}}": {{strefa.lista_pozycji | safe}},
             {% endfor %}
         }
-        console.log(data_strefy);
+        
+        {% if request.user.is_authenticated %}
+            const authentication = 1;
+        {% else %}
+            const authentication = 0;
+        {% endif %}
     </script>
     <script src="{% static '/js/przeglad.js' %}"></script>
 

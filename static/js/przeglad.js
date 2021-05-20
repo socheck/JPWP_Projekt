@@ -162,8 +162,13 @@ $("document").ready(() => {
         button_wiecej.addEventListener("click", dodawanie_otworz);
         button_wiecej.innerHTML = "Więcej";
         var button_wynajmij = document.createElement("a");
-        button_wynajmij.href =
-          "/krotkoterminowy/" + item["typ_auta"] + "/" + item["id"] + '"';
+        if (authentication) {
+          button_wynajmij.href =
+            "/krotkoterminowy/" + item["typ_auta"] + "/" + item["id"] + '"';
+        } else {
+          button_wynajmij.href = "/logowanie/";
+        }
+
         var button_wynajmij_div = document.createElement("div");
         button_wynajmij_div.classList.add("btn");
         button_wynajmij_div.classList.add("btn-primary");
@@ -180,54 +185,100 @@ $("document").ready(() => {
         })
           .addTo(mymap)
           .bindPopup(inner);
-        // '<div id="' +
-        //   item["id"] +
-        //   '" class="pop-up"><div class="pop-up_nazwa">' +
-        //   item["nazwa"] +
-        //   '</div><div class="pop-up_buttons">' +
-        //   '<div data-car-miasto = "' +
-        //   nazwa_miasta +
-        //   '" data-car-id = "' +
-        //   item["id"] +
-        //   '" data-okno-target="#okno" class="btn btn-primary wiecej" onclick="test()">Więcej</div>' +
-        //   '<a href="/krotkoterminowy/' +
-        //   item["typ_auta"] +
-        //   "/" +
-        //   item["id"] +
-        //   '"><div class="btn btn-primary">Wynajmij</div></a></div></div>'
 
         licznik_id += 1;
-        $("<tr></tr>")
-          .append(
-            '<th scope = "row">' +
-              '<img src="' +
-              item["img"] +
-              '">' +
-              "</th>" +
-              "<td>" +
-              item["nazwa"] +
-              "</td>" +
-              "<td>" +
-              item["kolor"] +
-              "</td>" +
-              "<td>" +
-              item["nr_rejestracyjny"] +
-              "</td>" +
-              "<td>" +
-              item["zasieg"] +
-              "</td>" +
-              '<td><div data-car-miasto = "' +
-              nazwa_miasta +
-              '" data-car-id = "' +
-              item["id"] +
-              '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
-              '<td><a class="btn btn-primary" href="/krotkoterminowy/' +
-              item["typ_auta"] +
-              "/" +
-              item["id"] +
-              '">Wynajmij</a></td>'
-          )
-          .appendTo("#tabela_aut tbody");
+        if (authentication) {
+          $("<tr></tr>")
+            .append(
+              '<th scope = "row">' +
+                '<img src="' +
+                item["img"] +
+                '">' +
+                "</th>" +
+                "<td>" +
+                item["nazwa"] +
+                "</td>" +
+                "<td>" +
+                item["kolor"] +
+                "</td>" +
+                "<td>" +
+                item["nr_rejestracyjny"] +
+                "</td>" +
+                "<td>" +
+                item["zasieg"] +
+                "</td>" +
+                '<td><div data-car-miasto = "' +
+                nazwa_miasta +
+                '" data-car-id = "' +
+                item["id"] +
+                '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
+                '<td><a class="btn btn-primary" href="/krotkoterminowy/' +
+                item["typ_auta"] +
+                "/" +
+                item["id"] +
+                '">Wynajmij</a></td>'
+            )
+            .appendTo("#tabela_aut tbody");
+        } else {
+          $("<tr></tr>")
+            .append(
+              '<th scope = "row">' +
+                '<img src="' +
+                item["img"] +
+                '">' +
+                "</th>" +
+                "<td>" +
+                item["nazwa"] +
+                "</td>" +
+                "<td>" +
+                item["kolor"] +
+                "</td>" +
+                "<td>" +
+                item["nr_rejestracyjny"] +
+                "</td>" +
+                "<td>" +
+                item["zasieg"] +
+                "</td>" +
+                '<td><div data-car-miasto = "' +
+                nazwa_miasta +
+                '" data-car-id = "' +
+                item["id"] +
+                '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
+                '<td><a class="btn btn-primary" href="/logowanie/">Wynajmij</a></td>'
+            )
+            .appendTo("#tabela_aut tbody");
+        }
+        // $("<tr></tr>")
+        //   .append(
+        //     '<th scope = "row">' +
+        //       '<img src="' +
+        //       item["img"] +
+        //       '">' +
+        //       "</th>" +
+        //       "<td>" +
+        //       item["nazwa"] +
+        //       "</td>" +
+        //       "<td>" +
+        //       item["kolor"] +
+        //       "</td>" +
+        //       "<td>" +
+        //       item["nr_rejestracyjny"] +
+        //       "</td>" +
+        //       "<td>" +
+        //       item["zasieg"] +
+        //       "</td>" +
+        //       '<td><div data-car-miasto = "' +
+        //       nazwa_miasta +
+        //       '" data-car-id = "' +
+        //       item["id"] +
+        //       '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
+        //       '<td><a class="btn btn-primary" href="/krotkoterminowy/' +
+        //       item["typ_auta"] +
+        //       "/" +
+        //       item["id"] +
+        //       '">Wynajmij</a></td>'
+        //   )
+        //   .appendTo("#tabela_aut tbody");
       });
 
       // start mechanizm więcej =================================================================================

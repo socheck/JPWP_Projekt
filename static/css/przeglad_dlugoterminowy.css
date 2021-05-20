@@ -73,20 +73,12 @@
   z-index: 1500;
 }
 
-#mapid {
-  height: 400px;
-  width: 600px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 50px;
-  margin-bottom: auto;
-}
-
-table img {
-  max-width: 150px;
+.ikonki-opis {
+  width: 15px;
+  height: 15px;
 }
 
 #okno img {
   max-width: 150px;
 }
-/*# sourceMappingURL=przeglad.css.map */
+/*# sourceMappingURL=przeglad_dlugoterminowy.css.map */
