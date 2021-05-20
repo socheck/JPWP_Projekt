@@ -16,7 +16,8 @@ $("document").ready(() => {
   data_rozpoczecia.innerHTML =
     "Rozpoczęcie wynajmu: " + data_wynajem.data_start;
   let nr_karty = document.getElementById("nr_karty");
-  nr_karty.innerHTML = "Nr karty: " + data_wynajem.nr_karty;
+  nr_karty.innerHTML =
+    "Nr karty: &bull;&bull;&bull;" + data_wynajem.nr_karty.slice(-4);
 
   if (int !== null) {
     clearInterval(int);

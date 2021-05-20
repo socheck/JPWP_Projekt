@@ -82,6 +82,41 @@
         
     </div>
 
+    <h2>Wynajem krótkoterminowy hulajnóg</h2>
+
+    <div id="posts">
+        
+            <div class="myBechaviour">
+
+                        
+                <div class="post">
+                    <div class="postLink">
+                        <div class="postImgContainer">
+                            <img src="../{{hulajnoga_image}}"  alt="">
+                        </div>
+                        <div class="postHeader">
+                            {{hulajnoga_name}}
+                        </div>
+                        <hr class="postHeaderHR">
+                        <div class="postText">
+                            <pre>
+                                cena: <span class="cena">{{hulajnoga_cena}}</span> zł/min
+                            </pre> 
+                        </div>
+                        <hr class="postFooterHR">
+                        <div class="postFooter">
+                            <a href="/krotkoterminowy/hulajnoga">
+                                <div class="btn btn-primary">
+                                    Wynajmij
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
     <script src="{% static '/js/cena.js' %}"></script>
 
 {% endblock %}

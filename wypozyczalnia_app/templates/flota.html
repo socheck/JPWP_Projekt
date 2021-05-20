@@ -3,36 +3,70 @@
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/flota.css' %}">
-        <div id="posts">
+    <h2>Samochody</h2>
+    <div id="posts">
+        <div class="myBechaviour">
+                {% for typ_auta in typy_aut %}
+                    <div class="post">
+                    
+                        <div  name="rent" class="postLink" >
+                            <div class="postImgContainer">
+                                <img src="../{{typ_auta.grafika}}"  alt="">
+                            </div>
+                            
+                            <hr class="postHeaderHR">
+                            <div class="postText">
+                                <pre>
+                                    {{typ_auta.nazwa}}
 
+                                </pre> 
+                            </div>
+                            <hr class="postFooterHR">
+                            <div class="postFooter">
+                                <div class="date">
+                                    <a name="rent" class="btn btn-primary" href="/krotkoterminowy/{{typ_auta.nazwa|lower}}/" role="button">Wynajem krótkoterminowy</a>
+                                    <a class="btn btn-primary" href="/dlugoterminowy/przeglad/{{typ_auta.nazwa|lower}}/" role="button">Wynajem długoterminowy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+        </div>
+    </div>
+
+    <h2>Hulajnogi</h2>
+    <div id="posts">
+        
             <div class="myBechaviour">
-                    {% for typ_auta in typy_aut %}
-                        <div class="post">
-                        
-                            <a  name="rent" href="/krotkoterminowy/{{typ_auta.nazwa|lower}}/" class="postLink" >
-                                <div class="postImgContainer">
-                                    <img src="../{{typ_auta.grafika}}"  alt="">
-                                </div>
-                                
-                                <hr class="postHeaderHR">
-                                <div class="postText">
-                                    <pre>
-                                        {{typ_auta.nazwa}}
 
-                                    </pre> 
-                                </div>
-                                <hr class="postFooterHR">
-                                <div class="postFooter">
-                                    <div class="date">
-                                        <a name="rent" class="btn btn-primary" href="/krotkoterminowy/{{typ_auta.nazwa|lower}}/" role="button">Wynajem krótkoterminowy</a>
-                                        <a class="btn btn-primary" href="/dlugoterminowy/przeglad/{{typ_auta.nazwa|lower}}/" role="button">Wynajem długoterminowy</a>
-                                    </div>
+                        
+                <div class="post">
+                    <div class="postLink">
+                        <div class="postImgContainer">
+                            <img src="../{{hulajnoga_image}}"  alt="">
+                        </div>
+                        <div class="postHeader">
+                            {{hulajnoga_name}}
+                        </div>
+                        <hr class="postHeaderHR">
+                        <div class="postText">
+                            <pre>
+                                cena: <span class="cena">{{hulajnoga_cena}}</span> zł/min
+                            </pre> 
+                        </div>
+                        <hr class="postFooterHR">
+                        <div class="postFooter">
+                            <a href="/krotkoterminowy/hulajnoga">
+                                <div class="btn btn-primary">
+                                    Wynajem na minuty
                                 </div>
                             </a>
                         </div>
-                    {% endfor %}
-
+                    </div>
+                </div>
             </div>
+        
     </div>
 
 {% endblock %}

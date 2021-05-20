@@ -31,11 +31,25 @@ def home(request):
 
 def cena(request):
     typy_aut = TypAuta.objects.all()
-    return render(request, 'cena.html', {"typy_aut" : typy_aut})
+    hulajnoga = Hulajnoga.objects.get(nr_identyfikacyjny = 1)
+    content = {
+        "typy_aut" : typy_aut,
+        'hulajnoga_image' : hulajnoga.image,
+        'hulajnoga_cena' : hulajnoga.cena,
+        'hulajnoga_name' : "Hulajnoga TX300",
+    } 
+    return render(request, 'cena.html', content)
 
 def flota(request):
     typy_aut = TypAuta.objects.all()
-    return render(request, 'flota.html', {"typy_aut" : typy_aut})
+    hulajnoga = Hulajnoga.objects.get(nr_identyfikacyjny = 1)
+    content = {
+        "typy_aut" : typy_aut,
+        'hulajnoga_image' : hulajnoga.image,
+        'hulajnoga_cena' : hulajnoga.cena,
+        'hulajnoga_name' : "Hulajnoga TX300",
+    } 
+    return render(request, 'flota.html',  content)
 
 def kontakt(request):
     miasta = Miasto.objects.all()
@@ -212,12 +226,19 @@ def wynajemkrotkoterminowy(request):
     return(request, 'wynajemkrotkoterminowy.html', context)
 
 def car_type_selection(request, car_type):
-    typ = get_object_or_404(TypAuta, slug=car_type)
-    samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
-    miasta = Miasto.objects.all()
-    strefy = Strefa.objects.filter(rodzaj = "s")
-    print("strefy, " + str(strefy))
-    return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, 'strefy': strefy})
+    if(car_type == "hulajnoga"):
+        print("hulajnoga")
+        hulajnogi =  Hulajnoga.objects.all()
+        miasta = Miasto.objects.all()
+        strefy = Strefa.objects.filter(rodzaj = "h")
+        # trzeba dać żeby zwracało jakiś inny html ale na razie jest tak
+        return render(request, 'przeglad_hulajnoga.html', {'miasta': miasta,"hulajnogi" : hulajnogi, 'strefy': strefy, 'hulajnoga_name' : "Hulajnoga TX300",})
+    else:
+        typ = get_object_or_404(TypAuta, slug=car_type)
+        samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
+        miasta = Miasto.objects.all()
+        strefy = Strefa.objects.filter(rodzaj = "s")
+        return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, 'strefy': strefy})
 
 # def krotkoterminowy_wynajety(request, car_type, auto_id):
 #     auto = get_object_or_404(Samochod, id=auto_id)
@@ -231,48 +252,89 @@ def car_type_selection(request, car_type):
 #     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
 def krotkoterminowy_wynajety(request, car_type, auto_id):
-    auto = get_object_or_404(Samochod, id=auto_id)
+    if(car_type == "hulajnoga"):
+        auto = get_object_or_404(Hulajnoga, id=auto_id)
+        print("hulajnoga")
+    else:
+        auto = get_object_or_404(Samochod, id=auto_id)
+        print("samochód")
     if request.method == 'POST':
         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
-            user_m = User.objects.get(id= request.user.id)
-            user_profile = user_m.profile
-            if(auto.czy_wynajety == None):
-                now = datetime.now()
-                now = make_aware(now, timezone.utc)
-                auto.czy_wynajety = now
-                auto.save()
+            # user_m = User.objects.get(id= request.user.id)
+            # user_profile = user_m.profile
+            # if(auto.czy_wynajety == None):
+            #     now = datetime.now()
+            #     now = make_aware(now, timezone.utc)
+            #     auto.czy_wynajety = now
+            #     auto.save()
             
-            now_dynamic = datetime.now()
-            now_dynamic = make_aware(now_dynamic, timezone.utc)
-            duration = (now_dynamic - auto.czy_wynajety)
-            duration_in_s = int(duration.total_seconds())
-            print('Z bazy: ')
-            print(auto.czy_wynajety)
-            print('Dynamiczny: ')
-            print(now_dynamic)
-            print(duration_in_s)
-            hours = int(duration_in_s/3600)
-            minutes = int((duration_in_s - 3600*hours)/60)
-            seconds = int(duration_in_s - int(60*minutes) - int(3600*hours))
+            # now_dynamic = datetime.now()
+            # now_dynamic = make_aware(now_dynamic, timezone.utc)
+            # duration = (now_dynamic - auto.czy_wynajety)
+            # duration_in_s = int(duration.total_seconds())
+            # print('Z bazy: ')
+            # print(auto.czy_wynajety)
+            # print('Dynamiczny: ')
+            # print(now_dynamic)
+            # print(duration_in_s)
+            # hours = int(duration_in_s/3600)
+            # minutes = int((duration_in_s - 3600*hours)/60)
+            # seconds = int(duration_in_s - int(60*minutes) - int(3600*hours))
 
-            content = {
-                'user' : user_m,
-                'user_profile' : user_profile,
-                'samochod' : auto,
-                'date_now' : auto.czy_wynajety,
-                'h' : hours,
-                'm' : minutes,
-                's' : seconds,
-            } 
+            # content = {
+            #     'user' : user_m,
+            #     'user_profile' : user_profile,
+            #     'samochod' : auto,
+            #     'date_now' : auto.czy_wynajety,
+            #     'h' : hours,
+            #     'm' : minutes,
+            #     's' : seconds,
+            # } 
 
-            return render(request, 'koszt.html', content)
+            # return render(request, 'koszt.html', content)
+            return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
         else:
             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
-# def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
+def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
+    if(car_type == "hulajnoga"):
+        auto = get_object_or_404(Hulajnoga, id=auto_id)
+        print("hulajnoga")
+    else:
+        auto = get_object_or_404(Samochod, id=auto_id)
+        print("samochód")
+    
+    user_m = User.objects.get(id= request.user.id)
+    user_profile = user_m.profile
+    if(auto.czy_wynajety == None):
+        print('none')
+        now = datetime.now()
+        now = make_aware(now, timezone.utc)
+        auto.czy_wynajety = now
+        auto.save()
+    
+    now_dynamic = datetime.now()
+    now_dynamic = make_aware(now_dynamic, timezone.utc)
+    duration = (now_dynamic - auto.czy_wynajety)
+    duration_in_s = int(duration.total_seconds())
+
+    hours = int(duration_in_s/3600)
+    minutes = int((duration_in_s - 3600*hours)/60)
+    seconds = int(duration_in_s - int(60*minutes) - int(3600*hours))
+
+    content = {
+        'user' : user_m,
+        'user_profile' : user_profile,
+        'samochod' : auto,
+        'date_now' : auto.czy_wynajety,
+        'h' : hours,
+        'm' : minutes,
+        's' : seconds,
+    } 
+    return render(request, 'koszt.html', content)
 
 def dlugoterminowy_przeglad(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)

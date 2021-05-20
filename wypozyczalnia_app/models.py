@@ -166,7 +166,7 @@ class Hulajnoga(models.Model):
     image = models.ImageField(upload_to=path_hulajnogi_img, max_length=100, null=False, blank=False)
     cena = models.DecimalField( max_digits=8, decimal_places=2,  null=False, blank=False)
     nr_identyfikacyjny = models.DecimalField( max_digits=8, decimal_places=0,  null=False, blank=False)
-    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null= True) #może się wywalić tutaj
+    czy_wynajety = models.DateTimeField(auto_now=False, auto_now_add=False, default= None, null = True, blank = True) #może się wywalić tutaj
     zasieg = models.DecimalField( max_digits=6, decimal_places=3,  null=False, blank=False) #obliczany na podstawie przejechanych minut razy mnożnik zużycia (odejmujemy od poprzedniego stanu)
     service = models.BooleanField(default = False) #zmieniany gdy za mało paliwa[zasięg jest odpowiednio niski] (trzeba to ukryć)
     kodQR = models.ImageField(upload_to=path_kodQR_hulajnogi, max_length=100, null=False, blank=False)
@@ -174,7 +174,7 @@ class Hulajnoga(models.Model):
 
 
     def __str__(self):
-        return  "hulajnogz nr.: " + self.nr_identyfikacyjny
+        return  "Hulajnoga TX300 " + str(self.nr_identyfikacyjny)
 
     class Meta:
         verbose_name_plural = "Hulajnogi"

@@ -67,10 +67,6 @@ $("document").ready(() => {
     otworzOkno(okno);
   }
 
-  function test() {
-    console.log("test");
-  }
-
   function otworzOkno(okno) {
     if (okno == null) return;
     okno.classList.add("active");

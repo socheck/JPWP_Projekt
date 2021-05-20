@@ -37,22 +37,14 @@
         <thead>
             <tr>
             <th scope="col"></th>
-            <th scope="col">Nazwa samochodu</th>
-            <th scope="col">Kolor</th>
-            <th scope="col">Numer rejestracyjny</th>
+            <th scope="col">numer identyfikacyjny</th>
             <th scope="col">Zasięg</th>
-            <th scope="col">Więcej</th>
             <th scope="col"></th>
 
             </tr>
         </thead>
         <tbody>
-            <!-- <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr> -->
+
         </tbody>
     </table>
 
@@ -91,27 +83,17 @@
         const data_car={
             {% for miasto in miasta %}
                 "{{miasto}}": {
-                    {% for samochod in samochody %}
-                        {% if miasto.id == samochod.miasto_id  %}
-                            "{{samochod.id}}": {
-                                "id": "{{samochod.id}}",
-                                "nazwa": "{{samochod}}",
-                                "marka": "{{samochod.marka}}",
-                                "model": "{{samochod.model}}",
-                                "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
-                                "kolor": "{{samochod.kolor}}",
-                                "moc": "{{samochod.moc}}",
-                                "miasto_id": "{{samochod.miasto}}",
-                                "paliwo": "{{samochod.paliwo}}",
-                                "wyposazenie": "{{samochod.wyposazenie}}",
-                                "skrzynia": "{{samochod.skrzynia_biegow}}",
-                                "opis": "{{samochod.opis}}",
-                                "img": "{{samochod.image.url}}",
-                                "zasieg": "{{samochod.zasieg}}", 
-                                "typ_auta": "{{samochod.typ_auta|lower}}",
+                    {% for hulajnoga in hulajnogi %}
+                        {% if miasto.id == hulajnoga.miasto_id  %}
+                            "{{hulajnoga.id}}": {
+                                "id": "{{hulajnoga.id}}",
+                                "nazwa": "{{hulajnoga_name}}",
+                                "miasto_id": "{{hulajnoga.miasto_id}}",
+                                "img": "{{hulajnoga.image.url}}",
+                                "zasieg": "{{hulajnoga.zasieg}}", 
                                 "pozycja":{
-                                    x: {{samochod.pozycja.x}}, 
-                                    y: {{samochod.pozycja.y}},
+                                    x: {{hulajnoga.pozycja.x}}, 
+                                    y: {{hulajnoga.pozycja.y}},
                                 }, 
                             },
                         {% endif %}
@@ -128,6 +110,7 @@
         }
         console.log(data_strefy);
     </script>
-    <script src="{% static '/js/przeglad.js' %}"></script>
+    <script src="{% static '/js/przeglad_hulajnoga.js' %}"></script>
+
 
 {% endblock %}
