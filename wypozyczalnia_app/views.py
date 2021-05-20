@@ -303,9 +303,11 @@ def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
     if(car_type == "hulajnoga"):
         auto = get_object_or_404(Hulajnoga, id=auto_id)
         print("hulajnoga")
+        pojazd_zmienna = "h"
     else:
         auto = get_object_or_404(Samochod, id=auto_id)
         print("samochód")
+        pojazd_zmienna = "s"
     
     user_m = User.objects.get(id= request.user.id)
     user_profile = user_m.profile
@@ -329,6 +331,7 @@ def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
         'user' : user_m,
         'user_profile' : user_profile,
         'samochod' : auto,
+        'pojazd' : pojazd_zmienna,
         'date_now' : auto.czy_wynajety,
         'h' : hours,
         'm' : minutes,

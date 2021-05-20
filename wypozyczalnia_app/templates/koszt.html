@@ -53,7 +53,7 @@
         // }
 
         const data_wynajem = {
-            {% if miasto.id == hulajnoga.miasto_id  %}
+            {% if pojazd == "h"  %}
                 cena_wartosc: {{samochod.cena}},
             {% else %}
                 cena_wartosc: {{samochod.typ_auta.cena}},
