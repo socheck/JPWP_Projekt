@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 from django.utils.timezone import make_aware
 from django.utils import timezone
 import pytz
+import math
 
 import json
 
@@ -254,12 +255,43 @@ def car_type_selection(request, car_type):
 def krotkoterminowy_wynajety(request, car_type, auto_id):
     if(car_type == "hulajnoga"):
         auto = get_object_or_404(Hulajnoga, id=auto_id)
+        rodzaj = "h"
         print("hulajnoga")
     else:
         auto = get_object_or_404(Samochod, id=auto_id)
+        rodzaj = "s"
         print("samochód")
     if request.method == 'POST':
-        if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
+
+        user_m = get_object_or_404(User, id= request.user.id)
+        zamowienia = Zamowienia.objects.filter(id_usera = request.user.id, czy_obecnie_wynajety = True)
+        print(zamowienia)
+        if not zamowienia:
+            print("Podane zamowienie nie istnieje")
+        if auto.czy_wynajety == None:
+            print("Auto nie jest wynajete")
+        if auto.service == False:
+            print("Auto nie jest w serwisie")
+        if user_m.profile.karta != None:
+            print("Pole karta jest uzupełnione")
+        if(request.POST['kod_samochod'] == auto.kod and not zamowienia and auto.czy_wynajety == None and auto.service == False and user_m.profile.karta != None): # tutaj dodać pole kod
+            now = datetime.now()
+            #now = make_aware(now, timezone.utc)
+            now = make_aware(now, timezone=None)
+            auto.czy_wynajety = now
+            auto.save()
+
+            nowe_zamowienie = Zamowienia()        
+            nowe_zamowienie.id_usera = request.user.id
+            nowe_zamowienie.nr_karty = user_m.profile.karta
+            nowe_zamowienie.rodzaj_pojazdu = rodzaj
+            nowe_zamowienie.typ_wynajmu = "k" 
+            nowe_zamowienie.id_pojazdu = auto.id
+            nowe_zamowienie.czas_startu = auto.czy_wynajety
+            nowe_zamowienie.czy_obecnie_wynajety = True
+            nowe_zamowienie.save()
+
+
             # user_m = User.objects.get(id= request.user.id)
             # user_profile = user_m.profile
             # if(auto.czy_wynajety == None):
@@ -294,7 +326,7 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
             # return render(request, 'koszt.html', content)
             return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
         else:
-            messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
+            messages.info(request, 'Wprowadzono niepoprawny kod lub auto jest już wynajęte! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
@@ -311,15 +343,17 @@ def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
     
     user_m = User.objects.get(id= request.user.id)
     user_profile = user_m.profile
-    if(auto.czy_wynajety == None):
-        print('none')
-        now = datetime.now()
-        now = make_aware(now, timezone.utc)
-        auto.czy_wynajety = now
-        auto.save()
+    # if(auto.czy_wynajety == None):
+    #     print('none')
+    #     now = datetime.now()
+    #     #now = make_aware(now, timezone.utc)
+    #     now = make_aware(now, timezone=None)
+    #     auto.czy_wynajety = now
+    #     auto.save()
     
     now_dynamic = datetime.now()
-    now_dynamic = make_aware(now_dynamic, timezone.utc)
+    #now_dynamic = make_aware(now_dynamic, timezone.utc)
+    now_dynamic = make_aware(now_dynamic, timezone=None)
     duration = (now_dynamic - auto.czy_wynajety)
     duration_in_s = int(duration.total_seconds())
 
@@ -338,6 +372,35 @@ def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
         's' : seconds,
     } 
     return render(request, 'koszt.html', content)
+
+def krotkoterminowy_wynajety_zwrot(request,  car_type, auto_id):
+    if request.POST:
+        if(car_type == "hulajnoga"):
+            auto = get_object_or_404(Hulajnoga, id=auto_id)
+            rodzaj = "h"
+            cena = auto.cena
+        else:
+            auto = get_object_or_404(Samochod, id=auto_id)
+            rodzaj = "s"
+            cena = auto.typ_auta.cena
+        
+        zamowienie = get_object_or_404(Zamowienia, id_pojazdu = auto.id, rodzaj_pojazdu = rodzaj, czy_obecnie_wynajety= True)
+
+        if zamowienie.id_usera == request.user.id:
+            zamowienie.czy_obecnie_wynajety = False
+            now_dynamic = datetime.now()
+            now_dynamic = make_aware(now_dynamic, timezone=None)
+            zamowienie.czas_koniec = now_dynamic
+            duration = (now_dynamic - auto.czy_wynajety)
+            duration_in_s = int(duration.total_seconds())
+            zamowienie.kwota = math.ceil(duration_in_s/60) * cena
+            zamowienie.save()
+            auto.czy_wynajety = None
+            auto.save()
+
+
+
+    return redirect('/flota/')
 
 def dlugoterminowy_przeglad(request, car_type):
     typ = get_object_or_404(TypAuta, slug=car_type)
@@ -364,4 +427,6 @@ def dlugoterminowy_wynajmij(request, car_type, auto_id):
         return render(request, 'dlugoterminowy_formularz.html', {'message_name' : message})
 
     return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto, 'user_mail' : user_email_})
+    
+
 

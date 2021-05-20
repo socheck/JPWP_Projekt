@@ -12,8 +12,9 @@
             00 : 00 : 00 
         </div>
         <div class="buttons">
-            
-            <button id="pauseTimer">Zwróć</button>
+            <form method="POST" action="/krotkoterminowy/<slug:car_type>/<slug:auto_id>/zwrot">
+            {% csrf_token %}
+                <button type="submit" id="pauseTimer">Zwróć</button>
             
         </div>
     </div>
@@ -24,9 +25,11 @@
         Nazwa pojazdu
     </div>
     
-    <div id="cena">
+    <div name="cena" id="cena">
         Cena: 0 zł
     </div>
+
+    </form>
     <div id="nr_karty">
         Numer karty
     </div>

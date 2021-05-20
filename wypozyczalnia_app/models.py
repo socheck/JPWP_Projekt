@@ -187,7 +187,7 @@ rodzaj_pojazdu = [
 class Zamowienia(models.Model):
 
     id_usera = models.IntegerField(null = False, blank = False)
-    kwota = models.DecimalField( max_digits=8, decimal_places=2,  null=True, blank=True)
+    kwota = models.DecimalField( max_digits=8, decimal_places=2,  null=True, blank=True, default= None)
     nr_karty = models.CharField(max_length=16, blank=True, null = True)
     rodzaj_pojazdu = models.CharField(max_length=30, choices=rodzaj_pojazdu, default="s")
     # robimy tylko krótkoterminowy więc chyba nie trzeba dodatkowego pola
@@ -199,7 +199,7 @@ class Zamowienia(models.Model):
 
 
     def __str__(self):
-        return  "Hulajnoga TX300 " + str(self.nr_identyfikacyjny)
+        return  "Zamowienie: " + str(self.id) 
 
     class Meta:
         verbose_name_plural = "Zamówienia"

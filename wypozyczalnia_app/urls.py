@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('cena/', views.cena),
     path('krotkoterminowy/<slug:car_type>/<slug:auto_id>/podliczanie', views.krotkoterminowy_wynajety_podliczanie),
+    path('krotkoterminowy/<slug:car_type>/<slug:auto_id>/zwrot', views.krotkoterminowy_wynajety_zwrot),
     path('krotkoterminowy/<slug:car_type>/<slug:auto_id>', views.krotkoterminowy_wynajety),
     path('krotkoterminowy/<slug:car_type>/', views.car_type_selection),
     path('dlugoterminowy/przeglad/<slug:car_type>/', views.dlugoterminowy_przeglad),
