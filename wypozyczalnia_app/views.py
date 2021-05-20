@@ -229,14 +229,14 @@ def wynajemkrotkoterminowy(request):
 def car_type_selection(request, car_type):
     if(car_type == "hulajnoga"):
         print("hulajnoga")
-        hulajnogi =  Hulajnoga.objects.all()
+        hulajnogi =  Hulajnoga.objects.filter(service=False, czy_wynajety = None)
         miasta = Miasto.objects.all()
         strefy = Strefa.objects.filter(rodzaj = "h")
         # trzeba dać żeby zwracało jakiś inny html ale na razie jest tak
         return render(request, 'przeglad_hulajnoga.html', {'miasta': miasta,"hulajnogi" : hulajnogi, 'strefy': strefy, 'hulajnoga_name' : "Hulajnoga TX300",})
     else:
         typ = get_object_or_404(TypAuta, slug=car_type)
-        samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k")
+        samochody =  Samochod.objects.filter(typ_auta = typ, typ_wynajmu = "k", service=False, czy_wynajety = None)
         miasta = Miasto.objects.all()
         strefy = Strefa.objects.filter(rodzaj = "s")
         return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, 'strefy': strefy})
@@ -395,6 +395,14 @@ def krotkoterminowy_wynajety_zwrot(request,  car_type, auto_id):
             duration_in_s = int(duration.total_seconds())
             zamowienie.kwota = math.ceil(duration_in_s/60) * cena
             zamowienie.save()
+            if rodzaj == "s":
+                auto.zasieg = auto.zasieg - 0.08 * math.ceil(duration_in_s/60) #8/100 * 60/60
+                if auto.zasieg < 11:
+                    auto.service = True
+            else:
+                auto.zasieg = auto.zasieg - 0.073 *  math.ceil(duration_in_s/60) # 70000/(16*60)
+                if auto.zasieg < 2:
+                    auto.service = True 
             auto.czy_wynajety = None
             auto.save()
 
@@ -408,11 +416,15 @@ def dlugoterminowy_przeglad(request, car_type):
     miasta = Miasto.objects.all()
     return render(request, 'dlugoterminowy_przeglad.html', {'miasta': miasta,"samochody" : samochody, })
 
+@login_required
 def dlugoterminowy_wynajmij(request, car_type, auto_id):
     auto = get_object_or_404(Samochod, id=auto_id)
     typ = get_object_or_404(TypAuta, slug=car_type)
-    user_m = User.objects.get(id= request.user.id)
-    user_email_ = user_m.email
+    try:
+        user_m = User.objects.get(id= request.user.id)
+        user_email_ = user_m.email
+    except:
+        pass
  
     if request.method == 'POST':
         message = "Imię i Nazwisko: " + request.POST['imie_nazwisko'] + " email: " + request.POST['email'] + " usernaname: " + request.POST['username'] + " Samochód: " + request.POST['samochod']
