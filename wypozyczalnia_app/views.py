@@ -397,6 +397,7 @@ def krotkoterminowy_wynajety_zwrot(request,  car_type, auto_id):
             zamowienie.save()
             if rodzaj == "s":
                 auto.zasieg = auto.zasieg - 0.08 * math.ceil(duration_in_s/60) #8/100 * 60/60
+                # zasięg może wyjść float a pole jest decimal
                 if auto.zasieg < 11:
                     auto.service = True
             else:
