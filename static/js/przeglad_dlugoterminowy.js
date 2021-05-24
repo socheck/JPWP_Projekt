@@ -95,4 +95,7 @@ $("document").ready(() => {
       zamknijOkno(okno);
     });
   });
+
+
+  
 });

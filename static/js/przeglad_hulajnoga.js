@@ -120,12 +120,14 @@ $("document").ready(() => {
         inner.appendChild(inner_title);
         inner.appendChild(inner_buttons);
 
+
+
         $("#tabela_aut thead").show();
         L.marker(
           [item["pozycja"]["x"], item["pozycja"]["y"]]
-          // , {
-          //   icon: carIcon,
-          // }
+          , {
+            icon: carIcon,
+          }
         )
           .addTo(mymap)
           .bindPopup(inner);
@@ -169,6 +171,17 @@ $("document").ready(() => {
         "pk.eyJ1IjoiYWRhbTIwMTAiLCJhIjoiY2tvZGs5M2FnMDM1NjJ3cWduYWhndWc3ZCJ9.MPKzCTkQLdAuAK46hWE-Xg",
     }
   ).addTo(mymap);
+
+  var carIcon = L.icon({
+    iconUrl: "/static/images/hulajnoga_marker.png",
+    // shadowUrl: "leaf-shadow.png",
+
+    iconSize: [34, 34], // size of the icon
+    // shadowSize: [50, 64], // size of the shadow
+    // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62], // the same for the shadow
+    popupAnchor: [0, -10], // point from which the popup should open relative to the iconAnchor
+  });
 
   // var carIcon = L.icon({
   //   iconUrl: "/static/images/autko_marker.png",

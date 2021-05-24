@@ -22,6 +22,7 @@ from django.utils.timezone import make_aware
 from django.utils import timezone
 import pytz
 import math
+from decimal import Decimal
 
 import json
 
@@ -208,7 +209,7 @@ def dodawanie_strefy_baza(request):
     if request.is_ajax and request.method == "POST":
         
         nowa_strefa = Strefa()        
-        nowa_strefa.rodzaj = data["rodzaj_strefy"]
+        nowa_strefa.rodzaj = data["rodzaj_strefy"][0:1]
         nowa_strefa.miasto_id = data["miasto_id"]
         nowa_strefa.lista_pozycji = data["punkty"]
         nowa_strefa.save()
@@ -326,7 +327,10 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
             # return render(request, 'koszt.html', content)
             return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
         else:
-            messages.info(request, 'Wprowadzono niepoprawny kod lub auto jest już wynajęte! Spróbuj ponownie')
+            if(request.user.id == zamowienia.id_usera):
+                return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
+            else:
+                messages.info(request, 'Wprowadzono niepoprawny kod lub auto jest już wynajęte! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()
     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
@@ -396,12 +400,12 @@ def krotkoterminowy_wynajety_zwrot(request,  car_type, auto_id):
             zamowienie.kwota = math.ceil(duration_in_s/60) * cena
             zamowienie.save()
             if rodzaj == "s":
-                auto.zasieg = auto.zasieg - 0.08 * math.ceil(duration_in_s/60) #8/100 * 60/60
+                auto.zasieg = auto.zasieg - Decimal.from_float(round((0.08 * math.ceil(duration_in_s/60)), 3)) #8/100 * 60/60
                 # zasięg może wyjść float a pole jest decimal
                 if auto.zasieg < 11:
                     auto.service = True
             else:
-                auto.zasieg = auto.zasieg - 0.073 *  math.ceil(duration_in_s/60) # 70000/(16*60)
+                auto.zasieg = auto.zasieg - Decimal.from_float(round((0.073 *  math.ceil(duration_in_s/60)), 3)) # 70000/(16*60)
                 if auto.zasieg < 2:
                     auto.service = True 
             auto.czy_wynajety = None

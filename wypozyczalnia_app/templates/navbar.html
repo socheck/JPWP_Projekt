@@ -10,9 +10,11 @@
       <a class="nav-item nav-link" href="/flota">Flota</a>
       <a class="nav-item nav-link" href="/kontakt">Kontakt</a>
       <a class="nav-item nav-link" href="/rejestracja">Zarejestruj się</a>
+      {% if user.is_superuser %}
       <a class="nav-item nav-link" href="/testujemape">TestujeMape</a>
       <a class="nav-item nav-link" href="/dodajmiasto">Dodaj miasto</a>
       <a class="nav-item nav-link" href="/dodaj_strefe">Dodaj strefe</a>
+      {% endif %}
       
       {% if request.user.is_authenticated %}
       <a class="nav-item nav-link" href="/uzupelnijprofil">Uzupełnij Profil</a>

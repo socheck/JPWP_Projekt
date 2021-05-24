@@ -12,7 +12,7 @@
             00 : 00 : 00 
         </div>
         <div class="buttons">
-            <form method="POST" action="/krotkoterminowy/{{samochod.typ_auta}}/{{samochod.id}}/zwrot">
+            <form method="POST" action="/krotkoterminowy/{% if samochod.typ_auta %}{{samochod.typ_auta}}{% else %}hulajnoga{% endif %}/{{samochod.id}}/zwrot">
             {% csrf_token %}
                 <button type="submit" id="pauseTimer">Zwróć</button>
             
@@ -74,8 +74,24 @@
             
         }
 
+
     </script>
     <script src="{% static 'js/ekran_wynajety.js' %}"></script>
+
+    <script>
+        window.onbeforeunload = function (e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
+    </script>
+
 
 
 {% endblock %}
