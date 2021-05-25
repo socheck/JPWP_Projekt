@@ -53,6 +53,7 @@ $wysKatuzeli: 60vh;
 
   #carouselExampleIndicators {
     height: $wysKatuzeli;
+    min-height: 450px;
     position: relative;
     &::after {
       content: "";
@@ -60,6 +61,7 @@ $wysKatuzeli: 60vh;
       opacity: 0.8;
       width: 100%;
       height: $wysKatuzeli;
+      min-height: 450px;
       top: 0;
       left: 0;
       bottom: 0;
@@ -72,6 +74,7 @@ $wysKatuzeli: 60vh;
       .carousel-item {
         img {
           height: $wysKatuzeli;
+          min-height: 450px;
           width: auto;
           object-fit: cover;
         }
@@ -100,6 +103,7 @@ $wysKatuzeli: 60vh;
       font-size: 3rem;
       font-weight: 900;
       color: white;
+      text-align: center;
     }
     .divHR {
       background-color: white;
@@ -224,7 +228,7 @@ $wysKatuzeli: 60vh;
     width: 100%;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: auto 25vh;
+    grid-template-rows: auto minmax(150px, 25vh);
     background-color: white;
     border: 4px solid #e0e0e0;
     width: 50%;
@@ -239,6 +243,7 @@ $wysKatuzeli: 60vh;
       line-height: 1.2;
       font-weight: 900;
       #loginButton {
+        text-align: center;
         margin: 1rem 0rem;
         width: fit-content;
         display: flex;
@@ -274,6 +279,7 @@ $wysKatuzeli: 60vh;
       height: 100%;
       display: flex;
       justify-content: flex-end;
+      min-height: 150px;
 
       svg {
         height: 140%;
@@ -290,6 +296,7 @@ $wysKatuzeli: 60vh;
     font-weight: 900;
     color: white;
     text-align: center;
+    padding: 0rem 1.5rem;
   }
   .divHR {
     background-color: white;
@@ -307,6 +314,7 @@ $wysKatuzeli: 60vh;
         color: $zolty !important;
         background-color: white !important;
         border: 1px solid #e0e0e0;
+        box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
       }
       ul {
         width: 200px !important;
@@ -314,7 +322,8 @@ $wysKatuzeli: 60vh;
     }
   }
   #mapid {
-    height: 50vh;
+    height: 70vh;
+    min-height: 250px;
     width: 100%;
     margin: 0vh auto;
   }
@@ -346,8 +355,10 @@ $wysKatuzeli: 60vh;
       color: white;
       .oddzialyHeader {
         font-size: 1.5rem;
+        margin-bottom: 0.5rem;
       }
-      .oddzialy {
+      .oddzial {
+        line-height: 1.5;
       }
     }
   }
@@ -357,4 +368,457 @@ $wysKatuzeli: 60vh;
   color: $zolty;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: $small) {
+  #main_picture {
+    height: fit-content;
+    position: relative;
+    // overflow: hidden;
+
+    .maksyma {
+      top: 25%;
+      left: 10%;
+
+      span {
+      }
+    }
+
+    #welcomeText {
+      right: 10%;
+      top: 45%;
+
+      a {
+      }
+      &:hover {
+        background-color: $zolty;
+        a {
+          color: white;
+        }
+      }
+    }
+    .carousel-indicators,
+    button,
+    #welcomeText,
+    .maksyma {
+      z-index: 1506 !important;
+    }
+
+    #carouselExampleIndicators {
+      &::after {
+        content: "";
+      }
+
+      .carousel-inner {
+        .carousel-item {
+          img {
+          }
+        }
+      }
+    }
+  }
+
+  #instruction {
+    .content {
+      width: 80%;
+      max-width: 500px;
+      .header {
+        font-size: 2rem;
+      }
+      .divHR {
+      }
+      .description {
+        text-align: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: normal;
+        span {
+          font-weight: 500;
+          span {
+            font-weight: 900;
+          }
+        }
+      }
+      .icon {
+        font-size: 3rem;
+        color: white;
+      }
+      #flotaButton {
+        width: 40%;
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+    }
+  }
+
+  #tariff {
+    .content {
+      padding: 2rem 1.5rem;
+      width: 80%;
+      max-width: 500px;
+      .description {
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: normal;
+        span {
+          font-weight: 500;
+        }
+      }
+      .icon {
+      }
+      #cenaButton {
+        width: 40%;
+
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+      .image {
+        margin-top: auto;
+        transform: translate(-40%, 20%);
+        width: 70%;
+      }
+    }
+  }
+
+  #login {
+    margin: 8vh 0vh;
+
+    .header {
+      font-size: 3rem;
+      font-weight: 900;
+      color: $zolty;
+      text-align: center;
+    }
+    .content {
+      width: 80%;
+      max-width: 500px;
+      .description {
+        #loginButton {
+          padding: 1rem 2rem;
+
+          a {
+          }
+          transition: all 0.2s ease;
+          &:hover {
+            background-color: white;
+            a {
+              color: $zolty;
+            }
+          }
+        }
+      }
+      .image {
+        grid-column: 1/3;
+        grid-row: 2/3;
+        margin-top: auto;
+        transform: translate(10%, -10%);
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        svg {
+          height: 140%;
+        }
+      }
+    }
+  }
+
+  #ourMap {
+    .header {
+      font-size: 2.5rem;
+    }
+    .divHR {
+    }
+    .choice {
+      margin: 3vh 0vh;
+      .dropdown {
+        .miastoButton {
+        }
+        ul {
+        }
+      }
+    }
+    #mapid {
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 0vh;
+      #kontaktButton {
+        margin: 3vh 0vh;
+        width: 25%;
+        min-width: 200px;
+
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+      .oddzialy {
+        text-align: center;
+        color: white;
+        .oddzialyHeader {
+          font-size: 1.5rem;
+        }
+        .oddzial {
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $smallest) {
+  #main_picture {
+    height: fit-content;
+    position: relative;
+
+    .maksyma {
+      position: absolute;
+      left: 10%;
+      top: 20%;
+      transform: translate(0% -50%);
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 900;
+      text-shadow: 2px 2px 13px rgba(10, 10, 10, 0.6);
+      span {
+        color: $zolty;
+      }
+    }
+
+    #welcomeText {
+      position: static;
+      min-width: 150px;
+      width: 50%;
+      margin: 1.5rem auto;
+
+      background-color: $zolty;
+
+      a {
+        color: white;
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      &:hover {
+        background-color: white;
+        a {
+          color: $zolty;
+        }
+      }
+    }
+
+    #carouselExampleIndicators {
+      &::after {
+        content: "";
+      }
+
+      .carousel-inner {
+        .carousel-item {
+          img {
+          }
+        }
+      }
+    }
+  }
+
+  #instruction {
+    margin: 5vh 0vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+      padding: 1.5rem 0.5rem;
+      width: 86%;
+
+      .header {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: white;
+        text-align: center;
+      }
+      .divHR {
+        background-color: white;
+        width: 80%;
+        height: 1px;
+        margin: 0.5rem 0rem;
+      }
+      .description {
+        font-size: 1rem;
+
+        span {
+          font-weight: 500;
+          span {
+            font-weight: 900;
+          }
+        }
+      }
+      .icon {
+        font-size: 2rem;
+        color: white;
+      }
+      #flotaButton {
+        width: 50%;
+        min-width: 150px;
+        padding: 1rem 3rem;
+        font-size: 1rem;
+
+        a {
+        }
+      }
+    }
+  }
+
+  #tariff {
+    margin: 3vh 0vh;
+    padding: 3vh 0vh;
+    width: 100%;
+    .content {
+      padding: 1.5rem 0.5rem;
+      width: 86%;
+
+      .description {
+        font-size: 1.2rem;
+
+        span {
+          font-weight: 500;
+        }
+      }
+      .icon {
+        font-size: 2rem;
+        color: white;
+      }
+      #cenaButton {
+        width: 50%;
+        min-width: 150px;
+        padding: 1rem 3rem;
+        font-size: 1rem;
+        a {
+        }
+      }
+      .image {
+        margin-top: auto;
+        transform: translate(-10%, 20%);
+        width: 90%;
+      }
+    }
+  }
+
+  #login {
+    margin: 3vh 0vh;
+    .header {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    .content {
+      padding: 1.5rem 0.5rem 0rem 0.5rem;
+      width: 86%;
+      margin-top: 2vh;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border: 3px solid #e0e0e0;
+      .description {
+        margin-left: 10%;
+        color: $grafit;
+        font-size: 1rem;
+        line-height: 1.2;
+        font-weight: 900;
+        #loginButton {
+          max-width: 90%;
+          width: fit-content;
+          min-width: 150px;
+          padding: 1rem;
+          font-size: 1rem;
+          margin: 0.8rem 0rem;
+
+          a {
+            color: white;
+            font-size: inherit;
+            font-weight: inherit;
+          }
+          transition: all 0.2s ease;
+          &:hover {
+            background-color: white;
+            a {
+              color: $zolty;
+            }
+          }
+        }
+      }
+      .image {
+        margin-top: auto;
+        transform: translate(0%, -10%);
+        display: flex;
+        justify-content: flex-end;
+        min-height: 150px;
+        height: 90%;
+
+        svg {
+          min-height: 150px;
+          height: 120%;
+          max-height: 250px;
+        }
+      }
+    }
+  }
+
+  #ourMap {
+    padding: 3vh 0vh 5vh 0vh;
+    .header {
+      font-size: 1.8rem;
+    }
+    .divHR {
+    }
+    .choice {
+      margin: 3vh 0vh;
+      .dropdown {
+        .miastoButton {
+        }
+        ul {
+        }
+      }
+    }
+    #mapid {
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 0vh;
+      #kontaktButton {
+        margin: 3vh 0vh;
+        width: 25%;
+        min-width: 200px;
+
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+      .oddzialy {
+        text-align: center;
+        color: white;
+        .oddzialyHeader {
+          font-size: 1.5rem;
+        }
+        .oddzial {
+          font-size: 1rem;
+          padding: 0rem 0.5rem;
+        }
+      }
+    }
+  }
 }
