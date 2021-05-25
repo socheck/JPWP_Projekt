@@ -29,7 +29,8 @@ import json
 # Create your views here.
 def home(request):
     miasta = Miasto.objects.all()
-    return render(request, 'index.html', {'miasta' : miasta})
+    oddzialy = Oddzial.objects.all()
+    return render(request, 'index.html', {'miasta' : miasta, 'oddzialy' : oddzialy})
 
 def cena(request):
     typy_aut = TypAuta.objects.all()

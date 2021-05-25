@@ -97,7 +97,7 @@ class Oddzial(models.Model):
     miasto = models.ForeignKey(Miasto, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.adres
+        return str(self.adres)
         
     class Meta:
         verbose_name_plural = "Oddziały"

@@ -1,13 +1,3 @@
-#mapid {
-  height: 50vh;
-  width: 80vw;
-  margin: 5vh auto;
-}
-
-a {
-  text-decoration: none;
-}
-
 #main_picture {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -82,7 +72,7 @@ a {
   content: "";
   background-color: #5d5311;
   opacity: 0.8;
-  width: 100vw;
+  width: 100%;
   height: 60vh;
   top: 0;
   left: 0;
@@ -130,6 +120,7 @@ a {
           justify-content: center;
   background-color: #ffb300;
   width: 50%;
+  max-width: 650px;
   -webkit-box-shadow: 2px 2px 13px rgba(10, 10, 10, 0.6);
           box-shadow: 2px 2px 13px rgba(10, 10, 10, 0.6);
 }
@@ -168,6 +159,7 @@ a {
 }
 
 #instruction .content #flotaButton {
+  width: 40%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -185,9 +177,6 @@ a {
   transition: all 0.2s ease !important;
   -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
           box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
@@ -196,5 +185,322 @@ a {
   color: #ffb300;
   font-size: inherit;
   font-weight: inherit;
+}
+
+#tariff {
+  margin: 5vh 0vh;
+  padding: 10vh 0vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ffb300;
+}
+
+#tariff .content {
+  padding: 2.5rem 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #ffb300;
+  border: 1px solid white;
+  width: 50%;
+  max-width: 650px;
+}
+
+#tariff .content .description {
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+#tariff .content .description span {
+  font-weight: 500;
+}
+
+#tariff .content .icon {
+  font-size: 3rem;
+  color: white;
+}
+
+#tariff .content #cenaButton {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+          box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tariff .content #cenaButton a {
+  color: #ffb300;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#tariff .content .image {
+  margin-top: auto;
+  -webkit-transform: translate(-40%, 20%);
+          transform: translate(-40%, 20%);
+  width: 70%;
+}
+
+#login {
+  margin: 8vh 0vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+}
+
+#login .header {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffb300;
+  text-align: center;
+}
+
+#login .content {
+  margin-top: 2vh;
+  padding: 3rem 5rem;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+  -ms-grid-rows: auto 25vh;
+      grid-template-rows: auto 25vh;
+  background-color: white;
+  border: 4px solid #e0e0e0;
+  width: 50%;
+  max-width: 650px;
+}
+
+#login .content .description {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+  justify-self: flex-start;
+  color: #1b1b1b;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+#login .content .description #loginButton {
+  margin: 1rem 0rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  background-color: #ffb300;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+          box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.2s ease;
+}
+
+#login .content .description #loginButton a {
+  color: white;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#login .content .description #loginButton:hover {
+  background-color: white;
+}
+
+#login .content .description #loginButton:hover a {
+  color: #ffb300;
+}
+
+#login .content .image {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  margin-top: auto;
+  -webkit-transform: translate(10%, -10%);
+          transform: translate(10%, -10%);
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#login .content .image svg {
+  height: 140%;
+}
+
+#ourMap {
+  background-color: #ffb300;
+  padding: 5vh 0vh;
+}
+
+#ourMap .header {
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+}
+
+#ourMap .divHR {
+  background-color: white;
+  width: 60%;
+  height: 2px;
+  margin: 1rem auto 0rem auto;
+}
+
+#ourMap .choice {
+  margin: 3vh 0vh;
+}
+
+#ourMap .choice .dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#ourMap .choice .dropdown .miastoButton {
+  width: 200px !important;
+  color: #ffb300 !important;
+  background-color: white !important;
+  border: 1px solid #e0e0e0;
+}
+
+#ourMap .choice .dropdown ul {
+  width: 200px !important;
+}
+
+#ourMap #mapid {
+  height: 50vh;
+  width: 100%;
+  margin: 0vh auto;
+}
+
+#ourMap .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 3vh;
+}
+
+#ourMap .content #kontaktButton {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+          box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+}
+
+#ourMap .content #kontaktButton a {
+  color: #ffb300;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#ourMap .content .oddzialy {
+  text-align: right;
+  color: white;
+}
+
+#ourMap .content .oddzialy .oddzialyHeader {
+  font-size: 1.5rem;
+}
+
+.popup {
+  color: #ffb300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 /*# sourceMappingURL=index.css.map */

@@ -12,7 +12,7 @@ $("document").ready(() => {
         zoom = 12;
         mymap.setView([x, y], zoom);
         $("#miasto").parent().children("button").text(nazwa_miasta);
-        L.marker([data_position[nazwa_miasta]["x"], data_position[nazwa_miasta]["y"]]).addTo(mymap).bindPopup('<a href="/kontakt"> <div> <h4>'+ nazwa_miasta +'</h4> <b class = "test">'+ "Kliknij i jedź z nami" +"</b> </div> </a>").openPopup().on("click", ()=>{
+        L.marker([data_position[nazwa_miasta]["x"], data_position[nazwa_miasta]["y"]]).addTo(mymap).bindPopup('<a href="/kontakt"> <div class="popup"> <h4>'+ nazwa_miasta +'</h4> <span>'+ "Kliknij i jedź z nami!" +"</span> </div> </a>").openPopup().on("click", ()=>{
             window.location.href = "/kontakt";
         });
 
