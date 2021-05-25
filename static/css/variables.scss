@@ -3,7 +3,7 @@
 //breakpoints
 $large: 1200px;
 $small: 992px;
-$smallest: 500px;
+$smallest: 576px;
 // max-width
 
 $maxSiteWidth: 2048px;
@@ -11,21 +11,9 @@ $maxSiteWidth: 2048px;
 //kolorki
 $fiolet: #7d18e9;
 $czerwien: magenta;
+$zolty: #ffb300;
+$grafit: #1b1b1b;
+$bielNav: #fefefe;
 //czcionka
-$font: "Gilroy", "sans-serif";
+$font: "Roboto", "sans-serif";
 $basicFontsize: 10px;
-//navbar
-$navHeight: 7vh;
-$navElementsPadding: 0.3 * $navHeight;
-//footer
-$footerFontSizeSmall: 1.5rem;
-$footerFontSizeBigger: 2rem;
-
-//wielkość okrągłego zdjęcia mapy
-$mapImgSize: 280px; //ten największy
-$mapImgSizeCircleSmall: 200px;
-
-$postWidth: 400px;
-$postMinHeight: 200px;
-$postImgHeight: 30vh;
-$postMaxImgHeight: 500px;

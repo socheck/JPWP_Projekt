@@ -1,73 +1,161 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% load static %} {% block content %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""
+/>
 
-{% load static %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"
+/>
 
-{% block content %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"/>
-    
-    <style>
-        #mapid { 
-            height: 50vh;
-            width: 80vw;
-            margin: 5vh auto;
-        }
-        .test{
-            color: rgb(228, 190, 23);
-        }
-        a{
-            text-decoration: none;
-        }
-    </style>
-
-    <h1>Home funkcjonalności</h1>
-    <h3>Zobacz miasta, w których działamy: </h3>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Miasta
-        </button>
-        <ul id="miasto" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {% for i in miasta %}
-            
-            <li><a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#">{{i.nazwa}}</a></li>
-            
-            {% endfor %}
-        </ul>
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+<article id="main_picture">
+  <div class="maksyma">
+    <span>J</span>EDŹ<br />
+    <span>P</span>ROSTO<br />
+    <span>W</span><br />
+    <span>P</span>RZYSZŁOŚĆ<br />
+  </div>
+  <div id="welcomeText">
+    <a href="/rejestracja">Zaczynamy</a>
+  </div>
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
     </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="{% static 'images/home-carusel1.jpg' %}"
+          class="d-block w-100"
+          alt=""
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="{% static 'images/home-carusel2.jpg' %}"
+          class="d-block w-100"
+          alt=""
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="{% static 'images/home-carusel3.jpg' %}"
+          class="d-block w-100"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</article>
+<article id="instruction">
+    <div class="content">
+        <div class="header">
+            OD CZEGO ZACZĄĆ?
+        </div>
+        <div class="divHR"></div>
+        <div class="description">
+            Zastanów się jak długo chcesz użytkować pojazd.<br> Do czego Ci jest potrzebny?<br> Wybierz interesującą Cię zakładkę... <br> <span>LUB PO PROSTU IDŹ NA ŻYWIOŁ I KLIKNIJ ,<br> <span>TUTAJ</span> </span> 
+        </div>
+        <div class="icon">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+            </svg>
+        </div>
+        <div id="flotaButton">
+            <a href="/flota">Zaczynamy</a>
+        </div>
 
-    <div id="mapid"></div>
+    </div>
+</article>
 
+<h1>Home funkcjonalności</h1>
+<h3>Zobacz miasta, w których działamy:</h3>
+<div class="dropdown">
+  <button
+    class="btn btn-secondary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton1"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Miasta
+  </button>
+  <ul id="miasto" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    {% for i in miasta %}
 
-    <h1>asdsadasd</h1>
+    <li>
+      <a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#"
+        >{{i.nazwa}}</a
+      >
+    </li>
 
-    <video src="{% static 'images/uno.mp4' %}" alt="sfd">
+    {% endfor %}
+  </ul>
+</div>
 
+<div id="mapid"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
-   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>     
-    <script>
-        const data_position={
+<h1>asdsadasd</h1>
 
-            {% for i in miasta %}
-                {{i.nazwa}} : { 
-                    x: {{i.pozycja.x}},
-                    y: {{i.pozycja.y}},
-                    id : {{i.id}}, 
-                },
-            {% endfor %}
-        }
-    </script>
-    <script src="{% static '/js/index.js' %}"></script>
+  <script
+    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    //   do kastomizacji
+    var myCarousel = document.querySelector("#carouselExampleIndicators");
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 1000,
+      pause: false,
+    });
+  </script>
+  <script>
+    const data_position={
 
+        {% for i in miasta %}
+            {{i.nazwa}} : {
+                x: {{i.pozycja.x}},
+                y: {{i.pozycja.y}},
+                id : {{i.id}},
+            },
+        {% endfor %}
+    }
+  </script>
+  <script src="{% static '/js/index.js' %}"></script>
 
-
-    
-
-{% endblock %}
-
+  {% endblock %}
+</video>
