@@ -12,7 +12,11 @@
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin=""
 ></script>
-<link rel="stylesheet" type="text/css" href="{% static 'css/przeglad.css' %}" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/przeglad_hulajnoga.css' %}"
+/>
 
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -20,7 +24,54 @@
   crossorigin="anonymous"
 ></script>
 
-<div id="mapid"></div>
+<article id="ourMap">
+  <div class="header">GDZIE NAS ZNAJDZIESZ?</div>
+  <div class="divHR"></div>
+  <div class="choice">
+    <div class="dropdown">
+      <button
+        class="btn miastoButton dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Miasta
+      </button>
+      <ul
+        id="miasto"
+        class="dropdown-menu"
+        aria-labelledby="dropdownMenuButton1"
+      >
+        {% for i in miasta %}
+
+        <li>
+          <a data-nazwa-miasta="{{i.nazwa}}" class="dropdown-item" href="#mapid"
+            >{{i.nazwa}}</a
+          >
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div id="mapid"></div>
+  <div class="content">
+    <table id="tabela_aut" class="">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">numer identyfikacyjny</th>
+          <th scope="col">Zasięg</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</article>
+
+<!-- <div id="mapid"></div>
 
 <div class="dropdown">
   <button
@@ -58,7 +109,7 @@
     </tr>
   </thead>
   <tbody></tbody>
-</table>
+</table> -->
 
 <div class="okno" id="okno">
   <div class="okno_header">
@@ -121,7 +172,12 @@
           "{{strefa.miasto_id}}": {{strefa.lista_pozycji | safe}},
       {% endfor %}
   }
-  console.log(data_strefy);
+
+  {% if request.user.is_authenticated %}
+      const authentication = 1;
+  {% else %}
+      const authentication = 0;
+  {% endif %}
 </script>
 <script src="{% static '/js/przeglad_hulajnoga.js' %}"></script>
 

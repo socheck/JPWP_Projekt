@@ -3,6 +3,7 @@ $("document").ready(() => {
   var y = 19;
   var zoom = 6;
   $("#tabela_aut thead").hide();
+  $(".content").hide();
 
   function dodawanie_otworz(e) {
     var okno = document.querySelector(e.target.dataset.oknoTarget);
@@ -85,6 +86,7 @@ $("document").ready(() => {
     $("#tabela_aut tbody").empty();
     // $("#tabela_aut tbody").remove();
     $("#tabela_aut thead").hide();
+    $(".content").hide();
 
     var list_punktow = [];
 
@@ -100,6 +102,26 @@ $("document").ready(() => {
     try {
       Object.values(data_car[nazwa_miasta]).forEach((item) => {
         // console.log(item);
+        // var inner = document.createElement("div");
+        // inner.id = item["id"];
+        // inner.classList.add("pop-up");
+        // var inner_title = document.createElement("div");
+        // inner_title.classList.add("pop-up_nazwa");
+        // inner_title.textContent = item["nazwa"];
+        // var inner_buttons = document.createElement("div");
+        // inner_buttons.classList.add("pop-up_buttons");
+        // var button_wynajmij = document.createElement("a");
+        // button_wynajmij.href = "/krotkoterminowy/hulajnoga" + "/" + item["id"];
+        // var button_wynajmij_div = document.createElement("div");
+        // button_wynajmij_div.classList.add("btn");
+        // button_wynajmij_div.classList.add("btn-primary");
+        // button_wynajmij_div.innerHTML = "Wynajmij";
+        // button_wynajmij.appendChild(button_wynajmij_div);
+
+        // inner_buttons.appendChild(button_wynajmij);
+        // inner.appendChild(inner_title);
+        // inner.appendChild(inner_buttons);
+
         var inner = document.createElement("div");
         inner.id = item["id"];
         inner.classList.add("pop-up");
@@ -108,52 +130,83 @@ $("document").ready(() => {
         inner_title.textContent = item["nazwa"];
         var inner_buttons = document.createElement("div");
         inner_buttons.classList.add("pop-up_buttons");
+        var button_wiecej = document.createElement("div");
+        button_wiecej.classList.add("wiecej");
+        button_wiecej.classList.add("btn");
+        button_wiecej.classList.add("btn-primary");
+        button_wiecej.dataset.carMiasto = nazwa_miasta;
+        button_wiecej.dataset.carId = item["id"];
+        button_wiecej.dataset.oknoTarget = "#okno";
+        button_wiecej.addEventListener("click", dodawanie_otworz);
+        button_wiecej.innerHTML = "Więcej";
         var button_wynajmij = document.createElement("a");
-        button_wynajmij.href = "/krotkoterminowy/hulajnoga" + "/" + item["id"];
+        if (authentication) {
+          button_wynajmij.href =
+            "/krotkoterminowy/hulajnoga" + "/" + item["id"];
+        } else {
+          button_wynajmij.href = "/logowanie/";
+        }
+
         var button_wynajmij_div = document.createElement("div");
         button_wynajmij_div.classList.add("btn");
         button_wynajmij_div.classList.add("btn-primary");
         button_wynajmij_div.innerHTML = "Wynajmij";
         button_wynajmij.appendChild(button_wynajmij_div);
-
+        inner_buttons.appendChild(button_wiecej);
         inner_buttons.appendChild(button_wynajmij);
         inner.appendChild(inner_title);
         inner.appendChild(inner_buttons);
 
-
-
         $("#tabela_aut thead").show();
-        L.marker(
-          [item["pozycja"]["x"], item["pozycja"]["y"]]
-          , {
-            icon: carIcon,
-          }
-        )
+        $(".content").show();
+        L.marker([item["pozycja"]["x"], item["pozycja"]["y"]], {
+          icon: carIcon,
+        })
           .addTo(mymap)
           .bindPopup(inner);
 
-        $("<tr></tr>")
-          .append(
-            '<th scope = "row">' +
-              '<img src="' +
-              item["img"] +
-              '">' +
-              "</th>" +
-              "<td>" +
-              item["nazwa"] +
-              "</td>" +
-              "<td>" +
-              item["zasieg"] +
-              "</td>" +
-              '<td><a class="btn btn-primary" href="/krotkoterminowy/hulajnoga' +
-              "/" +
-              item["id"] +
-              '">Wynajmij</a></td>'
-          )
-          .appendTo("#tabela_aut tbody");
+        if (authentication) {
+          $("<tr></tr>")
+            .append(
+              '<th scope = "row">' +
+                '<img src="' +
+                item["img"] +
+                '">' +
+                "</th>" +
+                "<td>" +
+                item["nazwa"] +
+                "</td>" +
+                "<td>" +
+                item["zasieg"] +
+                "</td>" +
+                '<td><a class="btn btn-primary" href="/krotkoterminowy/hulajnoga' +
+                "/" +
+                item["id"] +
+                '">Wynajmij</a></td>'
+            )
+            .appendTo("#tabela_aut tbody");
+        } else {
+          $("<tr></tr>")
+            .append(
+              '<th scope = "row">' +
+                '<img src="' +
+                item["img"] +
+                '">' +
+                "</th>" +
+                "<td>" +
+                item["nazwa"] +
+                "</td>" +
+                "<td>" +
+                item["zasieg"] +
+                "</td>" +
+                '<td><a class="btn btn-primary" href="/logowanie/">Wynajmij</a></td>'
+            )
+            .appendTo("#tabela_aut tbody");
+        }
       });
     } catch {
       $("#tabela_aut thead").hide();
+      $(".content").hide();
     }
   });
 

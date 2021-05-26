@@ -14,7 +14,39 @@
 
 <div class="sectionTitle">Wynajem na minuty</div>
 
-<table
+<div id="posts">
+  <div class="myBechaviour">
+    {% for typ_auta in typy_aut %}
+
+    <div class="post">
+      <div class="postLink">
+        <div class="postImgContainer">
+          <img src="../{{typ_auta.grafika}}" alt="" />
+        </div>
+        <div class="postHeader">{{typ_auta.nazwa}}</div>
+        <div class="divHR"></div>
+        <div class="postText">
+          <pre>
+                cena: <span class="cena">{{typ_auta.cena}}</span> zł/min
+          </pre>
+        </div>
+        <div class="divHR"></div>
+        <div class="postFooter">
+          <a
+            class="wynajmijButton"
+            href="/krotkoterminowy/{{typ_auta.nazwa|lower}}"
+          >
+            <div>Wynajmij</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<!-- <table
   id="tabela_aut"
   class="table table-striped"
   style="width: 80%; margin: 1rem auto 4rem auto"
@@ -30,7 +62,6 @@
   <tbody>
     {% for typ_auta in typy_aut %}
     <tr>
-      <!-- <th scope="row">1</th> -->
       <td><img src="../{{typ_auta.grafika}}" alt="" /></td>
       <td>{{typ_auta.nazwa}}</td>
       <td>{{typ_auta.cena}} zł/min</td>
@@ -44,7 +75,7 @@
     </tr>
     {% endfor %}
   </tbody>
-</table>
+</table> -->
 
 <div class="sectionTitle">Wynajem długoterminowy</div>
 
@@ -61,7 +92,7 @@
         <div class="divHR"></div>
         <div class="postText">
           <pre>
-                cena za dzień <span class="cena">{{typ_auta.cena}}</span> zł
+                cena: <span class="cena">{{typ_auta.cena}}</span> zł/dzień
           </pre>
         </div>
         <div class="divHR"></div>

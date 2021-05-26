@@ -6,6 +6,7 @@ $("document").ready(() => {
   // $("#tabela_aut tbody").remove();
   // $("#tabela_aut thead").hide();
   $("#tabela_aut thead").hide();
+  $(".content").hide();
 
   function dodawanie_otworz(e) {
     var okno = document.querySelector(e.target.dataset.oknoTarget);
@@ -88,6 +89,7 @@ $("document").ready(() => {
     $("#tabela_aut tbody").empty();
     // $("#tabela_aut tbody").remove();
     $("#tabela_aut thead").hide();
+    $(".content").hide();
 
     var list_punktow = [];
 
@@ -180,6 +182,7 @@ $("document").ready(() => {
         inner.appendChild(inner_buttons);
 
         $("#tabela_aut thead").show();
+        $(".content").show();
         L.marker([item["pozycja"]["x"], item["pozycja"]["y"]], {
           icon: carIcon,
         })
@@ -364,6 +367,7 @@ $("document").ready(() => {
       // stop mechanizm więcej =================================================================================
     } catch {
       $("#tabela_aut thead").hide();
+      $(".content").hide();
     }
   });
 

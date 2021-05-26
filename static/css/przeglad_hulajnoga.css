@@ -369,6 +369,18 @@ body {
   vertical-align: middle;
 }
 
+.content table tbody tr th {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 @media (max-width: 992px) {
   #ourMap .header {
     font-size: 2.5rem;
@@ -397,7 +409,7 @@ body {
     text-align: center;
     vertical-align: middle;
     padding: 1rem 0rem 0.5rem 0rem;
-    display: none !important;
+    display: none;
   }
   #ourMap .content table tbody tr {
     padding: 0.5rem 0rem !important;
@@ -411,12 +423,6 @@ body {
     vertical-align: middle;
   }
   #ourMap .content table tbody tr td:nth-of-type(2) {
-    display: none !important;
-  }
-  #ourMap .content table tbody tr td:nth-of-type(3) {
-    display: none !important;
-  }
-  #ourMap .content table tbody tr td:nth-of-type(4) {
     display: none !important;
   }
   #ourMap .content table tbody tr:nth-child(2n) {
@@ -485,12 +491,6 @@ body {
   #ourMap .content table tbody tr td:nth-of-type(2) {
     display: none !important;
   }
-  #ourMap .content table tbody tr td:nth-of-type(3) {
-    display: none !important;
-  }
-  #ourMap .content table tbody tr td:nth-of-type(4) {
-    display: none !important;
-  }
   #ourMap .content table tbody tr:nth-child(2n) {
     background-color: #ffb300;
     color: white;
@@ -500,4 +500,4 @@ body {
     color: white;
   }
 }
-/*# sourceMappingURL=przeglad.css.map */
+/*# sourceMappingURL=przeglad_hulajnoga.css.map */
