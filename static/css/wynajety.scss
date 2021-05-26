@@ -8,7 +8,8 @@
   box-sizing: border-box;
 }
 .container {
-  background-color: #141313;
+  // background-color: #141313;
+  background-color: $grafit;
   width: 60%;
   max-width: 500px;
   //   position: absolute;
@@ -22,7 +23,8 @@
   .timerDisplay {
     position: relative;
     width: 110%;
-    background: linear-gradient(-135deg, #0048ce, #008bfd);
+    // background: linear-gradient(-135deg, #0048ce, #008bfd);
+    background: $zolty;
     left: -5%;
     padding: 40px 0;
     font-family: "Roboto mono", monospace;
@@ -39,16 +41,28 @@
     margin: 60px auto 0 auto;
     display: flex;
     justify-content: space-around;
-    button {
-      padding: 10px 20px;
-      background-color: #ffffff;
-      color: #141313;
-      border: none;
-      font-family: "Poppins", sans-serif;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
-      outline: none;
+    form {
+      width: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        padding: 10px 20px;
+        // background-color: #ffffff;
+        background: $zolty;
+        color: white;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s ease;
+        &:hover {
+          background: white;
+          color: $zolty;
+        }
+      }
     }
   }
 }
@@ -60,16 +74,27 @@
   align-items: center;
   justify-content: center;
   margin: 0vh auto 3vh auto;
+  padding: 0px 1rem;
+  text-align: center;
 }
 #data_rozpoczecia {
-  @extend #nazwa_pojazdu;
+  color: #707070;
+  font-family: "Roboto mono", monospace;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0vh auto 3vh auto;
+  padding: 0px 1rem;
+  text-align: center;
 }
 #cena {
   width: 60% * 1.1;
   max-width: 500px * 1.1;
   padding: 1rem;
   margin: 3vh auto;
-  background: linear-gradient(-135deg, #0048ce, #008bfd);
+  // background: linear-gradient(-135deg, #0048ce, #008bfd);
+  background: $zolty;
   font-family: "Roboto mono", monospace;
   font-size: 18px;
   border-radius: 5px;
@@ -78,7 +103,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 2px 2px 8px rgba(10, 10, 10, 0.6);
 }
 #nr_karty {
-  @extend #nazwa_pojazdu;
+  color: #707070;
+  font-family: "Roboto mono", monospace;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0vh auto 3vh auto;
+  padding: 0px 1rem;
+  text-align: center;
+}
+
+@media (max-width: $smallest) {
+  .container {
+    background-color: $grafit;
+    width: 75%;
+    max-width: 500px;
+    margin: 10vh auto 3vh auto;
+    padding: 60px 0px 40px 0px;
+
+    .timerDisplay {
+      width: 110%;
+      background: $zolty;
+      left: -5%;
+      padding: 30px 0;
+      font-size: 26px;
+      font-weight: 500;
+    }
+    .buttons {
+      width: 100%;
+      margin: 40px auto 0 auto;
+      form {
+        width: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+          width: 60%;
+          margin: 0px auto;
+          min-width: fit-content;
+          padding: 10px 20px;
+          font-size: 18px;
+
+          &:hover {
+          }
+        }
+      }
+    }
+  }
+  #nazwa_pojazdu {
+    font-size: 16px;
+  }
+  #data_rozpoczecia {
+    font-size: 16px;
+  }
+  #cena {
+  }
+  #nr_karty {
+    font-size: 16px;
+  }
 }

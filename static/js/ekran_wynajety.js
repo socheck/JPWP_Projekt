@@ -1,5 +1,4 @@
 $("document").ready(() => {
-  //   let [seconds, minutes, hours] = [0, 0, 0];
   let seconds = data_wynajem.startowy_czas.s;
   let minutes = data_wynajem.startowy_czas.m;
   let hours = data_wynajem.startowy_czas.h;
@@ -26,36 +25,10 @@ $("document").ready(() => {
 
   document.getElementById("pauseTimer").addEventListener("click", () => {
     clearInterval(int);
-    alert("Zwracamy, zwracamy... i wysyłam POST na backend");
-    // $.ajax({
-    //   type: "POST",
-    //   url: "/cos/tam/url",
-    //   data: JSON.stringify({
-    //     id_pojazdu: data_wynajem.id_pojazdu,
-    //     user_id: data_wynajem.user_id,
-    //   }),
-    //   success: function (response) {
-    //     if (!$.isEmptyObject(response)) {
-    //       console.log(response);
-    //       alert("udało się więc nie powinno tego być");
-    //     }
-    //   },
-    //   error: function (response) {
-    //     console.log(response);
-    //     alert("error");
-    //   },
-    // });
   });
 
   function displayTimer() {
     seconds += 1;
-    // cena.innerHTML =
-    //   "Cena: " +
-    //   (
-    //     data_wynajem.cena_wartosc *
-    //     (seconds + 60 * minutes + 3600 * hours)
-    //   ).toFixed(2) +
-    //   " zł";
     if (seconds == 60) {
       seconds = 0;
       minutes++;
