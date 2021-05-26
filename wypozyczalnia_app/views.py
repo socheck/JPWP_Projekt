@@ -328,9 +328,12 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
             # return render(request, 'koszt.html', content)
             return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
         else:
-            if(request.user.id == zamowienia.id_usera):
-                return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
-            else:
+            try:
+                if(request.user.id == zamowienia.id_usera):
+                    return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
+                else:
+                    messages.info(request, 'Wprowadzono niepoprawny kod lub auto jest już wynajęte! Spróbuj ponownie')
+            except:
                 messages.info(request, 'Wprowadzono niepoprawny kod lub auto jest już wynajęte! Spróbuj ponownie')
     
     miasta = Miasto.objects.all()

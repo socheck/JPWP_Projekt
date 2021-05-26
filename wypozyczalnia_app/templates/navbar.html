@@ -9,7 +9,6 @@
       <a class="nav-item nav-link" href="/cena">Cena</a>
       <a class="nav-item nav-link" href="/flota">Flota</a>
       <a class="nav-item nav-link" href="/kontakt">Kontakt</a>
-      <a class="nav-item nav-link" href="/rejestracja">Zarejestruj się / Zaloguj się</a>
       {% if user.is_superuser %}
       <a class="nav-item nav-link" href="/testujemape">TestujeMape</a>
       <a class="nav-item nav-link" href="/dodajmiasto">Dodaj miasto</a>
@@ -20,6 +19,8 @@
       <a class="nav-item nav-link" href="/uzupelnijprofil">Uzupełnij Profil</a>
       <a class="nav-item nav-link disabled" id="nazwa_uzytkownika" href="#">Witaj, {{request.user}}</a>
       <a class="nav-item nav-link"  href="{% url 'wylogowywanie' %}">Wyloguj</a>
+      {% else %}
+      <a class="nav-item nav-link" href="/rejestracja">Zarejestruj się / Zaloguj się</a>
       {% endif %}
     </div>
   </div>

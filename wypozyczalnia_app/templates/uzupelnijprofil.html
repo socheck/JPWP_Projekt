@@ -1,7 +1,29 @@
 {% extends 'main.html' %}
+{% load static %}
 
 
 {% block content %}
+
+<style>
+    .wprowadzanie input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+</style>
+
 
     {% for message in messages %}
         <p id="messages">{{message}}</p>
@@ -12,21 +34,21 @@
     {% csrf_token %}
         <div class="form-outline mb-4">
             <div class="wprowadzanie"> {{u_form.email}} </div>
-            <label class="form-label" for="form3Example4">Email</label>
+            <label class="form-label">Email</label>
         </div>
         <div class="form-outline mb-4">
             <div class="wprowadzanie"> {{p_form.telefon}} </div>
-            <label class="form-label" for="form3Example4">Numer telefonu</label>
+            <label class="form-label">Numer telefonu</label>
         </div>
 
         <div class="form-outline mb-4">
             <div class="wprowadzanie"> {{p_form.karta}} </div>
-            <label class="form-label" for="form3Example4">Numer karty płatniczej</label>
+            <label class="form-label">Numer karty płatniczej</label>
         </div>
 
         <div class="form-outline mb-4">
             <div class="wprowadzanie"> {{p_form.pj_img}} </div>
-            <label class="form-label" for="form3Example4">Zdjęcie prawa jazdy</label>
+            <label class="form-label">Zdjęcie prawa jazdy</label>
         </div>
 
         
