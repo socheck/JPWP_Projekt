@@ -179,6 +179,11 @@ $("document").ready(() => {
                 "<td>" +
                 item["zasieg"] +
                 "</td>" +
+                '<td><div data-car-miasto = "' +
+                nazwa_miasta +
+                '" data-car-id = "' +
+                item["id"] +
+                '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
                 '<td><a class="btn btn-primary" href="/krotkoterminowy/hulajnoga' +
                 "/" +
                 item["id"] +
@@ -199,10 +204,35 @@ $("document").ready(() => {
                 "<td>" +
                 item["zasieg"] +
                 "</td>" +
+                '<td><div data-car-miasto = "' +
+                nazwa_miasta +
+                '" data-car-id = "' +
+                item["id"] +
+                '" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej</div></td>' +
                 '<td><a class="btn btn-primary" href="/logowanie/">Wynajmij</a></td>'
             )
             .appendTo("#tabela_aut tbody");
         }
+
+        var wiecej_otwierajace = $(".wiecej");
+        var wiecej_zamykajace = $(".okno_close_button");
+        var overlay = $("#overlay");
+
+        wiecej_otwierajace.on("click", (e) => {
+          dodawanie_otworz(e);
+        });
+
+        wiecej_zamykajace.on("click", (e) => {
+          var okno = e.target.closest(".okno");
+          zamknijOkno(okno);
+        });
+
+        overlay.on("click", () => {
+          const okna = document.querySelectorAll(".okno.active");
+          okna.forEach((okno) => {
+            zamknijOkno(okno);
+          });
+        });
       });
     } catch {
       $("#tabela_aut thead").hide();
