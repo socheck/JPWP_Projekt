@@ -32,14 +32,14 @@ $wysKatuzeli: 60vh;
     border-radius: 5px;
     transition: all 0.2s ease !important;
     box-shadow: 2px 2px 13px rgba(10, 10, 10, 0.6);
-    a {
+    div {
       color: $zolty;
       font-size: inherit;
       font-weight: inherit;
     }
     &:hover {
       background-color: $zolty;
-      a {
+      div {
         color: white;
       }
     }
@@ -140,7 +140,7 @@ $wysKatuzeli: 60vh;
       box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
       margin-left: auto;
       margin-right: auto;
-      a {
+      div {
         color: $zolty;
         font-size: inherit;
         font-weight: inherit;
@@ -193,7 +193,7 @@ $wysKatuzeli: 60vh;
       box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
       margin-left: auto;
       margin-right: auto;
-      a {
+      div {
         color: $zolty;
         font-size: inherit;
         font-weight: inherit;
@@ -257,7 +257,7 @@ $wysKatuzeli: 60vh;
         box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
         margin-left: auto;
         margin-right: auto;
-        a {
+        div {
           color: white;
           font-size: inherit;
           font-weight: inherit;
@@ -344,7 +344,7 @@ $wysKatuzeli: 60vh;
       transition: all 0.2s ease !important;
       box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
 
-      a {
+      div {
         color: $zolty;
         font-size: inherit;
         font-weight: inherit;
@@ -368,6 +368,9 @@ $wysKatuzeli: 60vh;
   color: $zolty;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 @media (max-width: $small) {
@@ -388,11 +391,11 @@ $wysKatuzeli: 60vh;
       right: 10%;
       top: 45%;
 
-      a {
+      div {
       }
       &:hover {
         background-color: $zolty;
-        a {
+        div {
           color: white;
         }
       }
@@ -445,7 +448,7 @@ $wysKatuzeli: 60vh;
       }
       #flotaButton {
         width: 40%;
-        a {
+        div {
           color: $zolty;
           font-size: inherit;
           font-weight: inherit;
@@ -473,7 +476,7 @@ $wysKatuzeli: 60vh;
       #cenaButton {
         width: 40%;
 
-        a {
+        div {
           color: $zolty;
           font-size: inherit;
           font-weight: inherit;
@@ -503,12 +506,12 @@ $wysKatuzeli: 60vh;
         #loginButton {
           padding: 1rem 2rem;
 
-          a {
+          div {
           }
           transition: all 0.2s ease;
           &:hover {
             background-color: white;
-            a {
+            div {
               color: $zolty;
             }
           }
@@ -558,7 +561,7 @@ $wysKatuzeli: 60vh;
         width: 25%;
         min-width: 200px;
 
-        a {
+        div {
           color: $zolty;
           font-size: inherit;
           font-weight: inherit;
@@ -604,14 +607,14 @@ $wysKatuzeli: 60vh;
 
       background-color: $zolty;
 
-      a {
+      div {
         color: white;
         font-size: inherit;
         font-weight: inherit;
       }
       &:hover {
         background-color: white;
-        a {
+        div {
           color: $zolty;
         }
       }
@@ -673,7 +676,7 @@ $wysKatuzeli: 60vh;
         padding: 1rem 3rem;
         font-size: 1rem;
 
-        a {
+        div {
         }
       }
     }
@@ -703,7 +706,7 @@ $wysKatuzeli: 60vh;
         min-width: 150px;
         padding: 1rem 3rem;
         font-size: 1rem;
-        a {
+        div {
         }
       }
       .image {
@@ -742,7 +745,7 @@ $wysKatuzeli: 60vh;
           font-size: 1rem;
           margin: 0.8rem 0rem;
 
-          a {
+          div {
             color: white;
             font-size: inherit;
             font-weight: inherit;
@@ -750,7 +753,7 @@ $wysKatuzeli: 60vh;
           transition: all 0.2s ease;
           &:hover {
             background-color: white;
-            a {
+            div {
               color: $zolty;
             }
           }
@@ -802,7 +805,7 @@ $wysKatuzeli: 60vh;
         width: 25%;
         min-width: 200px;
 
-        a {
+        div {
           color: $zolty;
           font-size: inherit;
           font-weight: inherit;

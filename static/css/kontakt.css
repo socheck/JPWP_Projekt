@@ -1,0 +1,184 @@
+#ourMap {
+  background-color: #ffb300;
+  padding: 5vh 0vh;
+}
+
+#ourMap .header {
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  padding: 0rem 1.5rem;
+}
+
+#ourMap .divHR {
+  background-color: white;
+  width: 60%;
+  height: 2px;
+  margin: 1rem auto 0rem auto;
+}
+
+#ourMap .choice {
+  margin: 3vh 0vh;
+}
+
+#ourMap .choice .dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#ourMap .choice .dropdown .miastoButton {
+  width: 200px !important;
+  color: #ffb300 !important;
+  background-color: white !important;
+  border: 1px solid #e0e0e0;
+  -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+          box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+}
+
+#ourMap .choice .dropdown ul {
+  width: 200px !important;
+}
+
+#ourMap #mapid {
+  height: 70vh;
+  min-height: 250px;
+  width: 100%;
+  margin: 0vh auto;
+}
+
+#ourMap .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 3vh;
+}
+
+#ourMap .content .oddzialy {
+  text-align: right;
+  color: white;
+}
+
+#ourMap .content .oddzialy .oddzialyHeader {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#ourMap .content .oddzialy .oddzial {
+  line-height: 1.5;
+}
+
+.popup {
+  color: #ffb300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  #ourMap .header {
+    font-size: 2.5rem;
+  }
+  #ourMap .choice {
+    margin: 3vh 0vh;
+  }
+  #ourMap .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #ourMap .content #kontaktButton {
+    margin: 3vh 0vh;
+    width: 25%;
+    min-width: 200px;
+  }
+  #ourMap .content #kontaktButton a {
+    color: #ffb300;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  #ourMap .content .oddzialy {
+    text-align: center;
+    color: white;
+  }
+  #ourMap .content .oddzialy .oddzialyHeader {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #ourMap {
+    padding: 3vh 0vh 5vh 0vh;
+  }
+  #ourMap .header {
+    font-size: 1.8rem;
+  }
+  #ourMap .choice {
+    margin: 3vh 0vh;
+  }
+  #ourMap .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #ourMap .content #kontaktButton {
+    margin: 3vh 0vh;
+    width: 25%;
+    min-width: 200px;
+  }
+  #ourMap .content #kontaktButton a {
+    color: #ffb300;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  #ourMap .content .oddzialy {
+    text-align: center;
+    color: white;
+  }
+  #ourMap .content .oddzialy .oddzialyHeader {
+    font-size: 1.5rem;
+  }
+  #ourMap .content .oddzialy .oddzial {
+    font-size: 1rem;
+    padding: 0rem 0.5rem;
+  }
+}
+/*# sourceMappingURL=kontakt.css.map */

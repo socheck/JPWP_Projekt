@@ -1,0 +1,166 @@
+@import "variables.scss";
+
+#ourMap {
+  background-color: $zolty;
+  padding: 5vh 0vh;
+  .header {
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    padding: 0rem 1.5rem;
+  }
+  .divHR {
+    background-color: white;
+    width: 60%;
+    height: 2px;
+    margin: 1rem auto 0rem auto;
+  }
+  .choice {
+    margin: 3vh 0vh;
+    .dropdown {
+      display: flex;
+      justify-content: center;
+      .miastoButton {
+        width: 200px !important;
+        color: $zolty !important;
+        background-color: white !important;
+        border: 1px solid #e0e0e0;
+        box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+      }
+      ul {
+        width: 200px !important;
+      }
+    }
+  }
+  #mapid {
+    height: 70vh;
+    min-height: 250px;
+    width: 100%;
+    margin: 0vh auto;
+  }
+  .content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3vh;
+
+    .oddzialy {
+      text-align: right;
+      color: white;
+      .oddzialyHeader {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .oddzial {
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.popup {
+  color: $zolty;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: $small) {
+  #ourMap {
+    .header {
+      font-size: 2.5rem;
+    }
+    .divHR {
+    }
+    .choice {
+      margin: 3vh 0vh;
+      .dropdown {
+        .miastoButton {
+        }
+        ul {
+        }
+      }
+    }
+    #mapid {
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      #kontaktButton {
+        margin: 3vh 0vh;
+        width: 25%;
+        min-width: 200px;
+
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+      .oddzialy {
+        text-align: center;
+        color: white;
+        .oddzialyHeader {
+          font-size: 1.5rem;
+        }
+        .oddzial {
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $smallest) {
+  #ourMap {
+    padding: 3vh 0vh 5vh 0vh;
+    .header {
+      font-size: 1.8rem;
+    }
+    .divHR {
+    }
+    .choice {
+      margin: 3vh 0vh;
+      .dropdown {
+        .miastoButton {
+        }
+        ul {
+        }
+      }
+    }
+    #mapid {
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      #kontaktButton {
+        margin: 3vh 0vh;
+        width: 25%;
+        min-width: 200px;
+
+        a {
+          color: $zolty;
+          font-size: inherit;
+          font-weight: inherit;
+        }
+      }
+      .oddzialy {
+        text-align: center;
+        color: white;
+        .oddzialyHeader {
+          font-size: 1.5rem;
+        }
+        .oddzial {
+          font-size: 1rem;
+          padding: 0rem 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,21 @@
-@import "./posty.scss";
+@import "variables.scss";
+@import "posty.scss";
 
-a{
-    text-decoration: none !important;
+.sectionTitle {
+  margin: 3vh auto;
+  font-size: 2.5rem;
+  padding: 0rem 1rem;
+  font-weight: 900;
+  color: $zolty;
+  text-align: center;
+}
+
+@media (max-width: $smallest) {
+}
+
+@media (max-width: $small) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
 }

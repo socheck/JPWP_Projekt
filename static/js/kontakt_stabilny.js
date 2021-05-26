@@ -6,12 +6,7 @@ $("document").ready(() => {
     console.log(data_position);
     console.log(data_oddzialy);
 
-    $(".oddzialyHeader").hide();
-    var oddzialy = document.querySelectorAll(".oddzial");
-    oddzialy.forEach(oddzial => {
-        oddzial.remove();
-    });
-
+    $("#tabela_oddzialow").hide();
 
     $("#miasto li a") .on("click", function() {
         const nazwa_miasta = $(this).attr("data-nazwa-miasta");
@@ -21,26 +16,16 @@ $("document").ready(() => {
         zoom = 12;
         mymap.setView([x, y], zoom);
         $("#miasto").parent().children("button").text(nazwa_miasta);
-
-
-        $(".oddzialyHeader").hide();
-        var oddzialy = document.querySelectorAll(".oddzial");
-        oddzialy.forEach(oddzial => {
-            oddzial.remove();
-        });
-
+        $("#tabela_oddzialow tbody").empty();
+        $("#tabela_oddzialow").hide();
      
 
         for(var i = 1; i <= Object.keys(data_oddzialy).length; i++){
             if(data_oddzialy[i]["nazwa_miasta"] == nazwa_miasta){
-                L.marker([data_oddzialy[i]["position"]["x"], data_oddzialy[i]["position"]["y"]]).addTo(mymap).bindPopup("<div class='popup'> <h4>Adres</h4> <span>"+ data_oddzialy[i]["adres"] +"</span> </div>");
+                L.marker([data_oddzialy[i]["position"]["x"], data_oddzialy[i]["position"]["y"]]).addTo(mymap).bindPopup("<b class = 'test'>Adres</b><br>" + data_oddzialy[i]["adres"]);
 
-                $(".oddzialyHeader").show();
-
-                var oddzial = document.createElement("div");
-                oddzial.classList.add("oddzial");
-                oddzial.innerHTML = data_oddzialy[i]["adres"];
-                $(".oddzialy").append(oddzial);
+                $("#tabela_oddzialow").show();
+                $('<tr></tr>').append('<th scope = "row">'+ i +'</th>' + '<td>'+ data_oddzialy[i]["adres"] +'</td>').appendTo("#tabela_oddzialow tbody");
                 
             }
             

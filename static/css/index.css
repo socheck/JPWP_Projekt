@@ -42,7 +42,7 @@
           box-shadow: 2px 2px 13px rgba(10, 10, 10, 0.6);
 }
 
-#main_picture #welcomeText a {
+#main_picture #welcomeText div {
   color: #ffb300;
   font-size: inherit;
   font-weight: inherit;
@@ -52,7 +52,7 @@
   background-color: #ffb300;
 }
 
-#main_picture #welcomeText:hover a {
+#main_picture #welcomeText:hover div {
   color: white;
 }
 
@@ -185,7 +185,7 @@
   margin-right: auto;
 }
 
-#instruction .content #flotaButton a {
+#instruction .content #flotaButton div {
   color: #ffb300;
   font-size: inherit;
   font-weight: inherit;
@@ -267,7 +267,7 @@
   margin-right: auto;
 }
 
-#tariff .content #cenaButton a {
+#tariff .content #cenaButton div {
   color: #ffb300;
   font-size: inherit;
   font-weight: inherit;
@@ -364,7 +364,7 @@
   transition: all 0.2s ease;
 }
 
-#login .content .description #loginButton a {
+#login .content .description #loginButton div {
   color: white;
   font-size: inherit;
   font-weight: inherit;
@@ -488,7 +488,7 @@
           box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
 }
 
-#ourMap .content #kontaktButton a {
+#ourMap .content #kontaktButton div {
   color: #ffb300;
   font-size: inherit;
   font-weight: inherit;
@@ -517,6 +517,13 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
 
 @media (max-width: 992px) {
@@ -537,7 +544,7 @@
   #main_picture #welcomeText:hover {
     background-color: #ffb300;
   }
-  #main_picture #welcomeText:hover a {
+  #main_picture #welcomeText:hover div {
     color: white;
   }
   #main_picture .carousel-indicators,
@@ -575,7 +582,7 @@
   #instruction .content #flotaButton {
     width: 40%;
   }
-  #instruction .content #flotaButton a {
+  #instruction .content #flotaButton div {
     color: #ffb300;
     font-size: inherit;
     font-weight: inherit;
@@ -597,7 +604,7 @@
   #tariff .content #cenaButton {
     width: 40%;
   }
-  #tariff .content #cenaButton a {
+  #tariff .content #cenaButton div {
     color: #ffb300;
     font-size: inherit;
     font-weight: inherit;
@@ -629,7 +636,7 @@
   #login .content .description #loginButton:hover {
     background-color: white;
   }
-  #login .content .description #loginButton:hover a {
+  #login .content .description #loginButton:hover div {
     color: #ffb300;
   }
   #login .content .image {
@@ -679,7 +686,7 @@
     width: 25%;
     min-width: 200px;
   }
-  #ourMap .content #kontaktButton a {
+  #ourMap .content #kontaktButton div {
     color: #ffb300;
     font-size: inherit;
     font-weight: inherit;
@@ -721,7 +728,7 @@
     margin: 1.5rem auto;
     background-color: #ffb300;
   }
-  #main_picture #welcomeText a {
+  #main_picture #welcomeText div {
     color: white;
     font-size: inherit;
     font-weight: inherit;
@@ -729,7 +736,7 @@
   #main_picture #welcomeText:hover {
     background-color: white;
   }
-  #main_picture #welcomeText:hover a {
+  #main_picture #welcomeText:hover div {
     color: #ffb300;
   }
   #main_picture #carouselExampleIndicators::after {
@@ -854,7 +861,7 @@
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
   }
-  #login .content .description #loginButton a {
+  #login .content .description #loginButton div {
     color: white;
     font-size: inherit;
     font-weight: inherit;
@@ -862,7 +869,7 @@
   #login .content .description #loginButton:hover {
     background-color: white;
   }
-  #login .content .description #loginButton:hover a {
+  #login .content .description #loginButton:hover div {
     color: #ffb300;
   }
   #login .content .image {
@@ -912,7 +919,7 @@
     width: 25%;
     min-width: 200px;
   }
-  #ourMap .content #kontaktButton a {
+  #ourMap .content #kontaktButton div {
     color: #ffb300;
     font-size: inherit;
     font-weight: inherit;
