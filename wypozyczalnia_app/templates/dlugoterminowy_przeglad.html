@@ -1,118 +1,124 @@
-{% extends 'main.html' %}
-{% load static %}
+{% extends 'main.html' %} {% load static %} {% block content %}
 
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+></script>
 
+<link rel="stylesheet" href="/static/css/przeglad_dlugoterminowy.css" />
 
-{% block content %}
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="/static/css/przeglad_dlugoterminowy.css"/>
-
-
-    <div class="carousel-item active">
-        <div class="container">
-            <div class="row">
-                {% for samochod in samochody %}
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img
-                                src="/{{samochod.image}}"
-                                class="card-img-top"
-                                alt="..."
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title">{{samochod.marka}} {{samochod.model}}</h5>
-                                <p class="card-text">
-                                <img class="ikonki-opis" src="/static/images/ikonki/car.png" >
-                                {{samochod.moc}} km
-                                <img class="ikonki-opis" src="/static/images/ikonki/gasoline-pump.png" >
-                                {{samochod.get_paliwo_display}}
-                                <img class="ikonki-opis" src="/static/images/ikonki/gears.png" >
-                                {{samochod.get_skrzynia_biegow_display}}
-                                <img class="ikonki-opis" src="/static/images/ikonki/buildings.png" >
-                                {{samochod.miasto}}
-                                </p>
-                                <a href="#" data-car-miasto = "{{samochod.miasto}}" data-car-id = "{{samochod.id}}" data-okno-target="#okno" class="btn btn-primary wiecej">Więcej informacji</a>
-                                {% if request.user.is_authenticated %}
-                                    <a href="/dlugoterminowy/wynajmij/{{samochod.typ_auta|lower}}/{{samochod.id}}/" class="btn btn-primary">Wypełnij Formularz</a>
-                                {% else %}
-                                    <a href="/logowanie/" class="btn btn-primary">Zaloguj się, żeby wypełnić formularz wynajęcia</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+<div class="carousel-item active">
+  <div class="container">
+    <div class="row">
+      {% for samochod in samochody %}
+      <div class="col-lg-4">
+        <div class="card">
+          <img src="/{{samochod.image}}" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{samochod.marka}} {{samochod.model}}</h5>
+            <p class="card-text">
+              <img class="ikonki-opis" src="/static/images/ikonki/car.png" />
+              {{samochod.moc}} km
+              <img
+                class="ikonki-opis"
+                src="/static/images/ikonki/gasoline-pump.png"
+              />
+              {{samochod.get_paliwo_display}}
+              <img class="ikonki-opis" src="/static/images/ikonki/gears.png" />
+              {{samochod.get_skrzynia_biegow_display}}
+              <img
+                class="ikonki-opis"
+                src="/static/images/ikonki/buildings.png"
+              />
+              {{samochod.miasto}}
+            </p>
+            <a
+              href="#"
+              data-car-miasto="{{samochod.miasto}}"
+              data-car-id="{{samochod.id}}"
+              data-okno-target="#okno"
+              class="btn btn-primary wiecej"
+              >Więcej informacji</a
+            >
+            {% if request.user.is_authenticated %}
+            <a
+              href="/dlugoterminowy/wynajmij/{{samochod.typ_auta|lower}}/{{samochod.id}}/"
+              class="btn btn-primary"
+              >Wypełnij Formularz</a
+            >
+            {% else %}
+            <a href="/logowanie/" class="btn btn-primary"
+              >Zaloguj się, żeby wypełnić formularz wynajęcia</a
+            >
+            {% endif %}
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
+</div>
 
+<div class="okno" id="okno">
+  <div class="okno_header">
+    <div class="okno_title">nazwa wybranego auta</div>
+    <button class="okno_close_button">&times;</button>
+  </div>
+  <hr />
+  <div class="okno_body">
+    <div><img src="" alt="" /></div>
+    <table id="tabela_aut" class="table table-striped">
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+<div id="overlay"></div>
+<script>
 
-    <div class="okno" id="okno">
-        <div class="okno_header">
-            <div class="okno_title">nazwa wybranego auta</div>
-            <button class="okno_close_button">&times;</button>
-        </div>
-        <hr>
-        <div class="okno_body">
-            <div><img src="" alt=""></div>
-            <table id="tabela_aut" class="table table-striped" style="width: 100%; margin: 1rem auto 1rem auto;">
-                <tbody>
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div id="overlay">
+  // const data_position={
 
-    </div>
-        <script>
+  //     {% for miasto in miasta %}
+  //         {{miasto.nazwa}} : {
+  //             id : {{miasto.id}},
+  //         },
 
-        // const data_position={
+  //     {% endfor %}
+  // }
 
-        //     {% for miasto in miasta %}
-        //         {{miasto.nazwa}} : { 
-        //             id : {{miasto.id}}, 
-        //         },
-                
-        //     {% endfor %}
-        // }
-
-        const data_car={
-            {% for miasto in miasta %}
-                "{{miasto}}": {
-                    {% for samochod in samochody %}
-                        {% if miasto.id == samochod.miasto_id  %}
-                            "{{samochod.id}}": {
-                                "id": "{{samochod.id}}",
-                                "nazwa": "{{samochod}}",
-                                "marka": "{{samochod.marka}}",
-                                "model": "{{samochod.model}}",
-                                "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
-                                "kolor": "{{samochod.kolor}}",
-                                "moc": "{{samochod.moc}}",
-                                "miasto_id": "{{samochod.miasto}}",
-                                "paliwo": "{{samochod.get_paliwo_display}}",
-                                "wyposazenie": "{{samochod.wyposazenie}}",
-                                "skrzynia": "{{samochod.get_skrzynia_biegow_display}}",
-                                "opis": "{{samochod.opis}}",
-                                "img": "{{samochod.image.url}}",
-                                "zasieg": "{{samochod.zasieg}}", 
-                                "typ_auta": "{{samochod.typ_auta|lower}}",
-                                "pozycja":{
-                                    x: {{samochod.pozycja.x}}, 
-                                    y: {{samochod.pozycja.y}},
-                                }, 
-                            },
-                        {% endif %}
-                    {% endfor %}
-                },
-            {% endfor %}
-        }
-        console.log(data_car);
-    </script>
-    <script src="{% static '/js/przeglad_dlugoterminowy.js' %}"></script>
-
-
+  const data_car={
+      {% for miasto in miasta %}
+          "{{miasto}}": {
+              {% for samochod in samochody %}
+                  {% if miasto.id == samochod.miasto_id  %}
+                      "{{samochod.id}}": {
+                          "id": "{{samochod.id}}",
+                          "nazwa": "{{samochod}}",
+                          "marka": "{{samochod.marka}}",
+                          "model": "{{samochod.model}}",
+                          "nr_rejestracyjny": "{{samochod.nr_rejestracyjny}}",
+                          "kolor": "{{samochod.kolor}}",
+                          "moc": "{{samochod.moc}}",
+                          "miasto_id": "{{samochod.miasto}}",
+                          "paliwo": "{{samochod.get_paliwo_display}}",
+                          "wyposazenie": "{{samochod.wyposazenie}}",
+                          "skrzynia": "{{samochod.get_skrzynia_biegow_display}}",
+                          "opis": "{{samochod.opis}}",
+                          "img": "{{samochod.image.url}}",
+                          "zasieg": "{{samochod.zasieg}}",
+                          "typ_auta": "{{samochod.typ_auta|lower}}",
+                          "pozycja":{
+                              x: {{samochod.pozycja.x}},
+                              y: {{samochod.pozycja.y}},
+                          },
+                      },
+                  {% endif %}
+              {% endfor %}
+          },
+      {% endfor %}
+  }
+  console.log(data_car);
+</script>
+<script src="{% static '/js/przeglad_dlugoterminowy.js' %}"></script>
 
 {% endblock %}

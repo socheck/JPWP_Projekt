@@ -16,13 +16,14 @@
   //   transform: translate(-50%, -50%) scale(0);
   transform: translate(-50%, 0%) scale(0);
   transition: 0.2s ease;
-  border: 1px solid black;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   z-index: 1501;
   background-color: white;
   width: 500px;
   max-width: 80%;
   padding: 2rem;
+
   .okno_header {
     padding: 10px 15px;
     display: flex;
@@ -31,6 +32,7 @@
     .okno_title {
       font-size: 1.5rem;
       font-weight: bold;
+      color: $zolty;
     }
     .okno_close_button {
       cursor: pointer;
@@ -39,9 +41,44 @@
       background: none;
       font-size: 1.5rem;
       font-weight: bold;
+      color: $grafit;
     }
   }
   .okno_body {
+    div {
+      &:first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          margin-left: auto;
+          margin-right: auto;
+          width: 90%;
+          min-width: 200px;
+        }
+      }
+    }
+    table {
+      width: 90%;
+      margin: 1rem auto;
+      tbody {
+        tr {
+          &:nth-child(2n) {
+            background-color: transparent !important;
+            color: $grafit;
+          }
+          &:nth-child(2n + 1) {
+            background-color: $zolty;
+            color: white;
+          }
+          td {
+            &:nth-child(2) {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
   }
 }
 .okno.active {
@@ -55,7 +92,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(0, 0, 0);
+  // background-color: rgb(0, 0, 0);
+  background-color: $zolty;
   pointer-events: none;
   opacity: 0;
 }
@@ -63,4 +101,53 @@
   opacity: 0.5;
   pointer-events: all;
   z-index: 1500;
+}
+
+@media (max-width: $smallest) {
+  .okno {
+    width: 500px;
+    max-width: 90%;
+    padding: 0rem;
+
+    .okno_header {
+      .okno_title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $zolty;
+      }
+      .okno_close_button {
+        font-size: 1.5rem;
+      }
+    }
+    .okno_body {
+      div {
+        &:first-child {
+          img {
+          }
+        }
+      }
+      table {
+        width: 90%;
+        margin: 1rem auto;
+
+        tbody {
+          tr {
+            &:nth-child(2n) {
+              background-color: transparent !important;
+              color: $grafit;
+            }
+            &:nth-child(2n + 1) {
+              background-color: $zolty;
+              color: white;
+            }
+            td {
+              &:nth-child(2) {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -13,7 +13,7 @@
           transform: translate(-50%, 0%) scale(0);
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
-  border: 1px solid black;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   z-index: 1501;
   background-color: white;
@@ -38,6 +38,7 @@
 .okno .okno_header .okno_title {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #ffb300;
 }
 
 .okno .okno_header .okno_close_button {
@@ -47,6 +48,45 @@
   background: none;
   font-size: 1.5rem;
   font-weight: bold;
+  color: #1b1b1b;
+}
+
+.okno .okno_body div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.okno .okno_body div:first-child img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  min-width: 200px;
+}
+
+.okno .okno_body table {
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.okno .okno_body table tbody tr:nth-child(2n) {
+  background-color: transparent !important;
+  color: #1b1b1b;
+}
+
+.okno .okno_body table tbody tr:nth-child(2n + 1) {
+  background-color: #ffb300;
+  color: white;
+}
+
+.okno .okno_body table tbody tr td:nth-child(2) {
+  text-align: center;
 }
 
 .okno.active {
@@ -62,7 +102,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: black;
+  background-color: #ffb300;
   pointer-events: none;
   opacity: 0;
 }
@@ -73,12 +113,39 @@
   z-index: 1500;
 }
 
+@media (max-width: 576px) {
+  .okno {
+    width: 500px;
+    max-width: 90%;
+    padding: 0rem;
+  }
+  .okno .okno_header .okno_title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffb300;
+  }
+  .okno .okno_header .okno_close_button {
+    font-size: 1.5rem;
+  }
+  .okno .okno_body table {
+    width: 90%;
+    margin: 1rem auto;
+  }
+  .okno .okno_body table tbody tr:nth-child(2n) {
+    background-color: transparent !important;
+    color: #1b1b1b;
+  }
+  .okno .okno_body table tbody tr:nth-child(2n + 1) {
+    background-color: #ffb300;
+    color: white;
+  }
+  .okno .okno_body table tbody tr td:nth-child(2) {
+    text-align: center;
+  }
+}
+
 .ikonki-opis {
   width: 15px;
   height: 15px;
-}
-
-#okno img {
-  max-width: 150px;
 }
 /*# sourceMappingURL=przeglad_dlugoterminowy.css.map */
