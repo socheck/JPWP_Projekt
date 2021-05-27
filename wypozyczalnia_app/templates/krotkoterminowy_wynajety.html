@@ -1,65 +1,63 @@
-
-{% extends 'main.html' %}
-{% load static %}
-
-{% block content %}
-
-
+{% extends 'main.html' %} 
+{% load static %} 
+{% block content %} 
 {% for message in messages %}
-    <p id="messages">{{message}}</p>
+<p id="messages">{{message}}</p>
 {% endfor %}
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/kodQR.css' %}" />
 
-
-
-
-
-
-    <div class="container">
-
-        <div class="embed-responsive embed-responsive-4by3">
-            <video class="embed-responsive-item" id="preview"></video>
-        </div>  
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-            <label for="exampleInputEmail1">Wprowadź kod</label>
-            <input name="kod_samochod" type="text" class="form-control" id="kod_samochod" placeholder="Wprowadź kod">
-            </div>
-            <button id="zatwierdz" type="submit" class="btn btn-primary">Zatwierdź</button>
-
-        </form>
+<div class="container">
+  <div class="embed-responsive embed-responsive-4by3">
+    <video class="embed-responsive-item" id="preview"></video>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Wprowadź kod</label>
+      <input
+        name="kod_samochod"
+        type="text"
+        class="form-control"
+        id="kod_samochod"
+        placeholder="Wprowadź kod"
+      />
     </div>
+    <button id="zatwierdz" type="submit" class="btn btn-primary">
+      Zatwierdź
+    </button>
+  </form>
+</div>
 
-
-
-
-
-    <script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-        //alert(content);
-        alert("Poprawnie zczytano kod, zatwierdź i przejdź dalej")
-        document.getElementById('kod_samochod').value = content;
-        var button = document.getElementById('zatwierdz');
-        button.form.submit();
-
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-         scanner.start(cameras[0]);
-        } else {
-         console.error('Nie znaleziono kamery');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      });
-    </script>
-
-    
-
+<script type="text/javascript">
+  let scanner = new Instascan.Scanner({
+    video: document.getElementById("preview"),
+  });
+  scanner.addListener("scan", function (content) {
+    //alert(content);
+    alert("Poprawnie zczytano kod, zatwierdź i przejdź dalej");
+    document.getElementById("kod_samochod").value = content;
+    var button = document.getElementById("zatwierdz");
+    button.form.submit();
+  });
+  Instascan.Camera.getCameras()
+    .then(function (cameras) {
+      if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+      } else {
+        console.error("Nie znaleziono kamery");
+      }
+    })
+    .catch(function (e) {
+      console.error(e);
+    });
+</script>
 
 {% endblock %}
