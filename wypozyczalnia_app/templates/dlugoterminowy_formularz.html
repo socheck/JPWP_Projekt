@@ -10,10 +10,11 @@
 <h1>Dzięki {{ user.get_username }} za wiadomość </h1>
 {% endif %}
 <div class="container" id="formularz_dlugi">
+
+<div id="sectionTitle">Formularz zgłoszeniowy</div>
     
     <form method="POST" action="/dlugoterminowy/wynajmij/{{samochod.typ_auta.slug}}/{{samochod.id}}/">
     {% csrf_token %}
-    <!-- 2 column grid layout with text inputs for the first and last names -->
 
 
     <div class="form-outline mb-4">
@@ -30,15 +31,14 @@
     <!-- Text input -->
     <div class="form-outline mb-4">
         <input name="username" type="text" id="form6Example3" value={{ user.get_username }} class="form-control" readonly />
+        <label class="form-label" for="form6Example5">Nazwa użytkownika</label>
     </div>
 
-     <!-- Text input -->
     <div class="form-outline mb-4">
         <input name="od" type="date" id="form6Example6" class="form-control" />
         <label class="form-label" for="form6Example6">Od</label>
     </div>
 
-    <!-- Number input -->
     <div class="form-outline mb-4">
         <input name="do" type="date" id="form6Example6" class="form-control" />
         <label class="form-label" for="form6Example6">Do</label>

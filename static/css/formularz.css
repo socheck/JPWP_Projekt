@@ -17,6 +17,13 @@
   #formularz_dlugi{
       margin-top: 50px;
   }
+
+  #sectionTitle{
+    margin-bottom: 3vh;
+    font-size: 3rem;
+    color: #ffb300;
+    text-align: center;
+  }
   
   .container form {
     width: 100%;
