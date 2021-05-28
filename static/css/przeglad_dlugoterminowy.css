@@ -144,6 +144,227 @@
   }
 }
 
+#posts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 90%;
+  margin: 3vh auto;
+}
+
+#posts .myBechaviour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#posts .myBechaviour .post {
+  width: 400px !important;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  margin: 0px 1rem 3vh 1rem;
+}
+
+#posts .myBechaviour .post .postLink {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  overflow: hidden !important;
+}
+
+#posts .myBechaviour .post .postLink:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  opacity: 0.8;
+}
+
+#posts .myBechaviour .post .postLink .postImgContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+#posts .myBechaviour .post .postLink .postImgContainer img {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  width: 100%;
+  min-height: 200px;
+  height: 30vh !important;
+  max-height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#posts .myBechaviour .post .postLink .postHeader {
+  width: 90%;
+  text-align: center;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffb300;
+}
+
+#posts .myBechaviour .post .postLink .divHR {
+  background-color: #e0e0e0;
+  width: 80%;
+  height: 1px;
+  margin: 0rem auto;
+}
+
+#posts .myBechaviour .post .postLink .postText {
+  width: 90%;
+  margin: 1rem auto;
+  font-size: 1.2rem;
+  text-align: justify;
+  color: #1b1b1b;
+}
+
+#posts .myBechaviour .post .postLink .postText pre {
+  width: 100% !important;
+  height: 100% !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  text-align: center;
+  overflow: visible !important;
+  margin: 0px !important;
+  font-family: "Roboto", "sans-serif" !important;
+  white-space: normal !important;
+}
+
+#posts .myBechaviour .post .postLink .divHR {
+  background-color: #e0e0e0;
+  width: 80%;
+  height: 1px;
+  margin: 0rem auto;
+}
+
+#posts .myBechaviour .post .postLink .postFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+#posts .myBechaviour .post .postLink .postFooter .wynajmijButton {
+  width: 80%;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background-color: #ffb300;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease !important;
+  transition: all 0.2s ease !important;
+  -webkit-box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+          box-shadow: 2px 2px 5px rgba(10, 10, 10, 0.6);
+  margin: 1rem auto;
+  text-align: center;
+}
+
+#posts .myBechaviour .post .postLink .postFooter .wynajmijButton div {
+  color: white;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+@media (max-width: 576px) {
+  #posts {
+    width: 94%;
+    margin: 1vh auto;
+  }
+  #posts .myBechaviour .post {
+    width: 400px !important;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    margin: 0px 0rem 2vh 0rem;
+  }
+  #posts .myBechaviour .post .postLink .postHeader {
+    width: 90%;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  #posts .myBechaviour .post .postLink .divHR {
+    background-color: #e0e0e0;
+    width: 80%;
+    height: 1px;
+    margin: 0rem auto;
+  }
+  #posts .myBechaviour .post .postLink .postText {
+    margin: 1rem auto;
+    font-size: 1.2rem;
+  }
+  #posts .myBechaviour .post .postLink .divHR {
+    background-color: #e0e0e0;
+    width: 80%;
+    height: 1px;
+    margin: 0rem auto;
+  }
+  #posts .myBechaviour .post .postLink .postFooter .date {
+    color: magenta;
+    font-size: 1.2rem;
+  }
+  #posts .myBechaviour .post .postLink .postFooter .date span {
+    font-size: inherit;
+    font-weight: 700;
+  }
+}
+
+.sectionTitle {
+  margin: 3vh auto;
+  font-size: 2.5rem;
+  padding: 0rem 1rem;
+  font-weight: 900;
+  color: #ffb300;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
+
 .ikonki-opis {
   width: 15px;
   height: 15px;
