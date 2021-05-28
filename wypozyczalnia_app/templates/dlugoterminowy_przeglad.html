@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="/static/css/przeglad_dlugoterminowy.css" />
 
-<div class="carousel-item active">
+{% comment %} <div class="carousel-item active">
   <div class="container">
     <div class="row">
       {% for samochod in samochody %}
@@ -58,7 +58,91 @@
       {% endfor %}
     </div>
   </div>
+</div> {% endcomment %}
+
+
+<!--przerwa-->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/flota.css' %}" />
+
+<div class="sectionTitle">Wynajem długoterminowy</div>
+<div id="posts">
+  <div class="myBechaviour">
+    {% for samochod in samochody %}
+    <div class="post">
+      <div name="rent" class="postLink">
+        <div class="postImgContainer">
+          <img src="/{{samochod.image}}" alt="" />
+        </div>
+
+        <div class="divHR"></div>
+        <div class="postText">
+          <pre>
+            {{samochod.marka}} {{samochod.model}}
+
+        </pre
+          >
+        </div>
+        <div class="divHR"></div>
+        <div class="postFooter">
+            <p>
+              <img class="ikonki-opis" src="/static/images/ikonki/car.png" />
+              {{samochod.moc}} km
+              <img
+                class="ikonki-opis"
+                src="/static/images/ikonki/gasoline-pump.png"
+              />
+              {{samochod.get_paliwo_display}}
+              <img class="ikonki-opis" src="/static/images/ikonki/gears.png" />
+              {{samochod.get_skrzynia_biegow_display}}
+              <img
+                class="ikonki-opis"
+                src="/static/images/ikonki/buildings.png"
+              />
+              {{samochod.miasto}}
+            </p>        
+          
+          <div class="date">
+            <a
+              href="#"
+              data-car-miasto="{{samochod.miasto}}"
+              data-car-id="{{samochod.id}}"
+              data-okno-target="#okno"
+              class="wynajmijButton wiecej"
+              role="button"
+            ><div>Więcej informacji</div>
+            </a>
+            {% if request.user.is_authenticated %}
+            <a
+                href="/dlugoterminowy/wynajmij/{{samochod.typ_auta|lower}}/{{samochod.id}}/"
+                class="wynajmijButton"
+                role="button"
+                ><div>Wypełnij Formularz</div></a>
+            {% else %}
+              <a href="/logowanie/"
+                class="wynajmijButton"
+                role="button"
+                ><div>Zaloguj się, żeby wypełnić formularz wynajęcia</div></a>
+                
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<!--Koniec-->
 
 <div class="okno" id="okno">
   <div class="okno_header">

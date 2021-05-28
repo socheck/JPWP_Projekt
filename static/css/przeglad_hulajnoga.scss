@@ -1,6 +1,16 @@
 @import "variables.scss";
 @import "wiecej.scss";
 
+#okno {
+  .okno_body {
+    div {
+      img {
+        height: 50% !important;
+        width: 50% !important;
+      }
+    }
+  }
+}
 body {
   background-color: $zolty;
 }
@@ -251,6 +261,17 @@ body {
 }
 
 @media (max-width: $smallest) {
+  #okno {
+    .okno_body {
+      div {
+        img {
+          height: 50% !important;
+          width: 30% !important;
+          min-width: none !important;
+        }
+      }
+    }
+  }
   #ourMap {
     padding: 3vh 0vh 5vh 0vh;
     .header {

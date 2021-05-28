@@ -7,13 +7,12 @@ $("document").ready(() => {
 
   function dodawanie_otworz(e) {
     var okno = document.querySelector(e.target.dataset.oknoTarget);
-    // console.log(okno);
-    // console.log(okno.children("okno_title").text());
+
     var car_id = e.target.dataset.carId;
     var car_miasto = e.target.dataset.carMiasto;
     console.log(car_id);
     console.log(car_miasto);
-    // wypełnianie tabeli
+
     var wypelnianie_okno = $("#okno");
     var car_dane = data_car[car_miasto][car_id];
     console.log(car_dane);
@@ -23,45 +22,18 @@ $("document").ready(() => {
     $("#okno tbody").empty();
 
     $("<tr></tr>")
-      .append("<td>Marka</td>" + "<td>" + car_dane.marka + "</td>")
+      .append("<td>Miasto</td>" + "<td>" + car_dane.miasto + "</td>")
       .appendTo("#okno tbody");
     $("<tr></tr>")
-      .append("<td>Model</td>" + "<td>" + car_dane.model + "</td>")
+      .append("<td>Paliwo</td>" + "<td>" + "energia elektryczna" + "</td>")
       .appendTo("#okno tbody");
     $("<tr></tr>")
-      .append(
-        "<td>Numer rejestracyjny</td>" +
-          "<td>" +
-          car_dane.nr_rejestracyjny +
-          "</td>"
-      )
+      .append("<td>Cena</td>" + "<td>" + car_dane.cena + " zł/min</td>")
       .appendTo("#okno tbody");
     $("<tr></tr>")
-      .append("<td>Kolor</td>" + "<td>" + car_dane.kolor + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Moc</td>" + "<td>" + car_dane.moc + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Paliwo</td>" + "<td>" + car_dane.paliwo + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Wyposazenie</td>" + "<td>" + car_dane.wyposazenie + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Skrzynia</td>" + "<td>" + car_dane.skrzynia + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Opis</td>" + "<td>" + car_dane.opis + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>zasieg</td>" + "<td>" + car_dane.zasieg + "</td>")
-      .appendTo("#okno tbody");
-    $("<tr></tr>")
-      .append("<td>Typ auta</td>" + "<td>" + car_dane.typ_auta + "</td>")
+      .append("<td>zasieg</td>" + "<td>" + car_dane.zasieg + " km</td>")
       .appendTo("#okno tbody");
 
-    //
     otworzOkno(okno);
   }
 
@@ -84,7 +56,7 @@ $("document").ready(() => {
     zoom = 12;
     mymap.setView([x, y], zoom);
     $("#tabela_aut tbody").empty();
-    // $("#tabela_aut tbody").remove();
+
     $("#tabela_aut thead").hide();
     $(".content").hide();
 
@@ -101,27 +73,6 @@ $("document").ready(() => {
 
     try {
       Object.values(data_car[nazwa_miasta]).forEach((item) => {
-        // console.log(item);
-        // var inner = document.createElement("div");
-        // inner.id = item["id"];
-        // inner.classList.add("pop-up");
-        // var inner_title = document.createElement("div");
-        // inner_title.classList.add("pop-up_nazwa");
-        // inner_title.textContent = item["nazwa"];
-        // var inner_buttons = document.createElement("div");
-        // inner_buttons.classList.add("pop-up_buttons");
-        // var button_wynajmij = document.createElement("a");
-        // button_wynajmij.href = "/krotkoterminowy/hulajnoga" + "/" + item["id"];
-        // var button_wynajmij_div = document.createElement("div");
-        // button_wynajmij_div.classList.add("btn");
-        // button_wynajmij_div.classList.add("btn-primary");
-        // button_wynajmij_div.innerHTML = "Wynajmij";
-        // button_wynajmij.appendChild(button_wynajmij_div);
-
-        // inner_buttons.appendChild(button_wynajmij);
-        // inner.appendChild(inner_title);
-        // inner.appendChild(inner_buttons);
-
         var inner = document.createElement("div");
         inner.id = item["id"];
         inner.classList.add("pop-up");
@@ -178,7 +129,7 @@ $("document").ready(() => {
                 "</td>" +
                 "<td>" +
                 item["zasieg"] +
-                "</td>" +
+                " km</td>" +
                 '<td><div data-car-miasto = "' +
                 nazwa_miasta +
                 '" data-car-id = "' +
@@ -203,7 +154,7 @@ $("document").ready(() => {
                 "</td>" +
                 "<td>" +
                 item["zasieg"] +
-                "</td>" +
+                " km</td>" +
                 '<td><div data-car-miasto = "' +
                 nazwa_miasta +
                 '" data-car-id = "' +
@@ -265,15 +216,4 @@ $("document").ready(() => {
     // shadowAnchor: [4, 62], // the same for the shadow
     popupAnchor: [0, -10], // point from which the popup should open relative to the iconAnchor
   });
-
-  // var carIcon = L.icon({
-  //   iconUrl: "/static/images/autko_marker.png",
-  //   // shadowUrl: "leaf-shadow.png",
-
-  //   iconSize: [38, 38], // size of the icon
-  //   // shadowSize: [50, 64], // size of the shadow
-  //   // iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-  //   // shadowAnchor: [4, 62], // the same for the shadow
-  //   popupAnchor: [0, -10], // point from which the popup should open relative to the iconAnchor
-  // });
 });

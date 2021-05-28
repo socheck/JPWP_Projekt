@@ -374,7 +374,7 @@
   background-color: white;
 }
 
-#login .content .description #loginButton:hover a {
+#login .content .description #loginButton:hover div {
   color: #ffb300;
 }
 
