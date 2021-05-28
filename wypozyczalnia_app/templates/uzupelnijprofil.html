@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/formularz.css' %}" />
+
 <style>
     .wprowadzanie input {
     display: block;
@@ -32,6 +34,14 @@
     <div class="container">
 <form method="POST" enctype="multipart/form-data" action="">
     {% csrf_token %}
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{u_form.first_name}} </div>
+            <label class="form-label">Imię</label>
+        </div>
+        <div class="form-outline mb-4">
+            <div class="wprowadzanie"> {{u_form.last_name}} </div>
+            <label class="form-label">Nazwisko</label>
+        </div>
         <div class="form-outline mb-4">
             <div class="wprowadzanie"> {{u_form.email}} </div>
             <label class="form-label">Email</label>

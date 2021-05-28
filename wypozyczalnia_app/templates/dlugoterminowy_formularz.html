@@ -4,7 +4,7 @@
 
 
 {% block content %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/formularz.css' %}" />
 
 {% if message_name %}
 <h1>Dzięki {{ user.get_username }} za wiadomość </h1>
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Wyślij formularz, a my się z Tobą skontaktujemy</button>
+    <button id="zatwierdz" type="submit" class="btn btn-primary btn-block mb-4">Wyślij formularz, a my się z Tobą skontaktujemy</button>
     </form>
 </div> 
 

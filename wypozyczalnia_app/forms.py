@@ -91,7 +91,7 @@ class UserUpdateForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'first_name', 'last_name']
 
     # def save(self, commit=True):
     #     user = super(UserUpdateForm, self).save(commit=False)
