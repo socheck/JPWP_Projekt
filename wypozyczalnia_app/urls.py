@@ -27,5 +27,6 @@ urlpatterns = [
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
     #path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
     path('wynajemkrotkoterminowy/', views.wynajemkrotkoterminowy, name="wynajemkrotkoterminowy"),
+    path('404/', views.error_404),
     
 ]

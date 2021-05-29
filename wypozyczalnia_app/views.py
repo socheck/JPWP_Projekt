@@ -450,4 +450,7 @@ def dlugoterminowy_wynajmij(request, car_type, auto_id):
     return render(request, 'dlugoterminowy_formularz.html', {'samochod': auto, 'user_mail' : user_email_})
     
 
+def error_404(request):
+    return render(request, 'error_404.html')
+
 

@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/404.css' %}" />
+
+<div class="container">
+    <h1 class="display-1 text-center" id="text_404">404</h1>
+    <h1 class="display-3 text-center opis">Ups! Wygląda na to, że zabłądziłeś :(</h1>
+    <h1 class="display-4 text-center opis">Przejdź na stronę <a href="\">główną</a></h1>
+    <br>
+
+    <div style="text-align:center;">
+    <img
+    id="truck_404"
+    src="{% static 'images/404_truck1.svg' %}"
+    alt="truck_404"
+     />
+    </div>
+</div>
+
+{% endblock %}

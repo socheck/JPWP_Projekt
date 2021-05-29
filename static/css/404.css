@@ -1,0 +1,48 @@
+body {
+    background-color: #ffb300;
+  }
+
+#text_404{
+    font-weight: 900;
+    font-size: 15rem;
+    color: #fefefe;
+}
+
+.opis{
+    font-size: 2rem;
+    color: #fefefe;
+}
+
+a {
+    color: #fefefe;
+  }
+
+a:hover {
+color: black;
+font-weight: 900;
+}
+
+#truck_404{
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 70%;
+    height: auto;
+}
+
+@media screen and (min-width: 621px) {
+    #text_404 {
+      font-size: 15rem;
+    }
+  }
+  
+  @media screen and (max-width: 620px) {
+    #text_404 {
+      font-size: 10rem;
+    }
+  }
+
+  @media screen and (max-width: 301px) {
+    #text_404 {
+      font-size: 5rem;
+    }
+  }
