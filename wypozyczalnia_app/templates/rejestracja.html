@@ -4,14 +4,6 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/rejestracja.css' %}" />
 
-    {% comment %} <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in form %}
-            {{field.label}}
-            {{field}}
-        {% endfor %}
-        <input type="submit" name="Create User">
-    </form> {% endcomment %}
 
 <style>
     .wprowadzanie input {
@@ -35,7 +27,6 @@
     <div class="container">
 <form method="POST" action="{% url 'rejestracja' %}">
     {% csrf_token %}
-                <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
             <div class="col">
             <div class="form-outline">

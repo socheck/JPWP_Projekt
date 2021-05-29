@@ -25,7 +25,6 @@ urlpatterns = [
     path('dodaj_strefe/', views.dodaj_strefe),
     path('dodaj_strefe/ajax/post_punkty', views.dodawanie_strefy_baza, name = "dodawanie_strefy_baza"),
     path('uzupelnijprofil/', views.uzupelnijprofil, name="uzupelnijprofil"),
-    #path('dlugoterminowy/<typ_auta>', views.dlugoterminowyform),
     path('wynajemkrotkoterminowy/', views.wynajemkrotkoterminowy, name="wynajemkrotkoterminowy"),
     path('404/', views.error_404),
     

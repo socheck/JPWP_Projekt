@@ -122,28 +122,13 @@ def dodajmiasto(request):
 
 @csrf_exempt
 def dlugoterminowyform(request, typ_auta = 'miejski'):
-# nie wiem czy to działa bo w urls są 2 rekordy a jeszcze nie mam jak sprawdzić bo trzeba pewne rzeczy ustalić
-    # try:
-    #     data = json.loads(request.body.decode('utf-8'))
-    # except:
-    #     cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
-        
-    # if request.is_ajax and request.method == "POST":
-          
-    #     cena = data["cena"]
-    # else:
-    #     cena = TypAuta.objects.filter(nazwa = typ_auta).values('cena')
-    # koniec ajaxa
     if request.method == 'POST':
         zaznaczona_cena = request.POST["cena"]
         zaznaczony_typ_auta_id = request.POST["typ_auta_id"]
-        # print(request.POST["typ_auta_id"])
         
         samochody_wybrany_typ = Samochod.objects.filter(typ_auta_id = zaznaczony_typ_auta_id)
 
     
-
-    # nie wiem w sumie co zwracać????
 
     return render(request, 'dlugoterminowyform.html', {"zaznaczona_cena": zaznaczona_cena, "zaznaczony_typ_auta_id": zaznaczony_typ_auta_id, "samochody_zaznaczone_id": samochody_wybrany_typ})
 
@@ -234,7 +219,6 @@ def car_type_selection(request, car_type):
         hulajnogi =  Hulajnoga.objects.filter(service=False, czy_wynajety = None)
         miasta = Miasto.objects.all()
         strefy = Strefa.objects.filter(rodzaj = "h")
-        # trzeba dać żeby zwracało jakiś inny html ale na razie jest tak
         return render(request, 'przeglad_hulajnoga.html', {'miasta': miasta,"hulajnogi" : hulajnogi, 'strefy': strefy, 'hulajnoga_name' : "Hulajnoga TX300",})
     else:
         typ = get_object_or_404(TypAuta, slug=car_type)
@@ -243,16 +227,6 @@ def car_type_selection(request, car_type):
         strefy = Strefa.objects.filter(rodzaj = "s")
         return render(request, 'przeglad.html', {'miasta': miasta,"samochody" : samochody, 'strefy': strefy})
 
-# def krotkoterminowy_wynajety(request, car_type, auto_id):
-#     auto = get_object_or_404(Samochod, id=auto_id)
-#     if request.method == 'POST':
-#         if(request.POST['kod_samochod'] == auto.kod ): # tutaj dodać pole kod
-#             return render(request, 'koszt.html', {})
-#         else:
-#             messages.info(request, 'Wprowadzono niepoprawny kod! Spróbuj ponownie')
-    
-#     miasta = Miasto.objects.all()
-#     return render(request, 'krotkoterminowy_wynajety.html', {'miasta': miasta,'czy_super' : 'jest super', })
 
 def krotkoterminowy_wynajety(request, car_type, auto_id):
     if(car_type == "hulajnoga"):
@@ -278,7 +252,6 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
             print("Pole karta jest uzupełnione")
         if(request.POST['kod_samochod'] == auto.kod and not zamowienia and auto.czy_wynajety == None and auto.service == False and user_m.profile.karta != None): # tutaj dodać pole kod
             now = datetime.now()
-            #now = make_aware(now, timezone.utc)
             now = make_aware(now, timezone=None)
             auto.czy_wynajety = now
             auto.save()
@@ -293,39 +266,6 @@ def krotkoterminowy_wynajety(request, car_type, auto_id):
             nowe_zamowienie.czy_obecnie_wynajety = True
             nowe_zamowienie.save()
 
-
-            # user_m = User.objects.get(id= request.user.id)
-            # user_profile = user_m.profile
-            # if(auto.czy_wynajety == None):
-            #     now = datetime.now()
-            #     now = make_aware(now, timezone.utc)
-            #     auto.czy_wynajety = now
-            #     auto.save()
-            
-            # now_dynamic = datetime.now()
-            # now_dynamic = make_aware(now_dynamic, timezone.utc)
-            # duration = (now_dynamic - auto.czy_wynajety)
-            # duration_in_s = int(duration.total_seconds())
-            # print('Z bazy: ')
-            # print(auto.czy_wynajety)
-            # print('Dynamiczny: ')
-            # print(now_dynamic)
-            # print(duration_in_s)
-            # hours = int(duration_in_s/3600)
-            # minutes = int((duration_in_s - 3600*hours)/60)
-            # seconds = int(duration_in_s - int(60*minutes) - int(3600*hours))
-
-            # content = {
-            #     'user' : user_m,
-            #     'user_profile' : user_profile,
-            #     'samochod' : auto,
-            #     'date_now' : auto.czy_wynajety,
-            #     'h' : hours,
-            #     'm' : minutes,
-            #     's' : seconds,
-            # } 
-
-            # return render(request, 'koszt.html', content)
             return redirect('/krotkoterminowy/'+car_type+'/'+auto_id+'/podliczanie')
         else:
             try:
@@ -351,16 +291,8 @@ def krotkoterminowy_wynajety_podliczanie(request, car_type, auto_id):
     
     user_m = User.objects.get(id= request.user.id)
     user_profile = user_m.profile
-    # if(auto.czy_wynajety == None):
-    #     print('none')
-    #     now = datetime.now()
-    #     #now = make_aware(now, timezone.utc)
-    #     now = make_aware(now, timezone=None)
-    #     auto.czy_wynajety = now
-    #     auto.save()
     
     now_dynamic = datetime.now()
-    #now_dynamic = make_aware(now_dynamic, timezone.utc)
     now_dynamic = make_aware(now_dynamic, timezone=None)
     duration = (now_dynamic - auto.czy_wynajety)
     duration_in_s = int(duration.total_seconds())
