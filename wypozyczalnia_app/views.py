@@ -368,7 +368,7 @@ def dlugoterminowy_wynajmij(request, car_type, auto_id):
         pass
  
     if request.method == 'POST':
-        message = "Imię i Nazwisko: " + request.POST['imie_nazwisko'] + " email: " + request.POST['email'] + " usernaname: " + request.POST['username'] + " Samochód: " + request.POST['samochod']
+        message = "Imię i Nazwisko: " + request.POST['imie_nazwisko'] + " email: " + request.POST['email'] + " usernaname: " + request.POST['username'] + " Samochód: " + request.POST['samochod'] + " Od: " + request.POST['od'] + " Do: " + request.POST['do']
         print(message)
         send_mail(
         'Wynajem długoterminowy id= ' + auto_id + ' ' + auto.__str__(),
