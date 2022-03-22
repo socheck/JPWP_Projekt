@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'wypozyczalnia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '15212_wypo_db',
-        'USER': '15212_wypo_db',
-        'PASSWORD': 'wypozyczalnia5',
-        'HOST': 'pawsao.atthost24.pl',
+        'NAME': '******',
+        'USER': '*********',
+        'PASSWORD': '*********',
+        'HOST': '*************',
         'PORT': '3306',
     }
 }
